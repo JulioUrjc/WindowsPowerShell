@@ -21,6 +21,7 @@ Function path{ $pathJuly = $env:Path; $pathJuly.split(";") | Out-GridView}
 Function job { Start-job { $args[0] } -Name trabajoJuly }
 Function jobResult { Get-Job -Name trabajoJuly | Receive-Job }
 Function pw { start powershell }
+Function pwi { start powershell ISE; exit}
 Function ip { ipconfig | FINDSTR "Dirección IPv4" }
 Function ipp {  Invoke-RestMethod http://ipinfo.io/json | Select -exp ip }
 Function ippublic { wget "http://checkip.amazonaws.com/"  | Select -exp RawContent }
