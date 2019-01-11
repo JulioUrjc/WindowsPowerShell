@@ -84,9 +84,11 @@ Function cuentaAtras
     }
 }
 
+
 #################### Alias #################################
 
 set-alias grep       select-string
+set-alias fecha      Get-Date
 set-alias sublime    "C:\Program Files\Sublime Text 3\sublime_text.exe"
 set-alias abrir      explorer.exe
 set-alias sz         "C:\Program Files\7-Zip\7z.exe"
@@ -96,7 +98,7 @@ set-alias cal        C:\Users\jmn6\Documents\WindowsPowerShell\Scripts\Cal.ps1
 set-alias slicer     "C:\Program Files\slicer\Slic3r.exe"
 set-alias repetier   "C:\Program Files\Repetier-Host\RepetierHost.exe"
 set-alias kraken     "C:\Users\jmn6\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
-
+set-alias wordexe       "C:\Program Files (x86)\Microsoft Office\Office16\winword.exe"
 
 ############################################################
 #################### SSH ###################################
