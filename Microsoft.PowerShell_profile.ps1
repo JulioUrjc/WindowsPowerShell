@@ -1,4 +1,5 @@
 Import-Module -Name "C:\Users\jmn6\Documents\WindowsPowerShell\Scripts\moduloExtra.psm1"
+Import-Module -Name "C:\Users\jmn6\Documents\WindowsPowerShell\Scripts\moduloCifrado.psm1"
 
 Function memoriaram {get-process |sort-object pm -desc | select-object -first 10}
 Function ram {get-process |sort-object pm -desc | select-object -first $args[0]}
@@ -98,7 +99,7 @@ set-alias cal        C:\Users\jmn6\Documents\WindowsPowerShell\Scripts\Cal.ps1
 set-alias slicer     "C:\Program Files\slicer\Slic3r.exe"
 set-alias repetier   "C:\Program Files\Repetier-Host\RepetierHost.exe"
 set-alias kraken     "C:\Users\jmn6\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
-set-alias wordexe       "C:\Program Files (x86)\Microsoft Office\Office16\winword.exe"
+set-alias wordexe    "C:\Program Files (x86)\Microsoft Office\Office16\winword.exe"
 
 ############################################################
 #################### SSH ###################################
@@ -317,11 +318,11 @@ Function inicio{
         "
     }  
 
-    cd $home
+    #cd $home
 }
 
 ############################################################
 
-inicio
+#inicio
   
 Import-Module PSReadLine
