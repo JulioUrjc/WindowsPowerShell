@@ -323,6 +323,6 @@ Function inicio{
 
 ############################################################
 
-#inicio
+inicio
   
 Import-Module PSReadLine

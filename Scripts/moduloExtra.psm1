@@ -57,3 +57,8 @@ Function word{
     touch $file 
     wordexe $file  
 }
+
+# Function serial
+Function serial{
+  wmic path softwarelicensingservice get OA3xOriginalProductKey
+}
