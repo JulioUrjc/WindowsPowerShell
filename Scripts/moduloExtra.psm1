@@ -45,13 +45,13 @@ Function GetProgsVersion{
 # Function word
 Function word{
 
-    $file = "C:\Users\jmn6\Desktop\word.docx"
+    $file = "$env:userprofile\Desktop\word.docx"
     $i= 0       
 
     while(Test-Path $file)
     {
         $i++
-        $file = "C:\Users\jmn6\Desktop\word($i).docx"
+        $file = "$env:userprofile\Desktop\word($i).docx"
     }
 
     touch $file 
@@ -60,5 +60,24 @@ Function word{
 
 # Function serial
 Function serial{
-  wmic path softwarelicensingservice get OA3xOriginalProductKey
+  (Get-WmiObject -query 'select * from SoftwareLicensingService').OA3xOriginalProductKey
+}
+
+# Function cuentaAtras
+Function cuentaAtras
+{
+    $Longitud1 = 0
+    $Longitud2 = 0
+    ""
+    Write-Host "Elemento N      " -NoNewLine
+    $args[0]..0| ForEach{ `
+        Start-Sleep -Milliseconds 5
+        $Incremento = $Longitud1 - $Longitud2
+        $Longitud1 = ("{0:N0}" -f ($_ + 1)).Length
+        $Numero = "{0:N0}" -f $_
+        $Longitud2 = $Numero.Length
+        $Borrado = " " * ($Longitud1 - $Longitud2)
+        $Retroceso = "`b" * ($Longitud1 + $Incremento)
+        Write-Host "$Retroceso$Numero$Borrado" -NoNewLine
+    }
 }

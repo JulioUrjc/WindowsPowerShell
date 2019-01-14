@@ -1,5 +1,6 @@
-Import-Module -Name "C:\Users\jmn6\Documents\WindowsPowerShell\Scripts\moduloExtra.psm1"
-Import-Module -Name "C:\Users\jmn6\Documents\WindowsPowerShell\Scripts\moduloCifrado.psm1"
+Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\moduloExtra.psm1"
+Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\moduloCifrado.psm1"
+Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mlogos.psm1"
 
 Function memoriaram {get-process |sort-object pm -desc | select-object -first 10}
 Function ram {get-process |sort-object pm -desc | select-object -first $args[0]}
@@ -67,24 +68,6 @@ Function descomprimir{
    }
 }
 
-Function cuentaAtras
-{
-    $Longitud1 = 0
-    $Longitud2 = 0
-    ""
-    Write-Host "Elemento N      " -NoNewLine
-    $args[0]..0| ForEach{ `
-        Start-Sleep -Milliseconds 5
-        $Incremento = $Longitud1 - $Longitud2
-        $Longitud1 = ("{0:N0}" -f ($_ + 1)).Length
-        $Numero = "{0:N0}" -f $_
-        $Longitud2 = $Numero.Length
-        $Borrado = " " * ($Longitud1 - $Longitud2)
-        $Retroceso = "`b" * ($Longitud1 + $Incremento)
-        Write-Host "$Retroceso$Numero$Borrado" -NoNewLine
-    }
-}
-
 
 #################### Alias #################################
 
@@ -95,39 +78,12 @@ set-alias abrir      explorer.exe
 set-alias sz         "C:\Program Files\7-Zip\7z.exe"
 set-alias view       Out-GridView
 set-alias columna    Select-Object
-set-alias cal        C:\Users\jmn6\Documents\WindowsPowerShell\Scripts\Cal.ps1
+set-alias cal        $env:userprofile\Documents\WindowsPowerShell\Scripts\Cal.ps1
 set-alias slicer     "C:\Program Files\slicer\Slic3r.exe"
 set-alias repetier   "C:\Program Files\Repetier-Host\RepetierHost.exe"
-set-alias kraken     "C:\Users\jmn6\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
+set-alias kraken     "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
 set-alias wordexe    "C:\Program Files (x86)\Microsoft Office\Office16\winword.exe"
 
-############################################################
-#################### SSH ###################################
-
-#Function sshStart
-#{
-#	New-SSHSession -ComputerName $args[0] -Credential (Get-Credential)
-#}
-#
-#Function ssh
-#{
-#	Invoke-SshCommand -InvokeOnAll -Command $args[0]
-#}
-#
-#Function ssh([int] $id) 
-#{
-#  Invoke-SshCommand -SessionId $id -Command $args[0]
-#}
-#
-#Function sshCloseId
-#{
-#  Remove-SSHSession -SessionId $args[0]
-#}
-#
-#Function sshClose
-#{
-#  Remove-SSHSession -RemoveAll
-#}
 
 ############################################################
 #################### Pipe ##################################
@@ -197,93 +153,6 @@ Function inicio2
     }
 }
 
-Function logo0
-{
-	 echo "
-                                          .::!!!!!!!:.
-         .!!!!!:.                        .:!!!!!!!!!!!! 
-         ~~~~!!!!!!.                 .:!!!!!!!!!UWWWSSS 
-             :SSNWX!!:           .:!!!!!!XUWWSSSSSSSSSP
-             SSSSSOOWX!:      .<!!!!UWSSSS*  SSSSSSSSO
-             SSSSS  SSSUX   :!!UWSSSSSSSSS   4SSSSS*
-             ^SSSB  SSSS\     SSSSSSSSSSSS   dSSR*
-               **SbdSSSS      **SSSSSSSSSSSo+#*
-                    ****          ********
-     "
-}
-
-Function logo1
-{
-     echo "
-	       _,    _   _    ,_
-          .o888P     Y8o8Y     Y888o.
-         d88888      88888      88888b
-        d888888b_  _d88888b_  _d888888b
-        8888888888888888888888888888888
-        8888888888888888888888888888888
-        YJGS8P*Y888P*Y888P*Y888P*Y8888P
-         Y888   '8'   Y8P   '8'   888Y
-          '8o          V          o8'
-            '                     '
-     "
-}
-
-Function logo2
-{
-    echo "
-    
-           /===    \      I//|  |  |  ||  ||  |  |  |\\I      /===    \
-           \==     /   ! /|/ |  |  |  ||  ||  |  |  | \|\ !   \==     /
-            \_____/    I//|  |  |  |_/_ /_  _ |  |  |  |\\I    \_____/
-             _} {_  ! /|/ |  |  |   (_ / / (/_   |  |  | \|\ !  _} {_
-            {_____} I//|  |  |  |  |  ||  ||  |  |  |  |  |\\I {_____}
-       !  !  |=  |=/|/ |  |  |  |  |  ||  ||  |  |  |  |  | \|\=|-  |  !  ! 
-      _I__I__|   ||/ ____  ___ ___ ____  ___   ____ __     __ \||   |__I__I_
-      -|--|--|-  || / __//| ||| ||/ _ \\|   \\/   \\||| _ | || ||=  |--|--|-
-      _|__|__|   || \__ \\|     || //\ || | ||  | || ||/\\| || ||-  |__|__|_
-      -|--|--|   || /___//|_|||_||_|||_||___//\___//\__/\__//  ||   |--|--|- 
-       |  |  |=  ||           ____  ____  _____  ____          ||   |  |  | 
-       |  |  |   || |  |  |  /  _||/ _ \\|_   _|| __|| |  |  | ||=  |  |  | 
-       |  |  |-  || |  |  | |  | \\ //\ || | || | _||  |  |  | ||   |  |  | 
-       |  |  |   || |  |  |  \___||_|||_|| |_|| |___|| |  |  | ||=  |  |  |
-       |  |  |=  || |  |  |                            |  |  | ||   |  |  |
-       |  |  |   || |  |  |  |  |  |  ||  ||  |  |  |  |  |  | ||   |  |  |
-       |  |  |   || |  |  |  |  |  |  ||  ||  |  |  |  |  |  | ||-  |  |  |
-      _|__|__|   || |  |  |  |  |  |  ||  ||  |  |  |  |  |  | ||=  |__|__|_
-      -|--|--|=  || |  |  |  |  |  |  ||  ||  |  |  |  |  |  | ||   |--|--|-
-      _|__|__|   ||_|__|__|__|__|__|__||  ||__|__|__|__|__|__|_||-  |__|__|_
-      -|--|--|=  ||-|--|--|--|--|--|--||  ||--|--|--|--|--|--|-||=  |--|--|-
-          |  |-  || |  |  |  |  |  |  ||  ||  |  |  |  |  |  | ||-  |  |  |
-     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^~~~~~~~~~~~
-    "
-}
-
-Function logo3
-{
-    echo "	
-     ____.     .__                _____       .___      .__        
-    |    |__ __|  | ___.__.      /  _  \    __| _/_____ |__| ____  
-    |    |  |  \  |<   |  |     /  /_\  \  / __ |/     \|  |/    \ 
-/\__|    |  |  /  |_\___  |    /    |    \/ /_/ |  Y Y  \  |   |  \
-\________|____/|____/ ____|    \____|__  /\____ |__|_|  /__|___|  /
-                    \/                 \/      \/     \/        \/  
-    "
-}
-
-Function logo4
-{
-    echo "  
-                     IIIIIIIII MMM                           
-          ::III    IIII:::::: MMM                            
-            III  II= MMM     MMMM  SMMMMM,  MM          =MM  
-            ,IIIII ,MMMMMMM ,MMM MMMMMMMMM ,MM   MMMM  SMM  
-             III,  MMMMMMM  MMM MMM     MMM MM  MMMMM =MM    
-          =IIIIII MMMM     MMM MMM=    =MMM MM MMSMMMMMM,    
-        IIIII III,MMM      MMM MMM     MMM MMMMM= MMMMM,     
-      IIIII   II MMM      MMM  MMMM  MMMM, MMMMS  MMMM       
-    IIIIII     IMMM      MMM    MMMMMMM=   MMM=   MMM        
-    "
-}
 
 #################### Admin #################################
 
