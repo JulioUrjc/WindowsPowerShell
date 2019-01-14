@@ -15,7 +15,7 @@ Function admin {Start-Process powershell -Verb runAs; exit}
 Function orden {ls | sort $args[0] | select $args[0]}
 Function buscar {ls -r -i * | select-string $args[0]}
 Function busca([string] $ext) {ls -r -i *.$ext | select-string $args[0]}
-#Function virtualMachineCopy {"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" clonehd "$args[0]\Ubuntu.vdi" "$args[0]\Ubuntu_25.vdi" --existing}
+#Function virtualMachineCopy {"$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" clonehd "$args[0]\Ubuntu.vdi" "$args[0]\Ubuntu_25.vdi" --existing}
 
 Function profileDir{abrir ([system.io.fileinfo]$profile).DirectoryName}
 Function profileFile{ sublime $profile }
@@ -39,7 +39,7 @@ Function workstation
 
 Function dumpbin
 {
-	cd "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
+	cd "$env:ProgramFiles(x86)\Microsoft Visual Studio 14.0\VC\bin"
 
 	.\dumpbin.exe $args[0] $args[1]
 }
@@ -73,16 +73,16 @@ Function descomprimir{
 
 set-alias grep       select-string
 set-alias fecha      Get-Date
-set-alias sublime    "C:\Program Files\Sublime Text 3\sublime_text.exe"
 set-alias abrir      explorer.exe
-set-alias sz         "C:\Program Files\7-Zip\7z.exe"
 set-alias view       Out-GridView
 set-alias columna    Select-Object
 set-alias cal        $env:userprofile\Documents\WindowsPowerShell\Scripts\Cal.ps1
-set-alias slicer     "C:\Program Files\slicer\Slic3r.exe"
-set-alias repetier   "C:\Program Files\Repetier-Host\RepetierHost.exe"
+set-alias sublime    "$env:ProgramFiles\Sublime Text 3\sublime_text.exe"
+set-alias sz         "$env:ProgramFiles\7-Zip\7z.exe"
+set-alias slicer     "$env:ProgramFiles\slicer\Slic3r.exe"
+set-alias repetier   "$env:ProgramFiles\Repetier-Host\RepetierHost.exe"
 set-alias kraken     "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
-set-alias wordexe    "C:\Program Files (x86)\Microsoft Office\Office16\winword.exe"
+set-alias wordexe    "$env:ProgramFiles(x86)\Microsoft Office\Office16\winword.exe"
 
 
 ############################################################
