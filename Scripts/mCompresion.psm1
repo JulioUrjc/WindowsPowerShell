@@ -16,15 +16,30 @@ Function comprimir{
          }
              
       }
-      sz a -sdel "$args.7z" *.*
+      if($delete -Match "y")
+      {
+         sz a -sdel "$args.7z" *.*
+      }else{
+         sz a "$args.7z" *.*
+      }
+      
    }
 }
 
 Function descomprimir{
    ls -name *.zip
+   ls -name *.7z
    $input = Read-Host "Va a descomprimir estos ficheros, esta seguro y/n?"
+   $folders = Read-Host "Descomprimir en carpetas y/n?"
    if($input -Match "y")
    {
-     sz x *.zip -o*
+     if($folders -Match "y"){
+   	   sz x *.zip -o*
+       sz x *.7z -o*
+     }else{
+       sz x *.zip
+       sz x *.7z
+     }
+     
    }
 }
