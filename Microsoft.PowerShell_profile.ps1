@@ -1,6 +1,8 @@
 Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\moduloExtra.psm1"
 Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\moduloCifrado.psm1"
 Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mlogos.psm1"
+Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mLSColor.psm1"
+Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mCompresion.psm1"
 
 Function memoriaram {get-process |sort-object pm -desc | select-object -first 10}
 Function ram {get-process |sort-object pm -desc | select-object -first $args[0]}
@@ -32,10 +34,7 @@ Function gui { cd /xflow/gui}
 Function common { cd /xflow/common}
 Function home { cd $home }
 
-Function workstation
-{
-  ssh julio@192.168.86.154
-}
+Function workstation{ ssh julio@192.168.86.154 }
 
 Function dumpbin
 {
@@ -43,31 +42,6 @@ Function dumpbin
 
 	.\dumpbin.exe $args[0] $args[1]
 }
-
-Function comprimir{
-   ls -name
-   $input = Read-Host "Va a comprimir estos ficheros, esta seguro y/n?"
-   if($input -Match "y")
-   {
-      $files = ls -name; 
-      foreach ( $file in $files )
-      { 
-         $zipname = $file + ".7z" 
-         sz a -sdel $zipname $file    
-      }
-      sz a -sdel "$args.7z" *.*
-   }
-}
-
-Function descomprimir{
-   ls -name *.zip
-   $input = Read-Host "Va a comprimir estos ficheros, esta seguro y/n?"
-   if($input -Match "y")
-   {
-     sz x *.zip -o*
-   }
-}
-
 
 #################### Alias #################################
 
