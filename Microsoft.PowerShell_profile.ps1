@@ -3,6 +3,7 @@ Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\modulo
 Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mlogos.psm1"
 Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mLSColor.psm1"
 Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mCompresion.psm1"
+Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mEmail.psm1"
 
 Function memoriaram {get-process |sort-object pm -desc | select-object -first 10}
 Function ram {get-process |sort-object pm -desc | select-object -first $args[0]}
@@ -89,7 +90,7 @@ Function readPipe
   $namedPipe.Dispose()
 }
 
-############################################################
+####################### EJEMPLOS #####################################
 
 
 #(Get-Item $FileNamePath ).Extension
@@ -98,17 +99,13 @@ Function readPipe
 #(Get-Item $FileNamePath ).DirectoryName
 #(Get-Item $FileNamePath ).FullName
 #PS C:\Users\jmn6> dir "C:\Program Files" -File -Recurse | Sort-Object Count -Descending | Select-Object Name, Count | Out-GridView
+#Get-Command | Select-Object Name,source | Where-Object {$_.source -eq "mLSColor"} |Get-Help | Out-File C:\Users\jmn6\Desktop\Ayuda.txt
 #Save-Help -Force -UICulture "en-us" -DestinationPath C:\PowerShell-Help
 #Update-Help -Force -UICulture "en-us" -SourcePath C:\PowerShell-Help
 #$env:PSModulePath
 #systeminfo | Select-String "^OS Name","^OS Version"
 #Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 #ipconfig | select-string -pattern 192
-#Function cumple 
-#{ 
-#  $cumple = ((Get-Date -Month 03 -Day 11 -Year 2019) - (Get-Date)).Days+1 
-#  echo "Dias para mi cumple: $cumple" 
-#}
 
 ############################################################
 
@@ -166,6 +163,6 @@ Function inicio{
 
 ############################################################
 
-#inicio
+inicio
   
 Import-Module PSReadLine

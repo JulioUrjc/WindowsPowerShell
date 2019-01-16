@@ -217,7 +217,7 @@ function lsColorRecursive {
         }
         else
         {
-            writeColorLS "Black" $_
+            writeColorLS "DarkGray" $_
         }
 
          $_ = $null
@@ -265,6 +265,10 @@ function getDirSizeRecursive
     }
 }
 
+function coloresPosibles{
+  [enum]::GetValues([System.ConsoleColor]) | Foreach-Object {Write-Host $_ -ForegroundColor $_}  
+}
+
 #############  COLORS ###########
 #Black        
 #DarkBlue      
@@ -282,3 +286,4 @@ function getDirSizeRecursive
 #Magenta      
 #Yellow
 #White
+
