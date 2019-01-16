@@ -1,5 +1,15 @@
+####### MODULO DE LOGOS #######
+
 Function logo0
 {
+  <#
+    .SYNOPSIS
+     Logo ojos   
+    .DESCRIPTION 
+      Logo ojos
+    .EXAMPLE 
+      logo 0  
+  #> 
 	 echo "
                                           .::!!!!!!!:.
          .!!!!!:.                        .:!!!!!!!!!!!! 
@@ -15,6 +25,14 @@ Function logo0
 
 Function logo1
 {
+ <#
+    .SYNOPSIS
+     Logo batman   
+    .DESCRIPTION 
+      Logo batman
+    .EXAMPLE 
+      logo 1 
+  #> 
      echo "
 	       _,    _   _    ,_
           .o888P     Y8o8Y     Y888o.
@@ -31,6 +49,14 @@ Function logo1
 
 Function logo2
 {
+ <#
+    .SYNOPSIS
+     Logo shadowgate 
+    .DESCRIPTION 
+      Logo shadowgate
+    .EXAMPLE 
+      logo 2
+  #> 
     echo "
     
            /===    \      I//|  |  |  ||  ||  |  |  |\\I      /===    \
@@ -61,6 +87,14 @@ Function logo2
 
 Function logo3
 {
+ <#
+    .SYNOPSIS
+     Logo julyadmin
+    .DESCRIPTION 
+      Logo julyadmin
+    .EXAMPLE 
+      logo 3
+  #> 
     echo "	
      ____.     .__                _____       .___      .__        
     |    |__ __|  | ___.__.      /  _  \    __| _/_____ |__| ____  
@@ -73,6 +107,14 @@ Function logo3
 
 Function logo4
 {
+ <#
+    .SYNOPSIS
+     Logo xflow
+    .DESCRIPTION 
+      Logo xflow
+    .EXAMPLE 
+      logo 4
+  #> 
     echo "  
                      IIIIIIIII MMM                           
           ::III    IIII:::::: MMM                            
@@ -85,3 +127,5 @@ Function logo4
     IIIIII     IMMM      MMM    MMMMMMM=   MMM=   MMM        
     "
 }
+
+Export-ModuleMember -function logo0,logo1,logo2,logo3,logo4

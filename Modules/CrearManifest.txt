@@ -1,0 +1,19 @@
+$path = "$env:userprofile\documents\WindowsPowerShell\Modules\mCompression\mCompression.psd1"
+$guid = [guid]::NewGuid().guid
+
+$paramHash = @{
+ Path = $path
+ RootModule = "mLSColor.psm1"
+ Author = "Julio Martin"
+ CompanyName = ""
+ ModuleVersion = "1.0"
+ Guid = $guid
+ PowerShellVersion = "5.0"
+ Description = "Ls color module"
+ FormatsToProcess = ""
+ FunctionsToExport = ""
+ AliasesToExport = "*"
+ VariablesToExport = ""
+ CmdletsToExport = ""
+}
+New-ModuleManifest @paramHash

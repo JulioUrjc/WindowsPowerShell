@@ -1,3 +1,5 @@
+####### MODULO DE EMAIL #######
+
 Function SendEMail {
     Param (
         [Parameter(`
@@ -68,6 +70,22 @@ Function SendEMailSinAdjunto {
 
 # mensaje "body" "attachment dir"
 Function mensaje{
+  <#
+    .SYNOPSIS
+     Enviar emails a mi propio correo
+    
+    .DESCRIPTION 
+      Envia email a mi propio correo y desde mi propio correo, puedo ademas anadir un adjunto
+    
+    .EXAMPLE 
+      mensaje
+    .EXAMPLE 
+      mensaje "mi Texto"
+    .EXAMPLE 
+      mensaje "mi Texto" "C:\miFichero.txt"
+     
+  #> 
+
   Param([String]$body = "Test body",
          $attach="",
          [Parameter(`
@@ -82,3 +100,5 @@ Function mensaje{
     SendEMail -EmailFrom "julio.martin.saez@gmail.com" -EmailTo "julio.martin.saez@gmail.com" -Body $body -Subject "Test Subject" -attachment $attach -password $password
    }
 }
+
+Export-ModuleMember -function mensaje

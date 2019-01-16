@@ -1,8 +1,21 @@
+####### MODULO DE LS A COLOR #######
+
 Set-Alias lsa lsGetColorAndSize
 Set-Alias lsr lsGetColorAndSizeRecursive
 
 function lsGetColorAndSize
 {
+   <#
+    .SYNOPSIS
+     Muestra lo mismo que el comando ls pero coloreando los ficheros y carpetas
+    
+    .DESCRIPTION 
+      Muestra lo mismo que el comando ls pero coloreando los ficheros y carpetas y el tamano total
+    
+    .EXAMPLE 
+      lsa  
+   #> 
+
     param ($dir)
     lsColor $dir
     Write-Host
@@ -134,6 +147,17 @@ function getDirSize
 
 function lsGetColorAndSizeRecursive
 {
+    <#
+    .SYNOPSIS
+     Muestra lo mismo que el comando ls pero coloreando los ficheros y carpetas
+    
+    .DESCRIPTION 
+      Muestra lo mismo que el comando ls pero coloreando los ficheros y carpetas de forma recursiva y el tamano final
+    
+    .EXAMPLE 
+      lsa  
+   #> 
+
     param ($dir)
     lsColorRecursive $dir
     Write-Host
@@ -266,8 +290,21 @@ function getDirSizeRecursive
 }
 
 function coloresPosibles{
+  <#
+    .SYNOPSIS
+     Muestra colores posibles con su color
+    
+    .DESCRIPTION 
+      Muestra los colores posibles de la power shell coloreados con el propio color
+    
+    .EXAMPLE 
+      coloresPosibles  
+  #> 
   [enum]::GetValues([System.ConsoleColor]) | Foreach-Object {Write-Host $_ -ForegroundColor $_}  
 }
+
+
+Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive -Alias lsa,lsr
 
 #############  COLORS ###########
 #Black        

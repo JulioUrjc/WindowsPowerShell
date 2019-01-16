@@ -1,9 +1,9 @@
-Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\moduloExtra.psm1"
-Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\moduloCifrado.psm1"
-Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mlogos.psm1"
-Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mLSColor.psm1"
-Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mCompresion.psm1"
-Import-Module -Name "$env:userprofile\Documents\WindowsPowerShell\Scripts\mEmail.psm1"
+Import-Module -Name mExtra
+Import-Module -Name mCifrado
+Import-Module -Name mlogos
+Import-Module -Name mLSColor
+Import-Module -Name mCompression
+Import-Module -Name mEmail
 
 Function memoriaram {get-process |sort-object pm -desc | select-object -first 10}
 Function ram {get-process |sort-object pm -desc | select-object -first $args[0]}
@@ -46,18 +46,20 @@ Function dumpbin
 
 #################### Alias #################################
 
-set-alias grep       select-string
-set-alias fecha      Get-Date
-set-alias abrir      explorer.exe
-set-alias view       Out-GridView
-set-alias columna    Select-Object
-set-alias cal        $env:userprofile\Documents\WindowsPowerShell\Scripts\Cal.ps1
-set-alias sublime    "$env:ProgramFiles\Sublime Text 3\sublime_text.exe"
-set-alias sz         "$env:ProgramFiles\7-Zip\7z.exe"
-set-alias slicer     "$env:ProgramFiles\slicer\Slic3r.exe"
-set-alias repetier   "$env:ProgramFiles\Repetier-Host\RepetierHost.exe"
-set-alias kraken     "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
-set-alias wordexe    "$env:ProgramFiles(x86)\Microsoft Office\Office16\winword.exe"
+set-alias grep        select-string
+set-alias fecha       Get-Date
+set-alias abrir       explorer.exe
+set-alias view        Out-GridView
+set-alias columna     Select-Object
+set-alias modulos     Get-Module
+set-alias particiones Get-partition
+set-alias cal         $env:userprofile\Documents\WindowsPowerShell\Scripts\Cal.ps1
+set-alias sublime     "$env:ProgramFiles\Sublime Text 3\sublime_text.exe"
+set-alias sz          "$env:ProgramFiles\7-Zip\7z.exe"
+set-alias slicer      "$env:ProgramFiles\slicer\Slic3r.exe"
+set-alias repetier    "$env:ProgramFiles\Repetier-Host\RepetierHost.exe"
+set-alias kraken      "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
+set-alias wordexe     "$env:ProgramFiles(x86)\Microsoft Office\Office16\winword.exe"
 
 
 ############################################################
@@ -136,7 +138,7 @@ Function inicio{
 	clear
     $user = '                         *'
 	  if (Test-administrator) {
-        $user = 'Admin session          \';
+        $user = "Admin session          \";
         $host.UI.RawUI.WindowTitle = "July Admin Windows PowerShell"
 
         echo "
@@ -145,6 +147,7 @@ Function inicio{
            \____Dassault Systemes Company______/
         "
         inicio2
+        cd $home
     }
     else
     {
@@ -157,12 +160,10 @@ Function inicio{
          ****************************************
         "
     }  
-
-    #cd $home
 }
 
 ############################################################
 
-inicio
+#inicio
   
 Import-Module PSReadLine

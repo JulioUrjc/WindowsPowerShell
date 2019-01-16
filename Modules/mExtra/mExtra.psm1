@@ -1,7 +1,17 @@
+####### MODULO EXTRAS #######
 
-# GetInfo localhost
 Function GetInfo
 {
+    <#
+    .SYNOPSIS
+      Muestra informacion del portatil
+    .DESCRIPTION 
+      Muestra informacion del portatil
+    
+    .EXAMPLE 
+      GetInfo  
+   #> 
+
     [CmdletBinding()]
     #PARAM ($ComputerName)
     # Computer System
@@ -28,8 +38,18 @@ Function GetInfo
     
 }
 
-# GetProgsVersion
+
 Function GetProgsVersion{
+    <#
+    .SYNOPSIS
+      Muestra versiones de programas
+    .DESCRIPTION 
+      Muestra versiones de los programas php, python y powershell
+    
+    .EXAMPLE 
+      GetInfo  
+   #> 
+
     $phpversion =  php -v | grep ^PHP | cut -d' ' -f2
     "PHP version: $phpversion" 
     echo ""
@@ -42,8 +62,17 @@ Function GetProgsVersion{
     echo ""
 }
 
-# Function word
+
 Function word{
+    <#
+    .SYNOPSIS
+      Inicia un word en el escritorio y lo abre
+    .DESCRIPTION 
+      Inicia un word en blanco en el escritorio y lo abre
+    
+    .EXAMPLE 
+      word  
+   #> 
 
     $file = "$env:userprofile\Desktop\word.docx"
     $i= 0       
@@ -55,7 +84,7 @@ Function word{
     }
 
     touch $file 
-    wordexe $file  
+    "wordexe $file"  
 }
 
 # Function serial
@@ -63,9 +92,19 @@ Function serial{
   (Get-WmiObject -query 'select * from SoftwareLicensingService').OA3xOriginalProductKey
 }
 
-# Function cuentaAtras
+
 Function cuentaAtras
 {
+    <#
+    .SYNOPSIS
+      Inicia una cuenta atras
+    .DESCRIPTION 
+      Inicia una cuenta atras desde un tiempo dado en milisegundos
+    
+    .EXAMPLE 
+      cuentaAtras $time  
+   #> 
+
     $Longitud1 = 0
     $Longitud2 = 0
     ""
@@ -81,3 +120,5 @@ Function cuentaAtras
         Write-Host "$Retroceso$Numero$Borrado" -NoNewLine
     }
 }
+
+Export-ModuleMember -function GetInfo, GetProgsVersion, word, cuentaAtras

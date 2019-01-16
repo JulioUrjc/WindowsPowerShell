@@ -1,21 +1,52 @@
 ####### MODULO DE CIFRADO #######
 
-# certificados
 Function certificados
 {
+    <#
+    .SYNOPSIS
+     Muestra certificados disponibles
+    .DESCRIPTION 
+      Muestra certificados disponibles
+    
+    .EXAMPLE 
+      certificados  
+  #> 
+
 	Get-ChildItem -Path Cert:\CurrentUser\My -DocumentEncryptionCert
 }
 
-# borrarCertificado numero
+
 Function borrarCertificado
 {
+  <#
+    .SYNOPSIS
+     Borra un certificado disponible
+    .DESCRIPTION 
+      Borra un certificado disponible a traves de su ID
+    
+    .EXAMPLE 
+      borrarCertificado $numero  
+  #> 
+
     PARAM($numero)
 	Remove-Item Cert:\CurrentUser\My\$numero
 }
 
-# certreq.exe -new DocumentEncryption.inf DocumentEncryption.cer
-Function cifrado
+
+Function certificado
 {
+  <#
+    .SYNOPSIS
+     Crea el certificado en un fichero
+    .DESCRIPTION 
+      Crea el certificado en un fichero
+    
+    .EXAMPLE 
+      certreq.exe -new DocumentEncryption.inf DocumentEncryption.cer 
+    .EXAMPLE 
+      certificado clave nombreFichero
+  #> 
+
     PARAM(
       [string] $nombre,
       [string] $nombreFichero
@@ -49,13 +80,20 @@ ValidityPeriodUnits = "1000"
 
 # Get-ChildItem -Path Cert:\CurrentUser\My -DocumentEncryptionCert
 
-
-
-#Protect-CmsMessage -To 'cn=nombre@localhost.local'  -Content $Text  -OutFile MiTextoCifrado.txt
-#cifrar nombre nombreFichero
-
 Function cifrar
 {
+  <#
+    .SYNOPSIS
+     Cifra un texto
+    .DESCRIPTION 
+      Cifra un texto con un certificado y un nombre de fichero dados
+    
+    .EXAMPLE 
+      Protect-CmsMessage -To 'cn=nombre@localhost.local'  -Content $Text  -OutFile MiTextoCifrado.txt 
+    .EXAMPLE 
+      cifrar nombre nombreFichero
+  #> 
+
     PARAM(
       [string] $nombre,
       [string] $nombreFichero
@@ -68,9 +106,24 @@ Function cifrar
 
 Function descifrar
 {
+    <#
+    .SYNOPSIS
+     Descifra un texto
+    .DESCRIPTION 
+      DesCifra un fichero con un certificado y un nombre de fichero dados, creando un fichero nuevo
+    
+    .EXAMPLE 
+      Get-CmsMessage -Path .\MiTextoCifrado.txt | Unprotect-CmsMessage -To 'cn=nombre@localhost.local' 
+    .EXAMPLE 
+      descifrar nombre nombreFichero
+  #> 
+
 	    PARAM(
       [string] $nombre,
       [string] $nombreFichero
     )
 	Get-CmsMessage -Path $nombreFichero | Unprotect-CmsMessage -To "cn=$nombre@localhost.local" > "$nombreFichero.descifrado.txt"
 }
+
+
+Export-ModuleMember -function certificados, borrarCertificado, certificado, cifrar, descifrar

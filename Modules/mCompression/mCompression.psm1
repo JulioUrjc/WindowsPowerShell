@@ -1,4 +1,19 @@
+####### MODULO DE COMPRESION #######
+
 Function comprimir{
+	<#
+	.SYNOPSIS
+	 Comprimir ficheros de una carpeta
+	
+	.DESCRIPTION 
+	  Comprime los ficheros de una misma carpeta y a su vez comprime todos lso comprimidos,
+	  también te permite borrarlos al final
+	
+	.EXAMPLE 
+	  comprimir
+	 
+	#> 
+
    ls -name
    $input = Read-Host "Va a comprimir estos ficheros, esta seguro y/n?"
    $delete = Read-Host "Deseas borrar los originales y/n?"
@@ -27,6 +42,18 @@ Function comprimir{
 }
 
 Function comprime{
+   <#
+	.SYNOPSIS
+	 Comprimir ficheros de una carpeta
+	
+	.DESCRIPTION 
+	  Comprime los ficheros de una misma carpeta, también te permite borrarlos al final
+	
+	.EXAMPLE 
+	  comprime
+	 
+	#> 
+
    ls -name
    $input = Read-Host "Va a comprimir estos ficheros, esta seguro y/n?"
    $delete = Read-Host "Deseas borrar los originales y/n?"
@@ -47,8 +74,19 @@ Function comprime{
    }
 }
 
-# Descomprime y sin borrar
+
 Function descomprimir{
+	<#
+	.SYNOPSIS
+	 Comprimir ficheros de una carpeta
+	
+	.DESCRIPTION 
+	  Descomprime los ficheros de una misma carpeta, en carpetas o sueltos
+	.EXAMPLE 
+	  descomprimir
+	 
+	#> 
+
    ls -name *.zip
    ls -name *.7z
    $input = Read-Host "Va a descomprimir estos ficheros, esta seguro y/n?"
@@ -68,6 +106,18 @@ Function descomprimir{
 
 # Cuidado descomprime y borra los ficheros comprimidos
 Function descomprime{
+	<#
+	.SYNOPSIS
+	 Comprimir ficheros de una carpeta
+	
+	.DESCRIPTION 
+	  Descomprime los ficheros de una misma carpeta, en carpetas o sueltos y borra los
+	  comprimidos
+	.EXAMPLE 
+	  descomprimir
+	 
+	#> 
+
    ls -name *.zip
    ls -name *.7z
    $input = Read-Host "Va a descomprimir estos ficheros, esta seguro y/n?"
@@ -86,3 +136,6 @@ Function descomprime{
    rm *.zip
    rm *.7z
 }
+
+
+Export-ModuleMember -function comprimir, comprime, descomprimir, descomprime
