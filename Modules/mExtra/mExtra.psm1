@@ -50,7 +50,7 @@ Function GetProgsVersion{
       GetInfo  
    #> 
 
-    $phpversion =  php -v | grep ^PHP | cut -d' ' -f2
+    $phpversion =  php -v | select-string ^PHP | cut -d' ' -f2
     "PHP version: $phpversion" 
     echo ""
 
