@@ -84,7 +84,7 @@ Function word{
     }
 
     touch $file 
-    "wordexe $file"  
+    wordexe $file  
 }
 
 # Function serial

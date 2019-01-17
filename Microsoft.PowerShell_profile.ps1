@@ -41,14 +41,14 @@ Function workstation{ ssh julio@192.168.86.154 }
 
 Function dumpbin
 {
-	cd "$env:ProgramFiles(x86)\Microsoft Visual Studio 14.0\VC\bin"
+	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bin"
 
 	.\dumpbin.exe $args[0] $args[1]
 }
 
 #################### Alias #################################
 
-set-alias grep        select-string
+set-alias grep        buscar
 set-alias fecha       Get-Date
 set-alias abrir       explorer.exe
 set-alias view        Out-GridView
@@ -60,7 +60,7 @@ set-alias sz          "$env:ProgramFiles\7-Zip\7z.exe"
 set-alias slicer      "$env:ProgramFiles\slicer\Slic3r.exe"
 set-alias repetier    "$env:ProgramFiles\Repetier-Host\RepetierHost.exe"
 set-alias kraken      "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
-set-alias wordexe     "$env:ProgramFiles(x86)\Microsoft Office\Office16\winword.exe"
+set-alias wordexe     "$env:ProgramFiles (x86)\Microsoft Office\Office16\winword.exe"
 
 
 ############################################################
