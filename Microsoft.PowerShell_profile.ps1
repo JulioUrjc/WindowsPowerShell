@@ -4,6 +4,7 @@ Import-Module mlogos
 Import-Module mLSColor
 Import-Module mCompression
 Import-Module mEmail
+Import-Module mGitCommit
 Import-Module PSReadLine
 
 Function memoriaram {get-process |sort-object pm -desc | select-object -first 10}

@@ -3,13 +3,13 @@ $guid = [guid]::NewGuid().guid
 
 $paramHash = @{
  Path = $path
- RootModule = "mExtra.psm1"
+ RootModule = "mGitCommit.psm1"
  Author = "Julio Martin"
  CompanyName = ""
  ModuleVersion = "1.0"
  Guid = $guid
  PowerShellVersion = "5.0"
- Description = "Extra module"
+ Description = "GitCommit module"
  FormatsToProcess = ""
  FunctionsToExport = "*"
  AliasesToExport = ""
