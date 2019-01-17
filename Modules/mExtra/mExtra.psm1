@@ -123,5 +123,7 @@ Function cuentaAtras
 
 Function seguridad{  Get-ExecutionPolicy -List}
 
+Function inicio{ Get-WmiObject -Class win32_startupCommand }
 
-Export-ModuleMember -function GetInfo, GetProgsVersion, word, cuentaAtras, seguridad
+
+Export-ModuleMember -function GetInfo, GetProgsVersion, word, cuentaAtras, seguridad, inicio

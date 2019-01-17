@@ -101,4 +101,46 @@ Function mensaje{
    }
 }
 
-Export-ModuleMember -function mensaje
+# email "body" "attachment dir"
+Function email{
+  <#
+    .SYNOPSIS
+     Enviar emails a mi propio correo
+    
+    .DESCRIPTION 
+      Envia email a mi propio correo y desde mi propio correo, puedo ademas anadir un adjunto
+    
+    .EXAMPLE 
+      mensaje
+    .EXAMPLE 
+      mensaje "mi Texto"
+    .EXAMPLE 
+      mensaje "mi Texto" "C:\miFichero.txt"
+     
+  #> 
+
+  Param([String]$body = "Test body",
+         $attach="",
+         [Parameter(`
+            Mandatory=$true)]
+         $de,
+         [Parameter(`
+            Mandatory=$true)]
+         $para,
+                  [Parameter(`
+            Mandatory=$true)]
+         $asunto,
+         [Parameter(`
+            Mandatory=$true)]
+         $password)
+
+   if ($attach -eq "")
+   {
+    SendEMailSinAdjunto -EmailFrom $de -EmailTo $para -Body $body -Subject $asunto -password $password
+   }
+   else{
+    SendEMail -EmailFrom $de -EmailTo $para -Body $body -Subject $asunto -attachment $attach -password $password
+   }
+}
+
+Export-ModuleMember -function mensaje, email
