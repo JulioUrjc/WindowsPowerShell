@@ -55,6 +55,7 @@ set-alias view        Out-GridView
 set-alias columna     Select-Object
 set-alias modulos     Get-Module
 set-alias particiones Get-partition
+set-alias monitor     resmon
 set-alias sublime     "$env:ProgramFiles\Sublime Text 3\sublime_text.exe"
 set-alias sz          "$env:ProgramFiles\7-Zip\7z.exe"
 set-alias slicer      "$env:ProgramFiles\slicer\Slic3r.exe"
@@ -159,7 +160,6 @@ Function inicio{
          *             $user                     
          *           July Powershell            *
          *       Dassault Systemes Company      *
-         *                                      *
          ****************************************
         "
     }  
