@@ -2,7 +2,7 @@
 
     .VERSION 1.0
     
-    .AUTHOR July
+    .AUTHOR Julio Martin
 
 		System.Speech.Synthesis::VoiceGender
 

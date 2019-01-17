@@ -3,45 +3,31 @@
 
 .VERSION 1.0
 
-.GUID 38ca10ef-b59d-4425-ada9-47673c9adb43
+.GUID
 
-.AUTHOR saw-friendship
-
+.AUTHOR Julio Martin
 .COMPANYNAME 
-
 .COPYRIGHT 
 
 .TAGS
  Calendar Russian HolyDays
 
 .LICENSEURI 
-
 .PROJECTURI 
-
 .ICONURI 
-
 .EXTERNALMODULEDEPENDENCIES 
-
 .REQUIREDSCRIPTS 
-
 .EXTERNALSCRIPTDEPENDENCIES 
-
 .RELEASENOTES
 
-
-#>
-
-<# 
-
 .DESCRIPTION 
- Calendar Russian HolyDays and Show Pseudographics Preview support specify First day of week
+ 	Calendar Russian HolyDays and Show Pseudographics Preview support specify First day of week
 .EXAMPLE 
 Cal 5 2016
 .EXAMPLE 
 Cal 5 2016 -Internet
 .EXAMPLE 
 Cal 5 2016 -FistDayOfWeek Sunday
-
  
 #> 
 

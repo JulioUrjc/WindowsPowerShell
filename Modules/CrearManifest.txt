@@ -3,16 +3,16 @@ $guid = [guid]::NewGuid().guid
 
 $paramHash = @{
  Path = $path
- RootModule = "mLSColor.psm1"
+ RootModule = "mExtra.psm1"
  Author = "Julio Martin"
  CompanyName = ""
  ModuleVersion = "1.0"
  Guid = $guid
  PowerShellVersion = "5.0"
- Description = "Ls color module"
+ Description = "Extra module"
  FormatsToProcess = ""
- FunctionsToExport = ""
- AliasesToExport = "*"
+ FunctionsToExport = "*"
+ AliasesToExport = ""
  VariablesToExport = ""
  CmdletsToExport = ""
 }

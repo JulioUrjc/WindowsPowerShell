@@ -1,9 +1,10 @@
-Import-Module -Name mExtra
-Import-Module -Name mCifrado
-Import-Module -Name mlogos
-Import-Module -Name mLSColor
-Import-Module -Name mCompression
-Import-Module -Name mEmail
+Import-Module mExtra
+Import-Module mCifrado
+Import-Module mlogos
+Import-Module mLSColor
+Import-Module mCompression
+Import-Module mEmail
+Import-Module PSReadLine
 
 Function memoriaram {get-process |sort-object pm -desc | select-object -first 10}
 Function ram {get-process |sort-object pm -desc | select-object -first $args[0]}
@@ -53,7 +54,6 @@ set-alias view        Out-GridView
 set-alias columna     Select-Object
 set-alias modulos     Get-Module
 set-alias particiones Get-partition
-set-alias cal         $env:userprofile\Documents\WindowsPowerShell\Scripts\Cal.ps1
 set-alias sublime     "$env:ProgramFiles\Sublime Text 3\sublime_text.exe"
 set-alias sz          "$env:ProgramFiles\7-Zip\7z.exe"
 set-alias slicer      "$env:ProgramFiles\slicer\Slic3r.exe"
@@ -164,6 +164,5 @@ Function inicio{
 
 ############################################################
 
-#inicio
+inicio
   
-Import-Module PSReadLine

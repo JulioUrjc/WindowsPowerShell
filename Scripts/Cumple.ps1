@@ -1,3 +1,31 @@
+
+<#PSScriptInfo
+
+.VERSION 1.0
+
+.AUTHOR Julio Martin
+
+.COMPANYNAME 
+.COPYRIGHT 
+.TAGS
+  cumple
+
+.LICENSEURI 
+.PROJECTURI 
+.ICONURI 
+.EXTERNALMODULEDEPENDENCIES 
+.REQUIREDSCRIPTS 
+.EXTERNALSCRIPTDEPENDENCIES 
+.RELEASENOTES
+
+.DESCRIPTION 
+    Dias que quedan para mi cumple
+.EXAMPLE 
+    cumple
+
+ 
+#> 
+
 Function cero
 {
 	echo "
