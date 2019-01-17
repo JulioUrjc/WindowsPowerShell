@@ -108,6 +108,8 @@ Function readPipe
 #systeminfo | Select-String "^OS Name","^OS Version"
 #Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 #ipconfig | select-string -pattern 192
+#Set-ExecutionPolicy Unrestricted | RemoteSigned | AllSigned | Restricted | Default | Bypass | Undefined
+#Get-ExecutionPolicy -List
 
 ############################################################
 

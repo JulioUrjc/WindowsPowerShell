@@ -3,6 +3,8 @@
 
 .VERSION 1.0
 
+.GUID 39394cd9-352b-4944-8c89-6fac36623acc
+
 .GUID
 
 .AUTHOR Julio Martin

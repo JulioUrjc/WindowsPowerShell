@@ -4,6 +4,8 @@
 
 .VERSION 1.0
 
+.GUID 01f27f3f-86da-418c-8c4a-7db5171a547c
+
 .AUTHOR Julio Martin
 
 .COMPANYNAME 
@@ -20,7 +22,8 @@
 .RELEASENOTES
 
 .DESCRIPTION 
-    ping a ips de mi red
+   Ping a ips de un archivo
+   
 .EXAMPLE 
     pingIps ".\misIps.txt"
 

@@ -121,4 +121,7 @@ Function cuentaAtras
     }
 }
 
-Export-ModuleMember -function GetInfo, GetProgsVersion, word, cuentaAtras
+Function seguridad{  Get-ExecutionPolicy -List}
+
+
+Export-ModuleMember -function GetInfo, GetProgsVersion, word, cuentaAtras, seguridad

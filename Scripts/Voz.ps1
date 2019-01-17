@@ -2,8 +2,13 @@
 
     .VERSION 1.0
     
+    .GUID 48e4f6c2-ec4a-4360-97aa-811b257c4a85
+
     .AUTHOR Julio Martin
 
+    .DESCRIPTION 
+ 		Se escucha por voz el texto introducido
+ 		
 		System.Speech.Synthesis::VoiceGender
 
 	Female  Indicates a female voice.
