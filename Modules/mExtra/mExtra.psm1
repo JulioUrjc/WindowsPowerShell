@@ -125,5 +125,7 @@ Function seguridad{  Get-ExecutionPolicy -List}
 
 Function inicio{ Get-WmiObject -Class win32_startupCommand }
 
+Function shader {glslangValidator -V $args[0]}
 
-Export-ModuleMember -function GetInfo, GetProgsVersion, word, cuentaAtras, seguridad, inicio
+
+Export-ModuleMember -function GetInfo, GetProgsVersion, word, cuentaAtras, seguridad, inicio, shader
