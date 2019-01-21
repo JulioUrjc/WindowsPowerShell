@@ -139,30 +139,20 @@ Function Test-administrator {
 }
 
 Function inicio{
-	clear
+  clear
     $user = '                         *'
-	  if (Test-administrator) {
-        $user = "Admin session          \";
+  if (Test-administrator) {
+        $user = 'Admin session            *';
         $host.UI.RawUI.WindowTitle = "July Admin Windows PowerShell"
-
-        echo "
-            ___________________________________
-           /       July $user
-           \____Dassault Systemes Company______/
-        "
-        inicio2
-        cd $home
     }
-    else
-    {
-        echo "
-         ****************************************
-         *             $user                     
-         *           July Powershell            *
-         *       Dassault Systemes Company      *
-         ****************************************
-        "
-    }  
+
+    echo "
+     ****************************************
+     *             $user                     
+     *           July Powershell            *
+     *                                      *
+     ****************************************
+    "
 }
 
 ############################################################
