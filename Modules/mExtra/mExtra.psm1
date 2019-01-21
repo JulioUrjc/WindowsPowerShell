@@ -127,9 +127,5 @@ Function inicio{ Get-WmiObject -Class win32_startupCommand }
 
 Function shader {glslangValidator -V $args[0]}
 
-<<<<<<< HEAD
+Export-ModuleMember -function GetInfo, GetProgsVersion, word, serial, cuentaAtras, seguridad, inicio, shader
 
-Export-ModuleMember -function GetInfo, GetProgsVersion, word, cuentaAtras, seguridad, inicio, shader
-=======
-Export-ModuleMember -function GetInfo, GetProgsVersion, word, serial, cuentaAtras, seguridad, inicio
->>>>>>> 1ab11d943e0f83057ee3893ab50a01816dfd06a2
