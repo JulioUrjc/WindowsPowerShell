@@ -50,7 +50,7 @@ function lsColor {
     $executable = New-Object System.Text.RegularExpressions.Regex(
         '\.(exe|bat|cmd|py|pl|ps1|psm1|vbs|rb|reg)$', $regex_opts)
     $text_files = New-Object System.Text.RegularExpressions.Regex(
-        '\.(txt|cfg|conf|ini|csv|log|xml|java|c|cpp|cs)$', $regex_opts)
+        '\.(txt|cfg|conf|ini|csv|log|xml|java|c|cpp|cs|md)$', $regex_opts)
     $img = New-Object System.Text.RegularExpressions.Regex(
         '\.(jpg|png|jpge|bmp|gif|ico)$', $regex_opts)
     $hide = New-Object System.Text.RegularExpressions.Regex(
@@ -96,7 +96,7 @@ function lsColor {
         }
         else
         {
-            writeColorLS "Black" $_
+            writeColorLS "DarkBlue" $_
         }
 
          $_ = $null
@@ -304,7 +304,7 @@ function coloresPosibles{
 }
 
 
-Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive -Alias lsa,lsr
+Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive, coloresPosibles -Alias lsa,lsr
 
 #############  COLORS ###########
 #Black        
