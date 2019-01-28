@@ -96,7 +96,7 @@ function lsColor {
         }
         else
         {
-            writeColorLS "DarkBlue" $_
+            writeColorLS "DarkGray" $_
         }
 
          $_ = $null
