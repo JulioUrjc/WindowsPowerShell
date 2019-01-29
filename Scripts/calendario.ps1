@@ -102,6 +102,7 @@ $hollydays = @(
 	$PL = 3
 	$PR = 4
 	$esp = "     "
+    $espcioMeses = "                                 "
 
 	Write-Host ''
 	for($count2=0 ; $count2 -lt 4 ; $count2++)
@@ -124,25 +125,29 @@ $hollydays = @(
 	    }
 	    Write-Host ''
 
-	    for($sem=0 ; $sem -lt 5 ; $sem++)
+	    for($sem=0 ; $sem -lt 6 ; $sem++)
 	    {
 	       $mes = $mes -3
 	       for($count=0; $count -lt 3; $count++){
-
-	          ForEach($items in $WeeksHash[$mes++][$sem].GetEnumerator()) {
-	       	    ForEach($item in $items) {
-	       	       $aux = $item.Value
-	       	       if($aux -eq $char){
-	       	 	     Write-Host $($aux.ToString().PadLeft($PL,' ').Padright($PR,' ')) -NoNewline -BackgroundColor Black -ForegroundColor DarkCyan    	 
-	       	       }else{
-	       	 	     Write-Host $($aux.Day.ToString().PadLeft($PL,' ').Padright($PR,' ')) -NoNewline -BackgroundColor $($aux.DayBgColor) -ForegroundColor $($aux.DayColor)
-	       	       }  
-	       	    }	
-	          }
-	          Write-Host ($esp) -NoNewLine -ForegroundColor White
+	       	 if($WeeksHash[$mes][$sem])
+	       	 {     	
+	            ForEach($items in $WeeksHash[$mes++][$sem].GetEnumerator()) {       
+	       	       ForEach($item in $items) {
+	       	           $aux = $item.Value
+	       	           if($aux -eq $char){
+	       	   	         Write-Host $($aux.ToString().PadLeft($PL,' ').Padright($PR,' ')) -NoNewline -BackgroundColor Black -ForegroundColor DarkCyan    	 
+	       	           }else{
+	       	   	         Write-Host $($aux.Day.ToString().PadLeft($PL,' ').Padright($PR,' ')) -NoNewline -BackgroundColor $($aux.DayBgColor) -ForegroundColor $($aux.DayColor)
+	       	           }  
+	       	       }  	   
+	            }
+	            Write-Host ($esp) -NoNewLine -ForegroundColor White
+	         }else{
+	         	$mes++
+	         	Write-Host ($espcioMeses) -NoNewLine
+	         }
    		   }
 	       Write-Host ''	    
 	    }
  		Write-Host ''
-
 	 }
