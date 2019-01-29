@@ -102,7 +102,7 @@ $hollydays = @(
 	$PL = 3
 	$PR = 4
 	$esp = "     "
-    $espcioMeses = "                                 "
+    $espcioMeses = "                            "
 
 	Write-Host ''
 	for($count2=0 ; $count2 -lt 4 ; $count2++)
@@ -140,12 +140,12 @@ $hollydays = @(
 	       	   	         Write-Host $($aux.Day.ToString().PadLeft($PL,' ').Padright($PR,' ')) -NoNewline -BackgroundColor $($aux.DayBgColor) -ForegroundColor $($aux.DayColor)
 	       	           }  
 	       	       }  	   
-	            }
-	            Write-Host ($esp) -NoNewLine -ForegroundColor White
+	            }        
 	         }else{
 	         	$mes++
-	         	Write-Host ($espcioMeses) -NoNewLine
+	         	Write-Host ($espcioMeses) -NoNewLine -BackgroundColor Black
 	         }
+	         Write-Host ($esp) -NoNewLine -ForegroundColor White
    		   }
 	       Write-Host ''	    
 	    }
