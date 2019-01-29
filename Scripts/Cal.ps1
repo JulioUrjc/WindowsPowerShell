@@ -41,7 +41,25 @@ param(
 		[ValidateSet("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")][string]$FistDayOfWeek = "Monday",
 		[switch]$Internet
 	)
-	
+
+<# 2019 Spain Holydays#>
+$hollydays = @(
+	,@(1,7)
+	,@()
+	,@()
+	,@(19)
+	,@(1,2)
+	,@()
+	,@()
+	,@(15)
+	,@()
+	,@(12)
+	,@(1)
+	,@(8,25)
+)
+
+if ($YearNumber -eq (Get-Date).Year){ $AddHolyDays = $hollydays[$MonthNumber-1] }
+
 	Function ParseHoliday {
 		[CmdletBinding()]
 		param(
@@ -85,6 +103,7 @@ param(
 	$MonthDayCount = [DateTime]::DaysInMonth($YearNumber,$MonthNumber)
 	$DaysOfMonth = @(1..$MonthDayCount) | % {$FirstDay | Get-Date -Day $_}
 	$DaysOfMonth | Add-Member -MemberType NoteProperty -Name WorkDay -Value $Null -Force
+	$DaysOfMonth | Add-Member -MemberType NoteProperty -Name HolyDay -Value $false -Force
 	$DaysOfMonth | Add-Member -MemberType NoteProperty -Name DayColor -Value $Null -Force
 	$DaysOfMonth | Add-Member -MemberType NoteProperty -Name DayBgColor -Value $Null -Force
 	$DaysOfMonth | Add-Member -MemberType NoteProperty -Name DayOfWeekNum -Value $Null -Force
@@ -100,8 +119,9 @@ param(
 			}
 		}
 		if($AddWorkDays -contains $_.Day){$_.WorkDay = $true}
-		if($AddHolyDays -contains $_.Day){$_.WorkDay = $false}
+		if($AddHolyDays -contains $_.Day){$_.WorkDay = $false; $_.HolyDay = $true}
 		if($_.WorkDay -eq $true){$_.DayColor = 'White'}else{$_.DayColor = 'Red'}
+        if($_.HolyDay -eq $true){$_.DayColor = 'Blue'}
 		if($_.Date -eq $NowDate){$_.DayBgColor = 'DarkGray'}else{$_.DayBgColor = 'Black'}
 		$_.WeekOfMonthNum = $WeekOfMonthNum
 		if($_.DayOfWeekNum -eq 6){$WeekOfMonthNum++}
@@ -135,7 +155,4 @@ param(
 		Write-Host ''
 	}
 	Write-Host ''
-
-
-
 
