@@ -24,6 +24,9 @@
  	Calendar holydays
 .EXAMPLE 
   calendario
+
+.EXAMPLE
+  calendario $anyo
  
 #> 
 
