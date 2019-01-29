@@ -3,7 +3,7 @@
 
 .VERSION 1.0
 
-.GUID
+.GUID 590eb6bb-aecb-42d8-b921-8ab58298223e
 
 .AUTHOR Julio Martin
 .COMPANYNAME 
