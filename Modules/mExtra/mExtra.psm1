@@ -121,11 +121,73 @@ Function cuentaAtras
     }
 }
 
+Function cuenta
+{
+   <#
+    .SYNOPSIS
+      Inicia una cuenta
+    .DESCRIPTION 
+      Inicia una cuenta hasta un tiempo dado en milisegundos
+    
+    .EXAMPLE 
+      cuenta $time  
+   #> 
+    PARAM(
+        [int]$time = 10
+    )
+
+    Write-Host -NoNewLine "Counting from 1 to ${time} (in seconds):  "
+
+    $tercio = $time * 1/3
+
+    if ($time -eq 1)
+    {
+         Write-Host -NoNewLine  "1 " -BackgroundColor "Green" -ForegroundColor "Black"
+         Start-Sleep -Seconds 1
+    }
+
+    if($time -gt 1)
+    {
+       $tercio = $time * 1/3
+       foreach($element in 1..$tercio){
+         Write-Host -NoNewLine  "${element} " -BackgroundColor "Green" -ForegroundColor "Black"
+         Start-Sleep -Seconds 1
+       }
+    
+
+       if($time -gt 2)
+       {
+          $tercio++
+          $dostercios = $time * 2/3
+          foreach($element in $tercio..$dostercios){
+            Write-Host -NoNewLine  "${element} " -BackgroundColor "Yellow" -ForegroundColor "Black"
+            Start-Sleep -Seconds 1
+          }
+       }else{
+         Write-Host -NoNewLine  "2 " -BackgroundColor "Yellow" -ForegroundColor "Black"
+         Start-Sleep -Seconds 1
+       }
+
+       if($time -gt 2)
+       {
+          $dostercios++
+          foreach($element in $dostercios..$time){
+            Write-Host -NoNewLine  "${element} " -BackgroundColor "Red" -ForegroundColor "Black"
+            Start-Sleep -Seconds 1
+          }
+       }
+    }
+
+    Write-Host ""
+    Write-Host ""
+    Write-Host "FIN !!!"
+}
+
 Function seguridad{  Get-ExecutionPolicy -List}
 
 Function inicio{ Get-WmiObject -Class win32_startupCommand }
 
 Function shader {glslangValidator -V $args[0]}
 
-Export-ModuleMember -function GetInfo, GetProgsVersion, word, serial, cuentaAtras, seguridad, inicio, shader
+Export-ModuleMember -function GetInfo, GetProgsVersion, word, serial, cuentaAtras, seguridad, inicio, shader, cuenta
 
