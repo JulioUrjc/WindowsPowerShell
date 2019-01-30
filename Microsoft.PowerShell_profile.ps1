@@ -113,6 +113,8 @@ Function readPipe
 #ipconfig | select-string -pattern 192
 #Set-ExecutionPolicy Unrestricted | RemoteSigned | AllSigned | Restricted | Default | Bypass | Undefined
 #Get-ExecutionPolicy -List
+#$x = $host.ui.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+#$q = New-Object System.Collections.Queue; get-member -InputObject $q
 
 ############################################################
 

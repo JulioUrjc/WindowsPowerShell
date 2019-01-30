@@ -34,7 +34,7 @@
 		  [ValidateRange(1,9999)][int]$YearNumber = (Get-Date).Year
        )
 
-<# 2019 Spain Holydays#>
+<# 2019 Spain Holydays #>
 $hollydays = @(
 	,@(1,7)
 	,@()

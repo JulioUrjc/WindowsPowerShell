@@ -184,34 +184,45 @@ function lsColorRecursive {
         '^\.', $regex_opts)
 
 
-  $number = (Get-ChildItem).Count
-  $directories = New-Object System.Collections.ArrayList
-  $numDir = 0
+  $numberFiles = (Get-ChildItem).Count
+  $directories = New-Object System.Collections.ArrayList    # Es una cola que permite insercion al principio
+  $subdirectories = New-Object System.Collections.ArrayList
+  $first = $true
 
   Get-Childitem $dir -r| foreach-object {
      if(($_ -is [System.IO.DirectoryInfo]) -or ($_ -is [System.IO.FileInfo]))
      {
-
-        if($number -eq 0)
+        if($numberFiles -eq 0)
         {
-            $nombreDir = $directories[$numDir]
+           if($directories[0])
+           {
+           	    $directories= $directories[1..($directories.Length-1)]
+           		$directories = $subdirectories + $directories
+           		$subdirectories = New-Object System.Collections.ArrayList
+           }else{
+           		$directories = $subdirectories + $directories
+           		$subdirectories = New-Object System.Collections.ArrayList
+           }	
+
+           $nombreDir = $directories[0]
+
            Write-Host
            Write-Host "    Directory: " -noNewLine
            Write-Host " $nombreDir`n" -foregroundcolor "Yellow"           
            Write-Host "Mode                LastWriteTime     Length Name"
            Write-Host "----                -------------     ------ ----"
-           $numDir++
-           $number = (Get-ChildItem "$nombreDir").Count
+
+           $numberFiles = (Get-ChildItem "$nombreDir").Count
         }
 
-        if(-not ($notfirst)) 
+        if($first) 
         {
            Write-Host
            Write-Host "    Directory: " -noNewLine
            Write-Host " $(pwd)`n" -foregroundcolor "Yellow"           
            Write-Host "Mode                LastWriteTime     Length Name"
            Write-Host "----                -------------     ------ ----"
-           $notfirst=$true
+           $first=$false
         }
 
         if($hide.IsMatch($_.Name))
@@ -221,7 +232,7 @@ function lsColorRecursive {
         elseif ($_ -is [System.IO.DirectoryInfo]) 
         {
             writeColorLS "White" $_
-            $directories.Add($_.FullName) > $null
+            $subdirectories.Add($_.FullName) > $null
         }
         elseif ($compressed.IsMatch($_.Name))
         {
@@ -245,7 +256,7 @@ function lsColorRecursive {
         }
 
          $_ = $null
-         $number--
+         $numberFiles--
 
     } else {
        write-host ""
