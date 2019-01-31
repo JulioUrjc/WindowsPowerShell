@@ -16,6 +16,7 @@ Function busca([string] $ext) {ls -r -i *.$ext | select-string $args[0]}
 
 Function profileDir{abrir ([system.io.fileinfo]$profile).DirectoryName}
 Function profileFile{ sublime $profile }
+Function profile{cd ([system.io.fileinfo]$profile).DirectoryName}
 Function job { Start-job { $args[0] } -Name trabajoJuly }
 Function jobResult { Get-Job -Name trabajoJuly | Receive-Job }
 Function pw { start powershell }
