@@ -1,68 +1,5 @@
 ####### MODULO EXTRAS #######
 
-Function GetInfo
-{
-    <#
-    .SYNOPSIS
-      Muestra informacion del portatil
-    .DESCRIPTION 
-      Muestra informacion del portatil
-    
-    .EXAMPLE 
-      GetInfo  
-   #> 
-
-    [CmdletBinding()]
-    #PARAM ($ComputerName)
-    # Computer System
-    $ComputerSystem = Get-WmiObject -Class Win32_ComputerSystem -ComputerName "localhost" #$ComputerName
-    # Operating System
-    $OperatingSystem = Get-WmiObject -Class win32_OperatingSystem -ComputerName "localhost" #$ComputerName
-    # BIOS
-    $Bios = Get-WmiObject -class win32_BIOS -ComputerName "localhost" #$ComputerName
-    
-    # Prepare Output
-    $Properties = @{
-        ComputerName = "localhost" #$ComputerName
-        Manufacturer = $ComputerSystem.Manufacturer
-        Model = $ComputerSystem.Model
-        OperatingSystem = $OperatingSystem.Caption
-        OperatingSystemVersion = $OperatingSystem.Version
-        SerialNumber = $Bios.SerialNumber
-    }
-    
-    # Output Information
-    New-Object -TypeName PSobject -Property $Properties
-    Get-WmiObject -query "select * from CIM_Processor" | Group-Object Description
-    MSINFO32
-    
-}
-
-
-Function GetProgsVersion{
-    <#
-    .SYNOPSIS
-      Muestra versiones de programas
-    .DESCRIPTION 
-      Muestra versiones de los programas php, python y powershell
-    
-    .EXAMPLE 
-      GetInfo  
-   #> 
-
-    $phpversion =  php -v | select-string ^PHP | cut -d' ' -f2
-    "PHP version: $phpversion" 
-    echo ""
-
-    $pythonversion = python --version
-    "Python version: $pythonversion" 
-    echo ""
-
-    "PowerShell version: $($PSVersionTable.PSVersion.Major).$($PSVersionTable.PSVersion.Minor).$($PSVersionTable.PSVersion.Build).$($PSVersionTable.PSVersion.Revision)"
-    echo ""
-}
-
-
 Function word{
     <#
     .SYNOPSIS
@@ -183,11 +120,9 @@ Function cuenta
     Write-Host "FIN !!!"
 }
 
-Function seguridad{  Get-ExecutionPolicy -List}
-
 Function inicio{ Get-WmiObject -Class win32_startupCommand }
 
 Function shader {glslangValidator -V $args[0]}
 
-Export-ModuleMember -function GetInfo, GetProgsVersion, word, serial, cuentaAtras, seguridad, inicio, shader, cuenta
+Export-ModuleMember -function  word, cuentaAtras, cuenta, inicio, shader
 

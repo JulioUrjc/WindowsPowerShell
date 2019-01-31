@@ -5,17 +5,9 @@ Import-Module mLSColor
 Import-Module mCompression
 Import-Module mEmail
 Import-Module mGitCommit
+Import-Module mInfo
 Import-Module PSReadLine
 
-Function memoriaram {get-process |sort-object pm -desc | select-object -first 10}
-Function ram {get-process |sort-object pm -desc | select-object -first $args[0]}
-Function slotsram {Get-WmiObject -class "Win32_PhysicalMemoryArray"}
-Function inforam{Get-WmiObject -class "Win32_PhysicalMemory" | Measure-Object -Property Capacity -Sum;}
-Function inforam2{Get-WmiObject -class "Win32_PhysicalMemory" | FT PSComputerName,Name,DeviceLocator,Manufacturer,Capacity,SerialNumber;}
-
-Function usoCPU {get-process |sort-object cpu -desc | select-object -first 10}
-Function cpu {get-process |sort-object cpu -desc | select-object -first $args[0]}
-Function espacioC {Gwmi -class Win32_volume | select name, capacity | where {$_.name -like "c*"}}
 Function admin {Start-Process powershell -Verb runAs; exit}
 Function orden {ls | sort $args[0] | select $args[0]}
 Function buscar {ls -r -i * | select-string $args[0]}
@@ -24,7 +16,6 @@ Function busca([string] $ext) {ls -r -i *.$ext | select-string $args[0]}
 
 Function profileDir{abrir ([system.io.fileinfo]$profile).DirectoryName}
 Function profileFile{ sublime $profile }
-Function path{ $pathJuly = $env:Path; $pathJuly.split(";") | Out-GridView}
 Function job { Start-job { $args[0] } -Name trabajoJuly }
 Function jobResult { Get-Job -Name trabajoJuly | Receive-Job }
 Function pw { start powershell }
