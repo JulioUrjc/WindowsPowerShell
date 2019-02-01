@@ -51,17 +51,7 @@ $hollydays = @(
 	,@(6,9,25)
 )
 
-if($YearNumber -eq 2018)
-{
-    <# 2018 July Holydays #>
-    $vacaciones = @(
-    	,@()	,@() 	,@()   	,@()  	,@()  	,@()  	
-    	,@(30,31)   	,@(1,2,3,16,17)  	,@()   	,@(22,29,30,31)    	,@(2,5,6,7,8)   	,@(7,10,11,12,13,14)
-    )
-     
-    $vacacionesTotatles = 27
-
-}elseif($YearNumber -eq (Get-Date).Year){
+if($YearNumber -eq (Get-Date).Year){
 
     <# 2019 July Holydays #>
     $vacaciones = @(
@@ -80,6 +70,17 @@ if($YearNumber -eq 2018)
     )
      
     $vacacionesTotatles = 30 
+}
+elseif($YearNumber -eq 2018)
+{
+    <# 2018 July Holydays #>
+    $vacaciones = @(
+    	,@()	,@() 	,@()   	,@()  	,@()  	,@()  	
+    	,@(30,31)   	,@(1,2,3,16,17)  	,@()   	,@(22,29,30,31)    	,@(2,5,6,7,8)   	,@(7,10,11,12,13,14)
+    )
+     
+    $vacacionesTotatles = 27
+
 }
 
     ForEach( $item in $vacaciones)
