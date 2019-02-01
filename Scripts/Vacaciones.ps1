@@ -31,25 +31,9 @@
 #> 
 
        param(
-       	  $isVacaciones = $false,
 		  [ValidateRange(1,9999)][int]$YearNumber = (Get-Date).Year
        )
 
-<# 2019 Spain Holydays #>
-$hollydays = @(
-	,@(1,7)
-	,@()
-	,@()
-	,@(18,19)
-	,@(1,2,15)
-	,@()
-	,@()
-	,@(15)
-	,@()
-	,@(12)
-	,@(1,9)
-	,@(6,9,25)
-)
 
 $cogidos = 0
 $restantes = 0
@@ -57,7 +41,7 @@ $restantes = 0
 if($YearNumber -eq 2018)
 {
     <# 2018 July Holydays #>
-    $vacaciones = @(
+    $hollydays = @(
     	,@()
     	,@()
     	,@()
@@ -73,17 +57,17 @@ if($YearNumber -eq 2018)
     )
 
 
-    ForEach( $item in $vacaciones)
+    ForEach( $item in $hollydays)
     {
     	$cogidos += $item.Count
     }
      
     $restantes = 27 - $cogidos
 
-}elseif($YearNumber -eq (Get-Date).Year)
+}elseif($YearNumber -eq 2019)
 {
     <# 2019 July Holydays #>
-    $vacaciones = @(
+    $hollydays = @(
     	,@()
     	,@()
     	,@()
@@ -98,13 +82,14 @@ if($YearNumber -eq 2018)
     	,@()
     )
 
-    ForEach( $item in $vacaciones)
+    ForEach( $item in $hollydays)
     {
     	$cogidos += $item.Count
     }
      
     $restantes = 30 - $cogidos
 }
+
 
     $MonthNumber = 1..12
 
@@ -118,7 +103,7 @@ if($YearNumber -eq 2018)
 
 	for($count=0; $count -lt 12; $count++)
 	{
-		if ($YearNumber -eq (Get-Date).Year){ $AddHolyDays = $hollydays[$count] }
+		if (($YearNumber -eq (Get-Date).Year) -OR ($YearNumber -eq 2018)){ $AddHolyDays = $hollydays[$count] }
 		
 		[array]$FirstDay += (Get-Date -Year $YearNumber -Month $MonthNumber[$count] -Day 1).Date
  
@@ -135,11 +120,10 @@ if($YearNumber -eq 2018)
 		$DaysOfMonth | % -Begin {[int]$WeekOfMonthNum = 0} -Process { 
 
 			 $_.DayOfWeekNum = $DaysOfWeekByName["$($_.DayOfWeek)"]
-		     if($DaysOfWeek[0..4] -contains $_.DayOfWeek){ $_.WorkDay = $true }else{ $_.WorkDay = $false }	
-		     if($AddHolyDays -contains $_.Day){ $_.WorkDay = $false; $_.HolyDay = $true} 
+		     if($DaysOfWeek[0..4] -contains $_.DayOfWeek){ $_.WorkDay = $true }else{ $_.WorkDay = $false }
+		     if($AddHolyDays -contains $_.Day){ $_.WorkDay = $false; $_.HolyDay = $true}
 		     if($_.WorkDay -eq $true){ $_.DayColor = 'White'}else{$_.DayColor = 'Red'}
-		     if($isVacaciones -AND ($vacaciones[$count] -contains $_.Day )) {$_.DayColor = 'Green'}
-             if($_.HolyDay -eq $true){ $_.DayColor = 'Blue' }
+             if($_.HolyDay -eq $true){ $_.DayColor = 'Green' }
 		     if($_.Date -eq $NowDate){ $_.DayBgColor = 'DarkGray' }else{ $_.DayBgColor = 'Black' }
 		     $_.WeekOfMonthNum = $WeekOfMonthNum
 		     if($_.DayOfWeekNum -eq 6){$WeekOfMonthNum++}
@@ -209,8 +193,5 @@ if($YearNumber -eq 2018)
  		Write-Host ''
 	 }
 
-if ($isVacaciones)
-{
-  Write-Host "Dias cogidos: ${cogidos}         Dias restantes: ${restantes}" -ForegroundColor Yellow
-  Write-Host ''
-}
+Write-Host "Dias cogidos: ${cogidos}         Dias restantes: ${restantes}" -ForegroundColor Yellow
+Write-Host ''
