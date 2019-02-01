@@ -120,9 +120,9 @@ Function cuenta
     Write-Host "FIN !!!"
 }
 
-Function inicio{ Get-WmiObject -Class win32_startupCommand }
+Function GetInicio{ Get-WmiObject -Class win32_startupCommand }
 
 Function shader {glslangValidator -V $args[0]}
 
-Export-ModuleMember -function  word, cuentaAtras, cuenta, inicio, shader
+Export-ModuleMember -function  word, cuentaAtras, cuenta, GetInicio, shader
 
