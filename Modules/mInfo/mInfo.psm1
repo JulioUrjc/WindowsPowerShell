@@ -128,6 +128,16 @@ Function seguridad{  Get-ExecutionPolicy -List}
 
 Function funciones{  
 
+    <#  
+    .SYNOPSIS  
+       Muestra las funciones de los modulos
+    .DESCRIPTION 
+       Muestra las funciones de los modulos
+    .EXAMPLE 
+      funciones 
+    .EXAMPLE 
+      funciones $num
+   #>
     PARAM([int]$numModules = 7)
 
 	$funciones = Get-Module -ListAvailable | select-object Name -first $numModules
