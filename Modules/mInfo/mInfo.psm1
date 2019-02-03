@@ -126,6 +126,24 @@ Function espacioC {Gwmi -class Win32_volume | select name, capacity | where {$_.
 
 Function seguridad{  Get-ExecutionPolicy -List}
 
+Function funciones{  
 
-Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC
+    PARAM([int]$numModules = 7)
+
+	$funciones = Get-Module -ListAvailable | select-object Name -first $numModules
+
+	ForEach ($item in $funciones)
+	{	
+		$item.Name
+		$func = Get-Command -Module $item.Name | select-object Name
+		ForEach ($name in $func)
+		{
+			Write-Host ("{0,20}" -f $name.Name) -foregroundcolor "Yellow"
+		}
+	}
+
+}
+
+
+Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC, funciones
 
