@@ -111,11 +111,11 @@ Function email{
       Envia email a mi propio correo y desde mi propio correo, puedo ademas anadir un adjunto
     
     .EXAMPLE 
-      mensaje
+      email
     .EXAMPLE 
-      mensaje "mi Texto"
+      email "mi Texto"
     .EXAMPLE 
-      mensaje "mi Texto" "C:\miFichero.txt"
+      email "mi Texto" "C:\miFichero.txt"
      
   #> 
 

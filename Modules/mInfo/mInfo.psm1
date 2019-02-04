@@ -144,11 +144,19 @@ Function funciones{
 
 	ForEach ($item in $funciones)
 	{	
+    Write-Host ""
 		$item.Name
 		$func = Get-Command -Module $item.Name | select-object Name
+    $par= 0
 		ForEach ($name in $func)
 		{
-			Write-Host ("{0,20}" -f $name.Name) -foregroundcolor "Yellow"
+      if($par%2 -eq 0)
+      {
+        Write-Host ("{0,20}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+      }else{
+        Write-Host ("{0,25}" -f $name.Name) -foregroundcolor "Cyan"
+      }  
+      $par++ 
 		}
 	}
 
