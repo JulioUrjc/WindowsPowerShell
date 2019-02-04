@@ -47,7 +47,7 @@ Function comprime{
 	 Comprimir ficheros de una carpeta
 	
 	.DESCRIPTION 
-	  Comprime los ficheros de una misma carpeta, también te permite borrarlos al final
+	  Comprime los ficheros de una misma carpeta, tambien te permite borrarlos al final
 	
 	.EXAMPLE 
 	  comprime
