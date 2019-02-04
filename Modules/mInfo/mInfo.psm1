@@ -162,6 +162,25 @@ Function funciones{
 
 }
 
+Function scripts{  
 
-Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC, funciones
+  <#  
+    .SYNOPSIS  
+       Muestra los scripts
+    .DESCRIPTION 
+       Muestra los scripts
+    .EXAMPLE 
+      scripts 
+   #>
+
+   $dir = ([system.io.fileinfo]$profile).DirectoryName 
+   $scripts = ls $dir/Scripts *.ps1 | %{$_.BaseName}
+   ForEach ($name in $scripts)
+   {
+     Write-Host ("  ${name}")  -foregroundcolor "Cyan"
+   }  
+}
+
+
+Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC, funciones, scripts
 
