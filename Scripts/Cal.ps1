@@ -138,7 +138,7 @@ if ($YearNumber -eq (Get-Date).Year){ $AddHolyDays = $hollydays[$MonthNumber-1] 
 		if($AddHolyDays -contains $_.Day){$_.WorkDay = $false; $_.HolyDay = $true}
 		if($_.WorkDay -eq $true){$_.DayColor = 'White'}else{$_.DayColor = 'Red'}
         if($_.HolyDay -eq $true){$_.DayColor = 'Blue'}
-        if($pendientes[$MonthNumber-1] -contains $_.Day){ $_.DayColor = 'Magenta'}
+        if(($pendientes[$MonthNumber-1] -contains $_.Day) -AND ($YearNumber -eq 2019)){ $_.DayColor = 'Magenta'}
 		if($_.Date -eq $NowDate){$_.DayBgColor = 'DarkGray'}else{$_.DayBgColor = 'Black'}
 		$_.WeekOfMonthNum = $WeekOfMonthNum
 		if($_.DayOfWeekNum -eq 6){$WeekOfMonthNum++}
