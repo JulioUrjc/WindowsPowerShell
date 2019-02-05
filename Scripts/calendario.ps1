@@ -139,8 +139,8 @@ elseif($YearNumber -eq 2018)
 		     if($DaysOfWeek[0..4] -contains $_.DayOfWeek){ $_.WorkDay = $true }else{ $_.WorkDay = $false }	
 		     if($AddHolyDays -contains $_.Day){ $_.WorkDay = $false; $_.HolyDay = $true} 
 		     if($_.WorkDay -eq $true){ $_.DayColor = 'White'}else{$_.DayColor = 'Red'}
-		     if($isVacaciones -AND ($vacaciones[$count] -contains $_.Day )) {$_.DayColor = 'Green'}
-		     if($isVacaciones -AND ($pendientes[$count] -contains $_.Day)){ $_.DayColor = 'Magenta'}
+		     if($isVacaciones -AND $vacaciones -AND ($vacaciones[$count] -contains $_.Day )) {$_.DayColor = 'Green'}
+		     if($isVacaciones -AND $pendientes -AND ($pendientes[$count] -contains $_.Day)){ $_.DayColor = 'Magenta'}
              if($_.HolyDay -eq $true){ $_.DayColor = 'Blue' }
 		     if($_.Date -eq $NowDate){ $_.DayBgColor = 'DarkGray' }else{ $_.DayBgColor = 'Black' }
 		     $_.WeekOfMonthNum = $WeekOfMonthNum
