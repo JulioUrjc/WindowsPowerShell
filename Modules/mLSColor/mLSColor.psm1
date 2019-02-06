@@ -2,6 +2,7 @@
 
 Set-Alias lsa lsGetColorAndSize
 Set-Alias lsr lsGetColorAndSizeRecursive
+Set-Alias tam getDirSizeRecursive
 
 function lsGetColorAndSize
 {
@@ -315,7 +316,7 @@ function coloresPosibles{
 }
 
 
-Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive, coloresPosibles -Alias lsa,lsr
+Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive, coloresPosibles, getDirSizeRecursive -Alias lsa,lsr,tam
 
 #############  COLORS ###########
 #Black        

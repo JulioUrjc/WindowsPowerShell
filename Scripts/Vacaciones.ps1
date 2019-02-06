@@ -141,7 +141,7 @@ if($YearNumber -eq 2018)
 		     if($AddHolyDays -contains $_.Day){ $_.WorkDay = $false; $_.HolyDay = $true}
 		     if($_.WorkDay -eq $true){ $_.DayColor = 'White'}else{$_.DayColor = 'Red'}
              if($_.HolyDay -eq $true){ $_.DayColor = 'Green' }
-             if($pendientes[$count] -contains $_.Day){ $_.DayColor = 'Magenta'}
+             if($pendientes -AND ($pendientes[$count] -contains $_.Day)){ $_.DayColor = 'Magenta'}
 		     if($_.Date -eq $NowDate){ $_.DayBgColor = 'DarkGray' }else{ $_.DayBgColor = 'Black' }
 		     $_.WeekOfMonthNum = $WeekOfMonthNum
 		     if($_.DayOfWeekNum -eq 6){$WeekOfMonthNum++}
