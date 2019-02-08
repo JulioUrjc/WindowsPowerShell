@@ -181,6 +181,31 @@ Function scripts{
    }  
 }
 
+Function puertos{
+    <#  
+    .SYNOPSIS  
+       Muestra los puertos escuchando
+    .DESCRIPTION 
+       Muestra los puertos escuchando
+    .EXAMPLE 
+      puertos 
+   #>
+  NETSTAT -AN|FINDSTR /C:LISTENING
+}
 
-Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC, funciones, scripts
+Function pingP{
+  PARAM( $ip,
+         $puerto)
+  $ping = New-Object System.Net.Networkinformation.ping
+  $ping.Send($ip, $puerto)
+}
+
+Function tcpP{
+  PARAM( $ip,
+         $puerto)
+  $tcpClient = New-Object System.Net.Sockets.TCPClient
+  $tcpClient.Connect($ip, $puerto)
+}
+
+Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC, funciones, scripts, puertos, pingP, tcpP
 
