@@ -194,6 +194,15 @@ Function puertos{
 }
 
 Function pingP{
+    <#  
+    .SYNOPSIS  
+       ping a ip y puerto especifico
+    .DESCRIPTION 
+       ping a ip y puerto especifico
+    .EXAMPLE 
+      pingP $ip $puerto 
+   #>
+
   PARAM( $ip,
          $puerto)
   $ping = New-Object System.Net.Networkinformation.ping
@@ -201,6 +210,15 @@ Function pingP{
 }
 
 Function tcpP{
+   <#  
+    .SYNOPSIS  
+       Conexion tcp
+    .DESCRIPTION 
+       Conexion tcp a ip y puerto especificos
+    .EXAMPLE 
+      tcpP $ip $puerto 
+   #>
+
   PARAM( $ip,
          $puerto)
   $tcpClient = New-Object System.Net.Sockets.TCPClient
