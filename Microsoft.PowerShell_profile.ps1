@@ -29,8 +29,6 @@ Function gui { cd /xflow/gui}
 Function common { cd /xflow/common}
 Function home { cd $home }
 
-Function workstation{ ssh julio@192.168.86.154 }
-
 Function dumpbin
 {
 	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bin"
