@@ -189,6 +189,7 @@ function lsColorRecursive {
   $directories = New-Object System.Collections.ArrayList    # Es una cola que permite insercion al principio
   $subdirectories = New-Object System.Collections.ArrayList
   $first = $true
+  $cambia = $false
 
   Get-Childitem $dir -r| foreach-object {
      if(($_ -is [System.IO.DirectoryInfo]) -or ($_ -is [System.IO.FileInfo]))
@@ -197,7 +198,7 @@ function lsColorRecursive {
         {
            if($directories[0])
            {
-           	    $directories= $directories[1..($directories.Length-1)]
+           	  $directories= $directories[1..($directories.Length-1)]
            		$directories = $subdirectories + $directories
            		$subdirectories = New-Object System.Collections.ArrayList
            }else{
@@ -220,7 +221,13 @@ function lsColorRecursive {
         {
            Write-Host
            Write-Host "    Directory: " -noNewLine
-           Write-Host " $(pwd)`n" -foregroundcolor "Yellow"           
+           if ($_ -is [System.IO.DirectoryInfo])
+           {
+             $di = $(pwd)
+           }else{
+             $di = (Get-Item  $_).DirectoryName
+           }
+           Write-Host " $di`n" -foregroundcolor "Yellow" 
            Write-Host "Mode                LastWriteTime     Length Name"
            Write-Host "----                -------------     ------ ----"
            $first=$false
