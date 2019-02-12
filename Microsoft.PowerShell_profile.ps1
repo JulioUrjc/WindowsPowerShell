@@ -12,7 +12,6 @@ Function admin {Start-Process powershell -Verb runAs; exit}
 Function orden {ls | sort $args[0] | select $args[0]}
 Function buscar {ls -r -i * | select-string $args[0]}
 Function busca([string] $ext) {ls -r -i *.$ext | select-string $args[0]}
-#Function virtualMachineCopy {"$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" clonehd "$args[0]\Ubuntu.vdi" "$args[0]\Ubuntu_25.vdi" --existing}
 
 Function profileDir{abrir ([system.io.fileinfo]$profile).DirectoryName}
 Function profileFile{ sublime $profile }
@@ -32,7 +31,6 @@ Function home { cd $home }
 Function dumpbin
 {
 	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bin"
-
 	.\dumpbin.exe $args[0] $args[1]
 }
 
@@ -105,6 +103,7 @@ Function readPipe
 #Get-ExecutionPolicy -List
 #$x = $host.ui.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 #$q = New-Object System.Collections.Queue; get-member -InputObject $q
+#Function virtualMachineCopy {"$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" clonehd "$args[0]\Ubuntu.vdi" "$args[0]\Ubuntu_25.vdi" --existing}
 
 ############################################################
 
