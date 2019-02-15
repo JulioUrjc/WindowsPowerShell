@@ -53,7 +53,7 @@ function lsColor {
     $text_files = New-Object System.Text.RegularExpressions.Regex(
         '\.(txt|cfg|conf|ini|csv|log|xml|java|c|cpp|cs|md)$', $regex_opts)
     $img = New-Object System.Text.RegularExpressions.Regex(
-        '\.(jpg|png|jpge|bmp|gif|ico)$', $regex_opts)
+        '\.(jpg| jpeg|png|jpge|bmp|gif|ico)$', $regex_opts)
     $hide = New-Object System.Text.RegularExpressions.Regex(
         '^\.', $regex_opts)
 
@@ -180,7 +180,7 @@ function lsColorRecursive {
     $text_files = New-Object System.Text.RegularExpressions.Regex(
         '\.(txt|cfg|conf|ini|csv|log|xml|java|c|cpp|cs)$', $regex_opts)
     $img = New-Object System.Text.RegularExpressions.Regex(
-        '\.(jpg|png|jpge|bmp|gif|ico)$', $regex_opts)
+        '\.(jpg|jpeg|png|jpge|bmp|gif|ico)$', $regex_opts)
     $hide = New-Object System.Text.RegularExpressions.Regex(
         '^\.', $regex_opts)
 
