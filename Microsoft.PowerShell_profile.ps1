@@ -7,6 +7,7 @@ Import-Module mEmail
 Import-Module mGitCommit
 Import-Module mInfo
 Import-Module mFTP
+Import-Module mMouse
 Import-Module PSReadLine
 
 Function admin {Start-Process powershell -Verb runAs; exit}
