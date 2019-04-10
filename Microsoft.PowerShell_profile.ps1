@@ -29,6 +29,7 @@ Function ippublic { wget "http://checkip.amazonaws.com/"  | Select -exp RawConte
 Function gui { cd /xflow/gui}
 Function common { cd /xflow/common}
 Function home { cd $home }
+Function nicengine { cd /xflowOne-build/RelWithDebInfo }
 
 Function dumpbin{	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bin";	.\dumpbin.exe $args[0] $args[1]}
 

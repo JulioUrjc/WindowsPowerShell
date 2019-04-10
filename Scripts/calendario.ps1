@@ -211,6 +211,13 @@ elseif($YearNumber -eq 2018)
  		Write-Host ''
 	 }
 
+$startDate=[datetime]"2019/03/14"
+
+$coche = [math]::round((NEW-TIMESPAN -Start $startDate -End (GET-DATE)).Totaldays,3)
+$faltan = 90 - $coche
+$dosMeses = 60 - $coche
+Write-Host "Dias coche: ${coche}      Faltan: ${faltan}            Dos Meses: ${dosMeses}" -ForegroundColor Yellow
+
 if ($isVacaciones)
 {
   Write-Host "Dias cogidos: ${cogidos}         Dias restantes: ${restantes}" -ForegroundColor Yellow
