@@ -1,15 +1,15 @@
-$path = "$env:userprofile\documents\WindowsPowerShell\Modules\mCompression\mCompression.psd1"
+$path = "$env:userprofile\documents\WindowsPowerShell\Modules\mFechas\mFechas.psd1"
 $guid = [guid]::NewGuid().guid
 
 $paramHash = @{
  Path = $path
- RootModule = "mGitCommit.psm1"
+ RootModule = "mFechas.psm1"
  Author = "Julio Martin"
  CompanyName = ""
  ModuleVersion = "1.0"
  Guid = $guid
  PowerShellVersion = "5.0"
- Description = "GitCommit module"
+ Description = "Fechas module"
  FormatsToProcess = ""
  FunctionsToExport = "*"
  AliasesToExport = ""
