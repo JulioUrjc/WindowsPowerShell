@@ -223,3 +223,5 @@ if ($isVacaciones)
   Write-Host "Dias cogidos: ${cogidos}         Dias restantes: ${restantes}" -ForegroundColor Yellow
   Write-Host ''
 }
+
+fechasCoche

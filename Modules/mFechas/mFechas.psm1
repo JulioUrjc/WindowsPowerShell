@@ -23,19 +23,16 @@ Function fechasCoche
   $dosMeses = 60 - $coche
   $dosMid = $dosMeses + 15
   $tresMeses = 90 - $coche
-  
+
   Write-Host ""
-  Write-Host " Mode         DeadLine     Date          Mid         Date"
-  Write-Host " ----         --------     -----         ------      -----"
-  Write-Host "|-------------------------|-------------|-----------|------------|" -foregroundcolor $color 
-  Write-Host "| Esperando  |  ${coche}                                           |" -foregroundcolor $color2
-  Write-Host "|-------------------------|-------------|-----------|------------|" -foregroundcolor $color
-  Write-Host "| Un Mes     |  ${unMeses}    |  13 ABR     |  ${unMid}    |  28 ABR    |" -foregroundcolor $color2
-  Write-Host "|-------------------------|-------------|-----------|------------|" -foregroundcolor $color
-  Write-Host "| Dos Meses  |  ${dosMeses}    |  13 MAY     |  ${dosMid}   |  28 MAY    |" -foregroundcolor $color2
-  Write-Host "|-------------------------|-------------|-----------|------------|" -foregroundcolor $color
-  Write-Host "| Tres Meses |  ${tresMeses}    |  13 JUN                              |" -foregroundcolor $color2
-  Write-Host "|-------------------------|-------------|-----------|------------|" -foregroundcolor $color
+  Write-host (" {0,11} {1,8} {2,7} {3,7} {4,7}" -f "Mode   ", "  DeadLine", " Date", "      Mid", "      Date") -foregroundcolor Cyan
+  Write-host ("|{0,11} | {1,8} | {2,7} | {3,7} | {4,7} |" -f "----------", "--------", "-------", "-------", "-------") -foregroundcolor $color
+  Write-host ("|{0,11} | {1,8} | {2,7} | {3,7} | {4,7} |" -f "Esperando", $coche, "", "", "") -foregroundcolor $color 
+  Write-host ("|{0,11} | {1,8} | {2,7} | {3,7} | {4,7} |" -f "Un Mes", $unMeses, "13 ABR", $unMid, "28 ABR") -foregroundcolor $color 
+  Write-host ("|{0,11} | {1,8} | {2,7} | {3,7} | {4,7} |" -f "Dos Meses", $dosMeses, "13 MAY", $dosMid, "28 MAY") -foregroundcolor $color
+  Write-host ("|{0,11} | {1,8} | {2,7} | {3,7} | {4,7} |" -f "Tres Meses", $tresMeses, "13 JUN", "", "") -foregroundcolor $color
+  Write-host ("|{0,11} | {1,8} | {2,7} | {3,7} | {4,7} |" -f "----------", "--------", "-------", "-------", "-------") -foregroundcolor $color 
+  Write-Host ""
 
   
 }
