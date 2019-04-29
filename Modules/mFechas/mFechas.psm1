@@ -45,7 +45,8 @@ Function cuentaAtrasCoche
     $coche = [math]::round((NEW-TIMESPAN -Start $startDate -End (GET-DATE)).Totaldays,3)
     $faltan = 90 - $coche
     $dosMeses = 60 - $coche
-    Write-Host "Dias coche: ${coche}      Faltan: ${faltan}            Dos Meses: ${dosMeses}" -ForegroundColor Yellow
+    $dosMedio = 60 - $coche + 15
+    Write-Host "Dias coche: ${coche}      Faltan: ${faltan}       Dos Meses: ${dosMeses}     Dos Meses&medio: ${dosMedio}" -ForegroundColor Yellow
 }
 
 Export-ModuleMember -function fechasCoche, cuentaAtrasCoche
