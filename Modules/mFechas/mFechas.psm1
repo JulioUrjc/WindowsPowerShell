@@ -20,7 +20,7 @@ Function fechasCoche
   $coche = [math]::round((NEW-TIMESPAN -Start $startDate -End (GET-DATE)).Totaldays,3)
   $unMeses = 30 - $coche
   $unMid = $unMeses + 15
-  $dosMeses = 60 - $coche
+  $dosMeses = [math]::round(60 - $coche,3)
   $dosMid = $dosMeses + 15
   $tresMeses = 90 - $coche
 
@@ -44,7 +44,7 @@ Function cuentaAtrasCoche
 
     $coche = [math]::round((NEW-TIMESPAN -Start $startDate -End (GET-DATE)).Totaldays,3)
     $faltan = 90 - $coche
-    $dosMeses = 60 - $coche
+    $dosMeses = [math]::round(60 - $coche,3)
     $dosMedio = 60 - $coche + 15
     Write-Host "Dias coche: ${coche}      Faltan: ${faltan}       Dos Meses: ${dosMeses}     Dos Meses&medio: ${dosMedio}" -ForegroundColor Yellow
 }
