@@ -22,7 +22,7 @@ Function fechasCoche
   $unMid = $unMeses + 15
   $dosMeses = [math]::round(60 - $coche,3)
   $dosMid = [math]::round($dosMeses + 15,3)
-  $tresMeses = 90 - $coche
+  $tresMeses = [math]::round(90 - $coche, 3)
 
   Write-Host ""
   Write-host (" {0,11} {1,8} {2,7} {3,7} {4,7}" -f "Mode   ", "  DeadLine", " Date", "      Mid", "      Date") -foregroundcolor Cyan
