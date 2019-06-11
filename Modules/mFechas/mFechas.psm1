@@ -43,7 +43,7 @@ Function cuentaAtrasCoche
 	$startDate=[datetime]"2019/03/14"
 
     $coche = [math]::round((NEW-TIMESPAN -Start $startDate -End (GET-DATE)).Totaldays,3)
-    $faltan = 90 - $coche
+    $faltan = [math]::round(90 - $coche,3)
     $dosMeses = [math]::round(60 - $coche,3)
     $dosMedio = [math]::round(60 - $coche + 15, 3)
     Write-Host "Dias coche: ${coche}      Faltan: ${faltan}       Dos Meses: ${dosMeses}     Dos Meses&medio: ${dosMedio}" -ForegroundColor Yellow

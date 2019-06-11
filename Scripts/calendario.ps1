@@ -211,7 +211,7 @@ elseif($YearNumber -eq 2018)
  		Write-Host ''
 	 }
 
-cuentaAtrasCoche
+<# cuentaAtrasCoche #> 
 
 if ($isVacaciones)
 {
@@ -219,4 +219,4 @@ if ($isVacaciones)
   Write-Host ''
 }
 
-fechasCoche
+<# fechasCoche #> 
