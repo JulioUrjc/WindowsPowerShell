@@ -12,6 +12,10 @@ Import-Module mFechas
 Import-Module PSReadLine
 
 
+Function condainit { 
+  (& "E:\Anaconda\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
+  conda activate develop
+}
 Function admin {Start-Process powershell -Verb runAs; exit}
 Function orden {ls | sort $args[0] | select $args[0]}
 Function buscar {ls -r -i * | select-string $args[0]}
@@ -133,6 +137,7 @@ Function Test-administrator {
 
 Function inicio{
   clear
+  Set-ItemProperty -Path HKCU:\console -Name WindowAlpha -Value 20
     $user = '                         *'
   if (Test-administrator) {
         $user = 'Admin session            *';
@@ -152,3 +157,10 @@ Function inicio{
 
 inicio
   
+
+# Chocolatey profile
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
+function subl { &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args }

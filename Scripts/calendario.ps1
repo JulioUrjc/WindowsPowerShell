@@ -77,10 +77,10 @@ if($YearNumber -eq (Get-Date).Year){
     	,@()
     	,@()
     	,@()
+    	,@(29,30,31)
+    	,@(1,2,16)
     	,@()
-    	,@()
-    	,@()
-    	,@()
+    	,@(4,7,8,9,10,11)
     	,@()
     	,@()
     )
@@ -211,7 +211,7 @@ elseif($YearNumber -eq 2018)
  		Write-Host ''
 	 }
 
-cuentaAtrasCoche
+<# cuentaAtrasCoche #> 
 
 if ($isVacaciones)
 {
@@ -219,4 +219,4 @@ if ($isVacaciones)
   Write-Host ''
 }
 
-fechasCoche
+<# fechasCoche #> 

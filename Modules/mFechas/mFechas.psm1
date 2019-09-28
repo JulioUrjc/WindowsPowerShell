@@ -21,8 +21,8 @@ Function fechasCoche
   $unMeses = 30 - $coche
   $unMid = $unMeses + 15
   $dosMeses = [math]::round(60 - $coche,3)
-  $dosMid = $dosMeses + 15
-  $tresMeses = 90 - $coche
+  $dosMid = [math]::round($dosMeses + 15,3)
+  $tresMeses = [math]::round(90 - $coche, 3)
 
   Write-Host ""
   Write-host (" {0,11} {1,8} {2,7} {3,7} {4,7}" -f "Mode   ", "  DeadLine", " Date", "      Mid", "      Date") -foregroundcolor Cyan
@@ -43,9 +43,9 @@ Function cuentaAtrasCoche
 	$startDate=[datetime]"2019/03/14"
 
     $coche = [math]::round((NEW-TIMESPAN -Start $startDate -End (GET-DATE)).Totaldays,3)
-    $faltan = 90 - $coche
+    $faltan = [math]::round(90 - $coche,3)
     $dosMeses = [math]::round(60 - $coche,3)
-    $dosMedio = 60 - $coche + 15
+    $dosMedio = [math]::round(60 - $coche + 15, 3)
     Write-Host "Dias coche: ${coche}      Faltan: ${faltan}       Dos Meses: ${dosMeses}     Dos Meses&medio: ${dosMedio}" -ForegroundColor Yellow
 }
 
