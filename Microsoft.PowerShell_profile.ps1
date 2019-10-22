@@ -12,9 +12,10 @@ Import-Module mFechas
 Import-Module PSReadLine
 
 
-Function condainit { 
+Function xflowconan { 
   (& "E:\Anaconda\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
   conda activate develop
+  C:\xf\run_xflow_cmakeJuly.bat --deploy
 }
 Function admin {Start-Process powershell -Verb runAs; exit}
 Function orden {ls | sort $args[0] | select $args[0]}
@@ -137,7 +138,7 @@ Function Test-administrator {
 
 Function inicio{
   clear
-  Set-ItemProperty -Path HKCU:\console -Name WindowAlpha -Value 20
+  Set-ItemProperty -Path HKCU:\console -Name WindowAlpha -Value 15
     $user = '                         *'
   if (Test-administrator) {
         $user = 'Admin session            *';
