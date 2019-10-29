@@ -138,7 +138,7 @@ Function Test-administrator {
 
 Function inicio{
   clear
-  Set-ItemProperty -Path HKCU:\console -Name WindowAlpha -Value 15
+  Set-ItemProperty -Path HKCU:\console -Name WindowAlpha -Value 210
     $user = '                         *'
   if (Test-administrator) {
         $user = 'Admin session            *';
