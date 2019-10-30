@@ -58,35 +58,21 @@ Function fillHollidaysArray {
 
 Add-Type -Assembly Microsoft.VisualBasic
 $vacacionesPorAnyo = 30
+$profileDir = ([system.io.fileinfo]$profile).DirectoryName+"\Scripts"
 
-<# 2019 Spain Holydays #>
-$hollydays = @(
-	,@(1,7)
-	,@()
-	,@()
-	,@(18,19)
-	,@(1,2,15)
-	,@()
-	,@()		
-	,@(15)	
-	,@()	
-	,@(12)		
-	,@(1,9)		
-	,@(6,9,25)
-)
 
 if($YearNumber -eq (Get-Date).Year)
 {
     <# 2019 July Holydays #>
-    $pendientesFichero = ".\vacaciones\pendientes2019.txt"
-    $fiestasFichero = ".\vacaciones\fiestas2019.txt"
-    $vacacionesFichero = ".\vacaciones\2019.txt"
+    $pendientesFichero = $profileDir+"\vacaciones\pendientes2019.txt"
+    $fiestasFichero = $profileDir+"\vacaciones\fiestas2019.txt"
+    $vacacionesFichero = $profileDir+"\vacaciones\2019.txt"
 }
 elseif($YearNumber -eq 2018)
 {
     <# 2018 July Holydays #>
     $pendientesFichero = ""
-    $vacacionesFichero = ".\vacaciones\2018.txt" 
+    $vacacionesFichero = $profileDir+"\vacaciones\2018.txt" 
     $vacacionesPorAnyo = 27
 }
 

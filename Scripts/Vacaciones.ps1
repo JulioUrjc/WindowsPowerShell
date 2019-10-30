@@ -58,19 +58,20 @@ Function fillArray {
 
 Add-Type -Assembly Microsoft.VisualBasic
 $vacacionesPorAnyo = 30
+$profileDir = ([system.io.fileinfo]$profile).DirectoryName+"\Scripts"
 
 if($YearNumber -eq 2018)
 {
     <# 2018 July Holydays #>
-    $fichero = ".\vacaciones\2018.txt"
+    $fichero = $profileDir+"\vacaciones\2018.txt"
     $vacacionesPorAnyo = 27
 
 }
 elseif($YearNumber -eq 2019)
 {
     <# 2019 July Holydays #>
-    $pendientesFichero = ".\vacaciones\pendientes2019.txt"
-    $fichero = ".\vacaciones\2019.txt"
+    $pendientesFichero = $profileDir+"\vacaciones\pendientes2019.txt"
+    $fichero = $profileDir+"\vacaciones\2019.txt"
 }
 
     $hollydays = fillArray $fichero
