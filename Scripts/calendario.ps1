@@ -30,10 +30,34 @@
  
 #> 
 
-       param(
-       	  $isVacaciones = $false,
-		  [ValidateRange(1,9999)][int]$YearNumber = (Get-Date).Year
-       )
+param(
+    $isVacaciones = $false,
+    [ValidateRange(1,9999)][int]$YearNumber = (Get-Date).Year
+)
+
+Function fillHollidaysArray {
+    Param ($fichero)
+
+    if ($fichero)
+    {
+    	 $hollydays = [System.Collections.ArrayList]@()
+      Get-Content $fichero | ForEach-Object { 
+	    $auxiliar = [System.Collections.ArrayList]@()
+	      foreach($word in $_.Split(" ")) {
+		    if([Microsoft.VisualBasic.Information]::IsNumeric($word))
+		    {
+			  $arrayID = $auxiliar.Add($word)
+		    }
+          }
+        $arrayID = $hollydays.Add($auxiliar)
+      } 
+
+      return $hollydays
+    }
+}
+
+Add-Type -Assembly Microsoft.VisualBasic
+$vacacionesPorAnyo = 30
 
 <# 2019 Spain Holydays #>
 $hollydays = @(
@@ -51,60 +75,31 @@ $hollydays = @(
 	,@(6,9,25)
 )
 
-if($YearNumber -eq (Get-Date).Year){
-
-    <# 2018 July Holydays Pendientes #>
-    $pendientes = @(
-    	,@()
-    	,@()
-    	,@(11,12,13,14,15)
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    )
-
+if($YearNumber -eq (Get-Date).Year)
+{
     <# 2019 July Holydays #>
-    $vacaciones = @(
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@(29,30,31)
-    	,@(1,2,16)
-    	,@()
-    	,@(4,7,8,9,10,11)
-    	,@(11,12,13,14)
-    	,@(10,11,12,13)
-    )
-     
-    $vacacionesTotatles = 30 
+    $pendientesFichero = ".\vacaciones\pendientes2019.txt"
+    $fiestasFichero = ".\vacaciones\fiestas2019.txt"
+    $vacacionesFichero = ".\vacaciones\2019.txt"
 }
 elseif($YearNumber -eq 2018)
 {
     <# 2018 July Holydays #>
-    $vacaciones = @(
-    	,@()	,@() 	,@()   	,@()  	,@()  	,@()  	
-    	,@(30,31)   	,@(1,2,3,16,17)  	,@()   	,@(22,29,30,31)    	,@(2,5,6,7,8)   	,@(7,10,11,12,13,14)
-    )
-     
-    $vacacionesTotatles = 27
-
+    $pendientesFichero = ""
+    $vacacionesFichero = ".\vacaciones\2018.txt" 
+    $vacacionesPorAnyo = 27
 }
+
+    $vacaciones = fillHollidaysArray $vacacionesFichero
+    $pendientes = fillHollidaysArray $pendientesFichero
+    $hollydays  = fillHollidaysArray $fiestasFichero
 
     ForEach( $item in $vacaciones)
     {
     	$cogidos += $item.Count
     }
 
-    $restantes = $vacacionesTotatles - $cogidos
+    $restantes = $vacacionesPorAnyo - $cogidos
 
 
     $MonthNumber = 1..12

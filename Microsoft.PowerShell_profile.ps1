@@ -42,21 +42,22 @@ Function dumpbin{	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bi
 
 #################### Alias #################################
 
-set-alias grep        buscar
-set-alias fecha       Get-Date
-set-alias abrir       explorer.exe
-set-alias view        Out-GridView
-set-alias columna     Select-Object
-set-alias modulos     Get-Module
-set-alias particiones Get-partition
-set-alias monitor     resmon
-set-alias licencia    serial
-set-alias sublime     "$env:ProgramFiles\Sublime Text 3\sublime_text.exe"
-set-alias sz          "$env:ProgramFiles\7-Zip\7z.exe"
-set-alias slicer      "$env:ProgramFiles\slicer\Slic3r.exe"
-set-alias repetier    "$env:ProgramFiles\Repetier-Host\RepetierHost.exe"
-set-alias kraken      "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
-set-alias wordexe     "$env:ProgramFiles (x86)\Microsoft Office\Office16\winword.exe"
+set-alias grep              buscar
+set-alias fecha             Get-Date
+set-alias abrir             explorer.exe
+set-alias view              Out-GridView
+set-alias columna           Select-Object
+set-alias modulos           Get-Module
+set-alias particiones       Get-partition
+set-alias monitor           resmon
+set-alias licencia          serial
+set-alias cambiarColores    Get-PSReadLineOption
+set-alias sublime           "$env:ProgramFiles\Sublime Text 3\sublime_text.exe"
+set-alias sz                "$env:ProgramFiles\7-Zip\7z.exe"
+set-alias slicer            "$env:ProgramFiles\slicer\Slic3r.exe"
+set-alias repetier          "$env:ProgramFiles\Repetier-Host\RepetierHost.exe"
+set-alias kraken            "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
+set-alias wordexe           "$env:ProgramFiles (x86)\Microsoft Office\Office16\winword.exe"
 
 
 ############################################################
