@@ -154,7 +154,7 @@ Function funciones{
       {
         Write-Host ("{0,20}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
       }else{
-        Write-Host ("{0,25}" -f $name.Name) -foregroundcolor "Cyan"
+        Write-Host ("{0,30}" -f $name.Name) -foregroundcolor "Cyan"
       }  
       $par++ 
 		}

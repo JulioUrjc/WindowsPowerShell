@@ -12,8 +12,8 @@ Import-Module mFechas
 Import-Module PSReadLine
 
 #Function prompt { "PS $pwd>" }
-#Function prompt { Write-Host -NoNewLine -ForegroundColor Cyan "PS $pwd"; return "=> " }
-#Set-PSReadLineOption -PromptText "=> "
+#Function prompt { Write-Host -NoNewLine -ForegroundColor Cyan "PS $pwd";$branch =git branch; Write-Host -NoNewLine -ForegroundColor Cyan "($branch)"; return "> " }
+#Set-PSReadLineOption -PromptText "> "
 
 Function xflowconan { 
   (& "$env:Conda\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
