@@ -12,7 +12,7 @@ Import-Module mFechas
 Import-Module PSReadLine
 
 #Function prompt { "PS $pwd>" }
-#Function prompt { Write-Host -NoNewLine -ForegroundColor Cyan "PS $pwd"; return "=> "}
+#Function prompt { Write-Host -NoNewLine -ForegroundColor Cyan "PS $pwd"; return "=> " }
 #Set-PSReadLineOption -PromptText "=> "
 
 Function xflowconan { 

@@ -322,6 +322,33 @@ function coloresPosibles{
   [enum]::GetValues([System.ConsoleColor]) | Foreach-Object {Write-Host $_ -ForegroundColor $_}  
 }
 
+function colores
+{
+  <#
+    .SYNOPSIS
+     Muestra colores de background
+    
+    .DESCRIPTION 
+      Muestra los colores posibles de background estilo ProgressBackgroundColor
+    
+    .EXAMPLE 
+      colores 
+  #> 
+  $host.privatedata
+
+  $host.PrivateData.psobject.properties | 
+  Foreach {
+   #$text = "$($_.Name) = $($_.Value)"
+   Write-host "$($_.name.padright(23)) = " -NoNewline
+   Write-Host $_.Value -ForegroundColor $_.value
+  }
+
+} 
+
+#######################################
+#############  CONSOLE COLORS #########
+#######################################
+
 function resetShellColors
 {
   Set-PSReadlineOption -Colors @{ "Command"            = "$([char]0x1b)[93m"}
@@ -339,6 +366,18 @@ function resetShellColors
   Set-PSReadlineOption -Colors @{ "String"             = "$([char]0x1b)[36m"}
   Set-PSReadlineOption -Colors @{ "Type"               = "$([char]0x1b)[37m"}
   Set-PSReadlineOption -Colors @{ "Variable"           = "$([char]0x1b)[92m"}
+
+  $console = $host.ui.rawui
+  $console.backgroundcolor = "#50143C"
+  $console.foregroundcolor = "#EEEDF0"
+
+  $colors = $host.privatedata
+  $colors.verbosebackgroundcolor = "Black"
+  $colors.verboseforegroundcolor = "Yellow"
+  $colors.warningbackgroundcolor = "Black"
+  $colors.warningforegroundcolor = "Yellow"
+  $colors.ErrorBackgroundColor   = "Black"
+  $colors.ErrorForegroundColor   = "Red"
 }
 
 function initShellColors
@@ -358,9 +397,114 @@ function initShellColors
   Set-PSReadlineOption -Colors @{ "String"             = "$([char]0x1b)[36m"}
   Set-PSReadlineOption -Colors @{ "Type"               = "$([char]0x1b)[37m"}
   Set-PSReadlineOption -Colors @{ "Variable"           = "$([char]0x1b)[92m"}
+
+  $console = $host.ui.rawui
+  $console.backgroundcolor = "#50143C"
+  $console.foregroundcolor = "#EEEDF0"
+
+  $colors = $host.privatedata
+  $colors.verbosebackgroundcolor = "Black"
+  $colors.verboseforegroundcolor = "Yellow"
+  $colors.warningbackgroundcolor = "Black"
+  $colors.warningforegroundcolor = "Yellow"
+  $colors.ErrorBackgroundColor   = "Black"
+  $colors.ErrorForegroundColor   = "Red"
 }
 
-Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive, coloresPosibles, getDirSizeRecursive, resetShellColors, initShellColors -Alias lsa,lsr,tam
+Function Test-ConsoleColor {
+ 
+    Clear-Host
+    $heading = "White"
+    Write-Host "Pipeline Output" -ForegroundColor $heading
+    Get-Service | Select -first 5
+     
+    Write-Host "`nError" -ForegroundColor $heading
+    Write-Error "I made a mistake"
+     
+    Write-Host "`nWarning" -ForegroundColor $heading
+    Write-Warning "Let this be a warning to you."
+     
+    Write-Host "`nVerbose" -ForegroundColor $heading
+    $VerbosePreference = "Continue"
+    Write-Verbose "I have a lot to say."
+    $VerbosePreference = "SilentlyContinue"
+     
+    Write-Host "`nDebug" -ForegroundColor $heading
+    $DebugPreference = "Continue"
+    Write-Debug "`nSomething is bugging me. Figure it out."
+    $DebugPreference = "SilentlyContinue"
+     
+    Write-Host "`nProgress" -ForegroundColor $heading
+    1..10 | foreach -Begin {$i=0} -process {
+     $i++
+     $p = ($i/10)*100
+     Write-Progress -Activity "Progress Test" -Status "Working" -CurrentOperation $_ -PercentComplete $p
+     Start-Sleep -Milliseconds 250
+    }
+} #Test-ConsoleColor
+
+Function Export-ConsoleColor {
+    [cmdletbinding(SupportsShouldProcess)]
+    Param(
+    [Parameter(Position=0)]
+    [ValidateNotNullorEmpty()]
+    [string]$Path = '.\PSConsoleSettings.csv'
+    )
+     
+    #verify this is the console and not the ISE
+    if ($host.name -eq 'ConsoleHost') {
+      $host.PrivateData | Add-Member -MemberType NoteProperty -Name ForegroundColor -Value $host.ui.rawui.ForegroundColor -Force
+      $host.PrivateData | Add-Member -MemberType NoteProperty -Name BackgroundColor -Value $host.ui.rawui.BackgroundColor -Force
+      Write-Verbose "Exporting to $path"
+      Write-verbose ($host.PrivateData | out-string)
+      $host.PrivateData | Export-CSV -Path $Path -Encoding ASCII -NoTypeInformation
+    }
+    else {
+        Write-Warning "This only works in the console host, not the ISE."   
+    }
+} #Export-ConsoleColor
+
+Function Import-ConsoleColor {
+    [cmdletbinding(SupportsShouldProcess)]
+    Param(
+    [Parameter(Position=0)]
+    [ValidateScript({Test-Path $_})]
+    [string]$Path = '.\PSConsoleSettings.csv'
+    )
+     
+    #verify this is the console and not the ISE
+    if ($host.name -eq 'ConsoleHost') {
+        Write-Verbose "Importing color settings from $path"
+        $data = Import-CSV -Path $Path
+        Write-Verbose ($data | out-string)
+     
+        if ($PSCmdlet.ShouldProcess($Path)) {
+            $host.ui.RawUI.ForegroundColor = $data.ForegroundColor
+            $host.ui.RawUI.BackgroundColor = $data.BackgroundColor
+            $host.PrivateData.ErrorForegroundColor = $data.ErrorForegroundColor
+            $host.PrivateData.ErrorBackgroundColor = $data.ErrorBackgroundColor
+            $host.PrivateData.WarningForegroundColor = $data.WarningForegroundColor
+            $host.PrivateData.WarningBackgroundColor = $data.WarningBackgroundColor
+            $host.PrivateData.DebugForegroundColor = $data.DebugForegroundColor
+            $host.PrivateData.DebugBackgroundColor = $data.DebugBackgroundColor
+            $host.PrivateData.VerboseForegroundColor = $data.VerboseForegroundColor
+            $host.PrivateData.VerboseBackgroundColor = $data.VerboseBackgroundColor
+            $host.PrivateData.ProgressForegroundColor = $data.ProgressForegroundColor
+            $host.PrivateData.ProgressBackgroundColor = $data.ProgressBackgroundColor
+     
+            Clear-Host
+        } #should process
+     
+    }
+    else {
+       Write-Warning "This only works in the console host, not the ISE."
+    }
+} #Import-ConsoleColor
+
+
+
+
+Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive, coloresPosibles, getDirSizeRecursive, resetShellColors, initShellColors, colores, Test-ConsoleColor, Export-ConsoleColor, Import-ConsoleColor -Alias lsa,lsr,tam
 
 #############  COLORS ###########
 #Black        
