@@ -11,7 +11,9 @@ Import-Module mMouse
 Import-Module mFechas
 Import-Module PSReadLine
 
-#Function prompt{ Write-Host ('PS ' + $(get-location) + '>') -nonewline -foregroundcolor White}
+#Function prompt { "PS $pwd>" }
+#Function prompt { Write-Host -NoNewLine -ForegroundColor Cyan "PS $pwd"; return "=> "}
+#Set-PSReadLineOption -PromptText "=> "
 
 Function xflowconan { 
   (& "E:\Anaconda\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
@@ -140,6 +142,7 @@ Function Test-administrator {
 
 Function inicio{
   clear
+
   Set-ItemProperty -Path HKCU:\console -Name WindowAlpha -Value 210
     $user = '                         *'
   if (Test-administrator) {
