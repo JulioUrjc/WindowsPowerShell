@@ -16,7 +16,7 @@ Import-Module PSReadLine
 #Set-PSReadLineOption -PromptText "=> "
 
 Function xflowconan { 
-  (& "E:\Anaconda\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
+  (& "$env:Conda\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
   conda activate develop
   C:\xf\run_xflow_cmakeJuly.bat --deploy
 }
