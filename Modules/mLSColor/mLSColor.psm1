@@ -322,8 +322,45 @@ function coloresPosibles{
   [enum]::GetValues([System.ConsoleColor]) | Foreach-Object {Write-Host $_ -ForegroundColor $_}  
 }
 
+function resetShellColors
+{
+  Set-PSReadlineOption -Colors @{ "Command"            = "$([char]0x1b)[93m"}
+  Set-PSReadlineOption -Colors @{ "Comment"            = "$([char]0x1b)[32m"}
+  Set-PSReadlineOption -Colors @{ "ContinuationPrompt" = "$([char]0x1b)[33m"}
+  Set-PSReadlineOption -Colors @{ "DefaultToken"       = "$([char]0x1b)[33m"}
+  Set-PSReadlineOption -Colors @{ "Emphasis"           = "$([char]0x1b)[96m"}
+  Set-PSReadlineOption -Colors @{ "Error"              = "$([char]0x1b)[91m"}
+  Set-PSReadlineOption -Colors @{ "Keyword"            = "$([char]0x1b)[92m"}
+  Set-PSReadlineOption -Colors @{ "Member"             = "$([char]0x1b)[97m"}
+  Set-PSReadlineOption -Colors @{ "Number"             = "$([char]0x1b)[97m"}
+  Set-PSReadlineOption -Colors @{ "Operator"           = "$([char]0x1b)[90m"}
+  Set-PSReadlineOption -Colors @{ "Parameter"          = "$([char]0x1b)[90m"}
+  Set-PSReadlineOption -Colors @{ "Selection"          = "$([char]0x1b)[35;43m"}
+  Set-PSReadlineOption -Colors @{ "String"             = "$([char]0x1b)[36m"}
+  Set-PSReadlineOption -Colors @{ "Type"               = "$([char]0x1b)[37m"}
+  Set-PSReadlineOption -Colors @{ "Variable"           = "$([char]0x1b)[92m"}
+}
 
-Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive, coloresPosibles, getDirSizeRecursive -Alias lsa,lsr,tam
+function initShellColors
+{
+  Set-PSReadlineOption -Colors @{ "Command"            = "$([char]0x1b)[93m"}
+  Set-PSReadlineOption -Colors @{ "Comment"            = "$([char]0x1b)[32m"}
+  Set-PSReadlineOption -Colors @{ "ContinuationPrompt" = "$([char]0x1b)[33m"}
+  Set-PSReadlineOption -Colors @{ "DefaultToken"       = "$([char]0x1b)[33m"}
+  Set-PSReadlineOption -Colors @{ "Emphasis"           = "$([char]0x1b)[96m"}
+  Set-PSReadlineOption -Colors @{ "Error"              = "$([char]0x1b)[91m"}
+  Set-PSReadlineOption -Colors @{ "Keyword"            = "$([char]0x1b)[92m"}
+  Set-PSReadlineOption -Colors @{ "Member"             = "$([char]0x1b)[97m"}
+  Set-PSReadlineOption -Colors @{ "Number"             = "$([char]0x1b)[97m"}
+  Set-PSReadlineOption -Colors @{ "Operator"           = "$([char]0x1b)[90m"}
+  Set-PSReadlineOption -Colors @{ "Parameter"          = "$([char]0x1b)[90m"}
+  Set-PSReadlineOption -Colors @{ "Selection"          = "$([char]0x1b)[35;43m"}
+  Set-PSReadlineOption -Colors @{ "String"             = "$([char]0x1b)[36m"}
+  Set-PSReadlineOption -Colors @{ "Type"               = "$([char]0x1b)[37m"}
+  Set-PSReadlineOption -Colors @{ "Variable"           = "$([char]0x1b)[92m"}
+}
+
+Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive, coloresPosibles, getDirSizeRecursive, resetShellColors, initShellColors -Alias lsa,lsr,tam
 
 #############  COLORS ###########
 #Black        
@@ -343,3 +380,41 @@ Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive, col
 #Yellow
 #White
 
+
+#############  PSREADLINEOPTIONS ###########
+#EditMode                               : Windows
+#AddToHistoryHandler                    :
+#HistoryNoDuplicates                    : True
+#HistorySavePath                        : C:\Users\jmn6\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+#HistorySaveStyle                       : SaveIncrementally
+#HistorySearchCaseSensitive             : False
+#HistorySearchCursorMovesToEnd          : False
+#MaximumHistoryCount                    : 4096
+#ContinuationPrompt                     : >>
+#ExtraPromptLineCount                   : 0
+#PromptText                             : >
+#BellStyle                              : Audible
+#DingDuration                           : 50
+#DingTone                               : 1221
+#CommandsToValidateScriptBlockArguments : {ForEach-Object, %, Invoke-Command, icm...}
+#CommandValidationHandler               :
+#CompletionQueryItems                   : 100
+#MaximumKillRingCount                   : 10
+#ShowToolTips                           : True
+#ViModeIndicator                        : None
+#WordDelimiters                         : ;:,.[]{}()/\|^&*-=+'"–—―
+#CommandColor                           : "$([char]0x1b)[93m"
+#CommentColor                           : "$([char]0x1b)[32m"
+#ContinuationPromptColor                : "$([char]0x1b)[33m"
+#DefaultTokenColor                      : "$([char]0x1b)[33m"
+#EmphasisColor                          : "$([char]0x1b)[96m"
+#ErrorColor                             : "$([char]0x1b)[91m"
+#KeywordColor                           : "$([char]0x1b)[92m"
+#MemberColor                            : "$([char]0x1b)[97m"
+#NumberColor                            : "$([char]0x1b)[97m"
+#OperatorColor                          : "$([char]0x1b)[90m"
+#ParameterColor                         : "$([char]0x1b)[90m"
+#SelectionColor                         : "$([char]0x1b)[35;43m"
+#StringColor                            : "$([char]0x1b)[36m"
+#TypeColor                              : "$([char]0x1b)[37m"
+#VariableColor                          : "$([char]0x1b)[92m"

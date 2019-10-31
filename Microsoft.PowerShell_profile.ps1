@@ -11,6 +11,7 @@ Import-Module mMouse
 Import-Module mFechas
 Import-Module PSReadLine
 
+#Function prompt{ 'PS ' + $(get-location) + '> ' }
 
 Function xflowconan { 
   (& "E:\Anaconda\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
