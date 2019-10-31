@@ -42,6 +42,38 @@ param(
 		[switch]$Internet
 	)
 
+Function fillHollidaysArray {
+    Param ($fichero)
+
+    if (Test-Path $fichero)
+    {
+      $hollidays = [System.Collections.ArrayList]@()
+      Get-Content $fichero | ForEach-Object { 
+	    $auxiliar = [System.Collections.ArrayList]@()
+	      foreach($word in $_.Split(" ")) {
+		    if([Microsoft.VisualBasic.Information]::IsNumeric($word))
+		    {
+			  $arrayID = $auxiliar.Add($word)
+		    }
+          }
+        $arrayID = $hollidays.Add($auxiliar)
+      } 
+
+      return $hollidays
+    }
+}
+
+Add-Type -Assembly Microsoft.VisualBasic
+$profileDir = ([system.io.fileinfo]$profile).DirectoryName+"\Scripts"
+
+    $pendientesFichero = $profileDir+"\vacaciones\pendientes$YearNumber.txt"
+    $fiestasFichero = $profileDir+"\vacaciones\fiestas$YearNumber.txt"
+    $vacacionesFichero = $profileDir+"\vacaciones\$YearNumber.txt"
+
+    $vacaciones = fillHollidaysArray $vacacionesFichero
+    $pendientes = fillHollidaysArray $pendientesFichero
+    $fiestas  = fillHollidaysArray $fiestasFichero
+
     <# 2018 July Holydays Pendientes #>
     $pendientes = @(
     	,@()
@@ -59,7 +91,7 @@ param(
     )
 
 <# 2019 Spain Holydays#>
-$hollydays = @(
+$fiestas = @(
 	,@(1,7)
 	,@()
 	,@()
@@ -74,7 +106,7 @@ $hollydays = @(
 	,@(6,9,25)
 )
 
-if ($YearNumber -eq (Get-Date).Year){ $AddHolyDays = $hollydays[$MonthNumber-1] }
+if ($YearNumber -eq (Get-Date).Year){ $AddHolyDays = $fiestas[$MonthNumber-1] }
 
 	Function ParseHoliday {
 		[CmdletBinding()]

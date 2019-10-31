@@ -31,16 +31,16 @@
 #> 
 
 param(
-    $isVacaciones = $false,
+    $isVacaciones = $true,
     [ValidateRange(1,9999)][int]$YearNumber = (Get-Date).Year
 )
 
 Function fillHollidaysArray {
     Param ($fichero)
 
-    if ($fichero)
+    if (Test-Path $fichero)
     {
-    	 $hollydays = [System.Collections.ArrayList]@()
+      $hollydays = [System.Collections.ArrayList]@()
       Get-Content $fichero | ForEach-Object { 
 	    $auxiliar = [System.Collections.ArrayList]@()
 	      foreach($word in $_.Split(" ")) {
@@ -61,24 +61,16 @@ $vacacionesPorAnyo = 30
 $profileDir = ([system.io.fileinfo]$profile).DirectoryName+"\Scripts"
 
 
-if($YearNumber -eq (Get-Date).Year)
-{
-    <# 2019 July Holydays #>
-    $pendientesFichero = $profileDir+"\vacaciones\pendientes2019.txt"
-    $fiestasFichero = $profileDir+"\vacaciones\fiestas2019.txt"
-    $vacacionesFichero = $profileDir+"\vacaciones\2019.txt"
-}
-elseif($YearNumber -eq 2018)
-{
-    <# 2018 July Holydays #>
-    $pendientesFichero = ""
-    $vacacionesFichero = $profileDir+"\vacaciones\2018.txt" 
-    $vacacionesPorAnyo = 27
-}
+if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27} 
+
+
+	$pendientesFichero = $profileDir+"\vacaciones\pendientes$YearNumber.txt"
+    $fiestasFichero = $profileDir+"\vacaciones\fiestas$YearNumber.txt"
+    $vacacionesFichero = $profileDir+"\vacaciones\$YearNumber.txt"
 
     $vacaciones = fillHollidaysArray $vacacionesFichero
     $pendientes = fillHollidaysArray $pendientesFichero
-    $hollydays  = fillHollidaysArray $fiestasFichero
+    $fiestas  = fillHollidaysArray $fiestasFichero
 
     ForEach( $item in $vacaciones)
     {
@@ -100,7 +92,7 @@ elseif($YearNumber -eq 2018)
 
 	for($count=0; $count -lt 12; $count++)
 	{
-		if ($YearNumber -eq (Get-Date).Year){ $AddHolyDays = $hollydays[$count] }
+		if ($YearNumber -eq (Get-Date).Year){ $AddHolyDays = $fiestas[$count] }
 		
 		[array]$FirstDay += (Get-Date -Year $YearNumber -Month $MonthNumber[$count] -Day 1).Date
  
