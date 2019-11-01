@@ -31,8 +31,9 @@
 #> 
 
 param(
+    [ValidateRange(1,9999)][int]$YearNumber = (Get-Date).Year,
     $isVacaciones = $true,
-    [ValidateRange(1,9999)][int]$YearNumber = (Get-Date).Year
+    $isDiasSenalados = $false
 )
 
 Function fillHollidaysArray {
@@ -62,15 +63,16 @@ $profileDir = ([system.io.fileinfo]$profile).DirectoryName+"\Scripts"
 
 
 if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27} 
-
+if($YearNumber -eq (Get-Date).Year){ $fechasSenaladasFichero = $profileDir+"\vacaciones\fechasSenaladas$YearNumber.txt"}
 
 	$pendientesFichero = $profileDir+"\vacaciones\pendientes$YearNumber.txt"
     $fiestasFichero = $profileDir+"\vacaciones\fiestas$YearNumber.txt"
     $vacacionesFichero = $profileDir+"\vacaciones\$YearNumber.txt"
 
-    $vacaciones = fillHollidaysArray $vacacionesFichero
-    $pendientes = fillHollidaysArray $pendientesFichero
-    $fiestas  = fillHollidaysArray $fiestasFichero
+    $vacaciones    = fillHollidaysArray $vacacionesFichero
+    $pendientes    = fillHollidaysArray $pendientesFichero
+    $fiestas       = fillHollidaysArray $fiestasFichero
+    $diasSenalados = fillHollidaysArray $fechasSenaladasFichero
 
     ForEach( $item in $vacaciones)
     {
@@ -114,6 +116,7 @@ if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27}
 		     if($_.WorkDay -eq $true){ $_.DayColor = 'White'}else{$_.DayColor = 'Red'}
 		     if($isVacaciones -AND $vacaciones -AND ($vacaciones[$count] -contains $_.Day )) {$_.DayColor = 'Green'}
 		     if($isVacaciones -AND $pendientes -AND ($pendientes[$count] -contains $_.Day)){ $_.DayColor = 'Magenta'}
+		     if($isDiasSenalados -AND $diasSenalados -AND ($diasSenalados[$count] -contains $_.Day)){ $_.DayColor = 'Yellow'}
              if($_.HolyDay -eq $true){ $_.DayColor = 'Blue' }
 		     if($_.Date -eq $NowDate){ $_.DayBgColor = 'DarkGray' }else{ $_.DayBgColor = 'Black' }
 		     $_.WeekOfMonthNum = $WeekOfMonthNum
