@@ -14,7 +14,8 @@ Import-Module PSReadLine
 #Function prompt { "PS $pwd$" }
 Function prompt 
 {
- Write-Host -NoNewLine "PS $pwd";
+ Write-Host -NoNewLine "PS ";
+ Write-Host -NoNewLine "$pwd" -ForegroundColor Gray;
   $branch = git rev-parse --abbrev-ref HEAD;
    if($branch){Write-Host -NoNewLine -ForegroundColor Green " ($branch)"}
    Write-Host -ForegroundColor White ">";
