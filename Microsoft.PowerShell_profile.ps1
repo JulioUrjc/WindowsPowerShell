@@ -16,11 +16,10 @@ Function prompt
 {
  Write-Host -NoNewLine "PS $pwd";
   $branch = git rev-parse --abbrev-ref HEAD;
-   if($branch){Write-Host -NoNewLine -ForegroundColor Red " ($branch)"}
+   if($branch){Write-Host -NoNewLine -ForegroundColor Green " ($branch)"}
    Write-Host -ForegroundColor White ">";
     return "$ " 
 }
-Set-PSReadLineOption -PromptText "$ "
 
 Function xflowconan { 
   (& "$env:Conda\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
@@ -49,6 +48,7 @@ Function home { cd $home }
 Function nicengine { cd /xflowOne-build/RelWithDebInfo }
 
 Function dumpbin{	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bin";	.\dumpbin.exe $args[0] $args[1]}
+Function subl { &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args }
 
 #################### Alias #################################
 
@@ -69,57 +69,20 @@ set-alias repetier          "$env:ProgramFiles\Repetier-Host\RepetierHost.exe"
 set-alias kraken            "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
 set-alias wordexe           "$env:ProgramFiles (x86)\Microsoft Office\Office16\winword.exe"
 
-
-############################################################
-#################### Pipe ##################################
-
-Function writePipe
-{
-  $name = 'foo'
-  $namedPipe = New-Object IO.Pipes.NamedPipeServerStream($name, 'Out')
-  $namedPipe.WaitForConnection()
-  
-  $script:writer = New-Object IO.StreamWriter($namedPipe)
-  $writer.AutoFlush = $true
-  $writer.WriteLine('something')
-  $writer.Dispose()
-  
-  $namedPipe.Dispose()
-}
-
-Function readPipe
-{
-  $name = 'foo'
-  $namedPipe = New-Object IO.Pipes.NamedPipeClientStream('.', $name, 'In')
-  $namedPipe.Connect()
-  
-  $script:reader = New-Object IO.StreamReader($namedPipe)
-  $reader.ReadLine()
-  $reader.Dispose()
-  
-  $namedPipe.Dispose()
-}
-
 ####################### EJEMPLOS #####################################
 
 
-#(Get-Item $FileNamePath ).Extension
-#(Get-Item $FileNamePath ).Basename
-#(Get-Item $FileNamePath ).Name
-#(Get-Item $FileNamePath ).DirectoryName
-#(Get-Item $FileNamePath ).FullName
+#(Get-Item $FileNamePath ).Extension (.Basename / .Name /.DirectoryName / .FullName)
 #PS C:\Users\jmn6> dir "C:\Program Files" -File -Recurse | Sort-Object Count -Descending | Select-Object Name, Count | Out-GridView
 #Get-Command | Select-Object Name,source | Where-Object {$_.source -eq "mLSColor"} |Get-Help | Out-File C:\Users\jmn6\Desktop\Ayuda.txt
 #Save-Help -Force -UICulture "en-us" -DestinationPath C:\PowerShell-Help
 #Update-Help -Force -UICulture "en-us" -SourcePath C:\PowerShell-Help
 #$env:PSModulePath
 #systeminfo | Select-String "^OS Name","^OS Version"
-#Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 #ipconfig | select-string -pattern 192
 #Set-ExecutionPolicy Unrestricted | RemoteSigned | AllSigned | Restricted | Default | Bypass | Undefined
 #Get-ExecutionPolicy -List
 #$x = $host.ui.RawUI.ReadKey("NoEcho,IncludeKeyDown")
-#$q = New-Object System.Collections.Queue; get-member -InputObject $q
 #Function virtualMachineCopy {"$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" clonehd "$args[0]\Ubuntu.vdi" "$args[0]\Ubuntu_25.vdi" --existing}
 
 ############################################################
@@ -131,11 +94,11 @@ Function inicio2
     switch ( $option )
     {
         0 { logo0  }
-        1 { logo0  }
-        2 { logo0  }
+        1 { logo1  }
+        2 { logo2  }
         3 { logo4  }
-        4 { logo4  }
-        5 { logo4  }
+        4 { logo3  }
+        5 { logo0  }
     }
 }
 
@@ -176,4 +139,3 @@ $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
-function subl { &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args }
