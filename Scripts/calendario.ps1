@@ -63,11 +63,11 @@ $profileDir = ([system.io.fileinfo]$profile).DirectoryName+"\Scripts"
 
 
 if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27} 
-if($YearNumber -eq (Get-Date).Year){ $fechasSenaladasFichero = $profileDir+"\vacaciones\fechasSenaladas$YearNumber.txt"}
 
 	$pendientesFichero = $profileDir+"\vacaciones\pendientes$YearNumber.txt"
     $fiestasFichero = $profileDir+"\vacaciones\fiestas$YearNumber.txt"
-    $vacacionesFichero = $profileDir+"\vacaciones\$YearNumber.txt"
+	$vacacionesFichero = $profileDir+"\vacaciones\$YearNumber.txt"
+	$fechasSenaladasFichero = $profileDir+"\vacaciones\fechasSenaladas$YearNumber.txt"
 
     $vacaciones    = fillHollidaysArray $vacacionesFichero
     $pendientes    = fillHollidaysArray $pendientesFichero
