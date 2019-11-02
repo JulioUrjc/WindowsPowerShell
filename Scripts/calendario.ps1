@@ -39,7 +39,7 @@ param(
 Function fillHollidaysArray {
     Param ($fichero)
 
-    if (Test-Path $fichero)
+    if ($fichero -AND (Test-Path $fichero))
     {
       $hollydays = [System.Collections.ArrayList]@()
       Get-Content $fichero | ForEach-Object { 
