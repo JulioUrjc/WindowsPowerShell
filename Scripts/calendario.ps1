@@ -37,20 +37,28 @@ param(
 )
 
 Function fillHollidaysArray {
-    Param ($fichero)
+    Param ($fichero, [ValidateRange(1,9999)][int]$Year = (Get-Date).Year)
 
     if ($fichero -AND (Test-Path $fichero))
     {
       $hollydays = [System.Collections.ArrayList]@()
       Get-Content $fichero | ForEach-Object { 
-	    $auxiliar = [System.Collections.ArrayList]@()
-	      foreach($word in $_.Split(" ")) {
-		    if([Microsoft.VisualBasic.Information]::IsNumeric($word))
-		    {
-			  $arrayID = $auxiliar.Add($word)
-		    }
-          }
-        $arrayID = $hollydays.Add($auxiliar)
+		$auxiliar = [System.Collections.ArrayList]@()
+		  if( [Microsoft.VisualBasic.Information]::IsNumeric($_) )
+		  {
+			$selectedYear = $_ -eq $Year
+		  }
+		  
+		  if($selectedYear -AND ($_ -ne $Year) -AND ($_ -ne ""))
+		  {
+			foreach($word in $_.Split(" ")) {
+				if([Microsoft.VisualBasic.Information]::IsNumeric($word))
+				{
+				  $arrayID = $auxiliar.Add($word)
+				}
+			}
+			$arrayID = $hollydays.Add($auxiliar)
+		  }   
       } 
 
       return $hollydays
@@ -64,15 +72,15 @@ $profileDir = ([system.io.fileinfo]$profile).DirectoryName+"\Scripts"
 
 if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27} 
 
-	$pendientesFichero = $profileDir+"\vacaciones\pendientes$YearNumber.txt"
-    $fiestasFichero = $profileDir+"\vacaciones\fiestas$YearNumber.txt"
-	$vacacionesFichero = $profileDir+"\vacaciones\$YearNumber.txt"
-	$fechasSenaladasFichero = $profileDir+"\vacaciones\fechasSenaladas$YearNumber.txt"
+	$pendientesFichero = $profileDir+"\vacaciones\pendientes.txt"
+    $fiestasFichero = $profileDir+"\vacaciones\fiestas.txt"
+	$vacacionesFichero = $profileDir+"\vacaciones\vacaciones.txt"
+	$fechasSenaladasFichero = $profileDir+"\vacaciones\fechasSenaladas.txt"
 
-    $vacaciones    = fillHollidaysArray $vacacionesFichero
-    $pendientes    = fillHollidaysArray $pendientesFichero
-    $fiestas       = fillHollidaysArray $fiestasFichero
-    $diasSenalados = fillHollidaysArray $fechasSenaladasFichero
+    $vacaciones    = fillHollidaysArray $vacacionesFichero $YearNumber
+    $pendientes    = fillHollidaysArray $pendientesFichero $YearNumber
+    $fiestas       = fillHollidaysArray $fiestasFichero $YearNumber
+    $diasSenalados = fillHollidaysArray $fechasSenaladasFichero $YearNumber
 
     ForEach( $item in $vacaciones)
     {
