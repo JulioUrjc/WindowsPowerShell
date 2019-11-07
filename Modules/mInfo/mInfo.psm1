@@ -166,7 +166,7 @@ Function funciones{
   $par= 0
     ForEach ($name in $funciones)
     {
-      if(!($name -match "[A-Z]:"))
+      if( $name -notmatch "[A-Z]:" -AND $name -notmatch "TabExpansion2|more|Pause|ImportSystemModules|cd..|Get-Verb|Clear-Host|oss|mkdir" )
       {
         if($par%4 -eq 0)
         {

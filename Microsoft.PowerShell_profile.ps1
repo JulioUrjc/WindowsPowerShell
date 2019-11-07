@@ -114,7 +114,7 @@ Function inicio2
 
 #################### Admin #################################
 
-Function Test-administrator { 
+Function isAdministrador { 
 	$user = [Security.Principal.WindowsIdentity]::GetCurrent(); 
 	(New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::administrator) 
 }
@@ -124,7 +124,7 @@ Function inicio{
 
   Set-ItemProperty -Path HKCU:\console -Name WindowAlpha -Value 210
     $user = '                         *'
-  if (Test-administrator) {
+  if (isAdministrador) {
         $user = 'Admin session            *';
         $host.UI.RawUI.WindowTitle = "July Admin Windows PowerShell"
     }
