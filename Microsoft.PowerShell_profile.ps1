@@ -119,6 +119,7 @@ Function isAdministrador {
 Function inicio{
   clear
 
+  Set-PSReadLineOption -Colors @{"String" ="#5bc799"} 
   Set-ItemProperty -Path HKCU:\console -Name WindowAlpha -Value 210
     $user = '                         *'
   if (isAdministrador) {
