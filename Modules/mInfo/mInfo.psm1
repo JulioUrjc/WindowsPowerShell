@@ -160,6 +160,27 @@ Function funciones{
 		}
 	}
 
+  Write-Host ""
+  Write-Host "Profile"
+  $funciones = Get-Command | where{$_.source -eq ""} | Select-Object Name
+  $par= 0
+    ForEach ($name in $funciones)
+    {
+      if(!($name -match "[A-Z]:"))
+      {
+        if($par%4 -eq 0)
+        {
+          Write-Host ("{0,10}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+        }elseif($par%4 -eq 1){
+          Write-Host ("{0,20}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+        }elseif ($par%4 -eq 2){
+          Write-Host ("{0,30}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+        } else{
+          Write-Host ("{0,40}" -f $name.Name) -foregroundcolor "Cyan"
+        }   
+        $par++ 
+      } 
+    }
 }
 
 Function scripts{  
