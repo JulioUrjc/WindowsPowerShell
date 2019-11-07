@@ -23,9 +23,11 @@ Function prompt
 }
 
 Function xflowconan { 
+  Param( ValidateSet("--deploy","--clean","--fullclean")][string] $parameter = "--deploy" )
+
   (& "$env:Conda\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
   conda activate develop
-  C:\xf\run_xflow_cmakeJuly.bat --deploy
+  C:\xf\run_xflow_cmakeJuly.bat $parameter
 }
 Function admin {Start-Process powershell -Verb runAs; exit}
 Function orden {ls | sort $args[0] | select $args[0]}
@@ -45,6 +47,8 @@ Function ippublic { wget "http://checkip.amazonaws.com/"  | Select -exp RawConte
 
 Function gui { cd /xflow/gui}
 Function common { cd /xflow/common}
+Function guic { cd /xf/gui}
+Function commonc { cd /xf/common}
 Function home { cd $home }
 Function nicengine { cd /xflowOne-build/RelWithDebInfo }
 
