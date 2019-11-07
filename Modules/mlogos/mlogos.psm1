@@ -128,4 +128,19 @@ Function logo4
     "
 }
 
-Export-ModuleMember -function logo0,logo1,logo2,logo3,logo4
+
+Function logoRandom
+{ 
+    $option = random 5
+
+    switch ( $option )
+    {
+        0 { logo0  }
+        1 { logo1  }
+        2 { logo2  }
+        3 { logo3  }
+        4 { logo4  }
+    }
+}
+
+Export-ModuleMember -function logo0,logo1,logo2,logo3,logo4, logoRandom
