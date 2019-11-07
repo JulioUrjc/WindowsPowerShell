@@ -17,13 +17,16 @@ Function prompt
  Write-Host -NoNewLine "PS ";
  Write-Host -NoNewLine "$pwd" -ForegroundColor Gray;
   $branch = git rev-parse --abbrev-ref HEAD;
+  if(!$branch){ $branch = hg branch }
+
    if($branch){Write-Host -NoNewLine -ForegroundColor Green " ($branch)"}
    Write-Host -ForegroundColor White ">";
     return "$ " 
 }
 
-Function xflowconan { 
-  Param( ValidateSet("--deploy","--clean","--fullclean")][string] $parameter = "--deploy" )
+Function xflowconan 
+{ 
+  Param( [ValidateSet("--deploy","--clean","--fullclean")][string] $parameter = "--deploy" )
 
   (& "$env:Conda\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
   conda activate develop
