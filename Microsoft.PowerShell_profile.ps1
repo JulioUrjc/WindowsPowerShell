@@ -54,7 +54,8 @@ Function job { Start-job { $args[0] } -Name trabajoJuly }
 Function jobResult { Get-Job -Name trabajoJuly | Receive-Job }
 Function pw { start powershell }
 Function pwi { start powershell ISE; exit}
-Function ip { ipconfig | FINDSTR "Dirección IPv4" }
+Function ip { ipconfig | findstr "Direccion IPv4"}
+Function ip2 {(Test-Connection -ComputerName $env:computername -Count 1).IPV4Address.IPAddressToString}
 Function ipp {  Invoke-RestMethod http://ipinfo.io/json | Select -exp ip }
 Function ippublic { wget "http://checkip.amazonaws.com/"  | Select -exp RawContent }
 
@@ -106,6 +107,8 @@ set-alias wordexe           "$env:ProgramFiles (x86)\Microsoft Office\Office16\w
 # $x = $host.ui.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 # Function virtualMachineCopy {"$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" clonehd "$args[0]\Ubuntu.vdi" "$args[0]\Ubuntu_25.vdi" --existing}
 # &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args
+# get-Content .\nombreOrdnadores.txt | ipsdinamicas.ps1 | Export-Excel -Path inventario3.xlsx -AutoSize -BoldTop
+# Row -AutoFilter -ConditionalText $( New-ConditionalText FALSO New-ConditionalText VERDADERO -BackgroundColor LightGreen -ConditionalTextColor DarkGreen)
 
 ############################################################
 #################    Admin    ##############################
@@ -119,7 +122,7 @@ Function isAdministrador {
 Function inicio{
   clear
 
-  Set-PSReadLineOption -Colors @{"String" ="#5bc799"} 
+  #Set-PSReadLineOption -Colors @{"String" ="#5bc799"} 
   Set-ItemProperty -Path HKCU:\console -Name WindowAlpha -Value 210
     $user = '                         *'
   if (isAdministrador) {
