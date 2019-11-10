@@ -144,7 +144,7 @@ Function funciones{
 
 	ForEach ($item in $funciones)
 	{	
-    if($item.Name -eq "ImportExcel"){ Write-Host "He pasado por aqui $item.Name"; continue; }
+    if($item.Name -eq "ImportExcel"){ continue; }
     Write-Host ""
 		$item.Name
 		$func = Get-Command -Module $item.Name | select-object Name
