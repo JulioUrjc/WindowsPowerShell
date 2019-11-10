@@ -138,12 +138,13 @@ Function funciones{
     .EXAMPLE 
       funciones $num
    #>
-    PARAM([int]$numModules = 11)
+    PARAM([int]$numModules = 12)
 
 	$funciones = Get-Module -ListAvailable | select-object Name -first $numModules
 
 	ForEach ($item in $funciones)
 	{	
+    if($item.Name -eq "ImportExcel"){ Write-Host "He pasado por aqui $item.Name"; continue; }
     Write-Host ""
 		$item.Name
 		$func = Get-Command -Module $item.Name | select-object Name
@@ -174,9 +175,9 @@ Function funciones{
         }elseif($par%4 -eq 1){
           Write-Host ("{0,20}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
         }elseif ($par%4 -eq 2){
-          Write-Host ("{0,30}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+          Write-Host ("{0,25}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
         } else{
-          Write-Host ("{0,40}" -f $name.Name) -foregroundcolor "Cyan"
+          Write-Host ("{0,30}" -f $name.Name) -foregroundcolor "Cyan"
         }   
         $par++ 
       } 
