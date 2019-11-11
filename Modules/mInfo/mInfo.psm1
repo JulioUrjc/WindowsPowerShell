@@ -138,7 +138,7 @@ Function funciones{
     .EXAMPLE 
       funciones $num
    #>
-    PARAM([int]$numModules = 11)
+    PARAM([int]$numModules = 12)
 
 	$funciones = Get-Module -ListAvailable | select-object Name -first $numModules
 

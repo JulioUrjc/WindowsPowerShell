@@ -507,58 +507,58 @@ Function Import-ConsoleColor {
 Export-ModuleMember -function lsGetColorAndSize, lsGetColorAndSizeRecursive, coloresPosibles, getDirSizeRecursive, resetShellColors, initShellColors, colores, Test-ConsoleColor, Export-ConsoleColor, Import-ConsoleColor -Alias lsa,lsr,tam
 
 #############  COLORS ###########
-#Black        
-#DarkBlue      
-#DarkGreen      
-#DarkCyan      
-#DarkRed      
-#DarkMagenta      
-#DarkYellow      
-#Gray      
-#DarkGray      
-#Blue      
-#Green      
-#Cyan    
-#Red      
-#Magenta      
-#Yellow
-#White
+# Black        
+# DarkBlue      
+# DarkGreen      
+# DarkCyan      
+# DarkRed      
+# DarkMagenta      
+# DarkYellow      
+# Gray      
+# DarkGray      
+# Blue      
+# Green      
+# Cyan    
+# Red      
+# Magenta      
+# Yellow
+# White
 
 
 #############  PSREADLINEOPTIONS ###########
-#EditMode                               : Windows
-#AddToHistoryHandler                    :
-#HistoryNoDuplicates                    : True
-#HistorySavePath                        : C:\Users\jmn6\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
-#HistorySaveStyle                       : SaveIncrementally
-#HistorySearchCaseSensitive             : False
-#HistorySearchCursorMovesToEnd          : False
-#MaximumHistoryCount                    : 4096
-#ContinuationPrompt                     : >>
-#ExtraPromptLineCount                   : 0
-#PromptText                             : >
-#BellStyle                              : Audible
-#DingDuration                           : 50
-#DingTone                               : 1221
-#CommandsToValidateScriptBlockArguments : {ForEach-Object, %, Invoke-Command, icm...}
-#CommandValidationHandler               :
-#CompletionQueryItems                   : 100
-#MaximumKillRingCount                   : 10
-#ShowToolTips                           : True
-#ViModeIndicator                        : None
-#WordDelimiters                         : ;:,.[]{}()/\|^&*-=+'"–—―
-#CommandColor                           : "$([char]0x1b)[93m"
-#CommentColor                           : "$([char]0x1b)[32m"
-#ContinuationPromptColor                : "$([char]0x1b)[33m"
-#DefaultTokenColor                      : "$([char]0x1b)[33m"
-#EmphasisColor                          : "$([char]0x1b)[96m"
-#ErrorColor                             : "$([char]0x1b)[91m"
-#KeywordColor                           : "$([char]0x1b)[92m"
-#MemberColor                            : "$([char]0x1b)[97m"
-#NumberColor                            : "$([char]0x1b)[97m"
-#OperatorColor                          : "$([char]0x1b)[90m"
-#ParameterColor                         : "$([char]0x1b)[90m"
-#SelectionColor                         : "$([char]0x1b)[35;43m"
-#StringColor                            : "$([char]0x1b)[36m"
-#TypeColor                              : "$([char]0x1b)[37m"
-#VariableColor                          : "$([char]0x1b)[92m"
+# EditMode                               : Windows
+# AddToHistoryHandler                    :
+# HistoryNoDuplicates                    : True
+# HistorySavePath                        : C:\Users\jmn6\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+# HistorySaveStyle                       : SaveIncrementally
+# HistorySearchCaseSensitive             : False
+# HistorySearchCursorMovesToEnd          : False
+# MaximumHistoryCount                    : 4096
+# ContinuationPrompt                     : >>
+# ExtraPromptLineCount                   : 0
+# PromptText                             : >
+# BellStyle                              : Audible
+# DingDuration                           : 50
+# DingTone                               : 1221
+# CommandsToValidateScriptBlockArguments : {ForEach-Object, %, Invoke-Command, icm...}
+# CommandValidationHandler               :
+# CompletionQueryItems                   : 100
+# MaximumKillRingCount                   : 10
+# ShowToolTips                           : True
+# ViModeIndicator                        : None
+# WordDelimiters                         : ;:,.[]{}()/\|^&*-=+'"–—―
+# CommandColor                           : "$([char]0x1b)[93m"
+# CommentColor                           : "$([char]0x1b)[32m"
+# ContinuationPromptColor                : "$([char]0x1b)[33m"
+# DefaultTokenColor                      : "$([char]0x1b)[33m"
+# EmphasisColor                          : "$([char]0x1b)[96m"
+# ErrorColor                             : "$([char]0x1b)[91m"
+# KeywordColor                           : "$([char]0x1b)[92m"
+# MemberColor                            : "$([char]0x1b)[97m"
+# NumberColor                            : "$([char]0x1b)[97m"
+# OperatorColor                          : "$([char]0x1b)[90m"
+# ParameterColor                         : "$([char]0x1b)[90m"
+# SelectionColor                         : "$([char]0x1b)[35;43m"
+# StringColor                            : "$([char]0x1b)[36m"
+# TypeColor                              : "$([char]0x1b)[37m"
+# VariableColor                          : "$([char]0x1b)[92m"

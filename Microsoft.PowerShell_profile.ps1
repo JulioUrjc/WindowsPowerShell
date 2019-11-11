@@ -9,6 +9,7 @@ Import-Module mFTP
 Import-Module mMouse
 Import-Module mFechas
 Import-Module mGit
+Import-Module mXFlow
 Import-Module PSReadLine
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
@@ -33,15 +34,6 @@ Function prompt
     return "$ " 
 }
 
-Function xflowconan 
-{ 
-  Param( [ValidateSet("--deploy","--clean","--fullclean")][string] $parameter = "--deploy" )
-
-  (& "$env:Conda\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
-  conda activate develop
-  C:\xf\run_xflow_cmakeJuly.bat $parameter
-}
-
 Function admin {Start-Process powershell -Verb runAs; exit}
 Function orden {ls | sort $args[0] | select $args[0]}
 Function buscar {ls -r -i * | select-string $args[0]}
@@ -57,13 +49,7 @@ Function pwi { start powershell ISE; exit}
 Function ip { ipconfig | FINDSTR "Dirección IPv4" }
 Function ipp {  Invoke-RestMethod http://ipinfo.io/json | Select -exp ip }
 Function ippublic { wget "http://checkip.amazonaws.com/"  | Select -exp RawContent }
-
-Function gui { cd /xflow/gui}
-Function common { cd /xflow/common}
-Function guic { cd /xf/gui}
-Function commonc { cd /xf/common}
 Function home { cd $home }
-Function nicengine { cd /xflowOne-build/RelWithDebInfo }
 
 Function dumpbin{	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bin";	.\dumpbin.exe $args[0] $args[1]}
 
