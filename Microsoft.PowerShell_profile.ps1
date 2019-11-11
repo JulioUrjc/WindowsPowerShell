@@ -9,7 +9,6 @@ Import-Module mFTP
 Import-Module mMouse
 Import-Module mFechas
 Import-Module mGit
-Import-Module mXFlow
 Import-Module PSReadLine
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
@@ -27,7 +26,6 @@ Function prompt
  Write-Host -NoNewLine "PS ";
  Write-Host -NoNewLine "$pwd" -ForegroundColor Gray;
   $branch = git rev-parse --abbrev-ref HEAD;
-  if(!$branch){ $branch = hg branch }
 
    if($branch){Write-Host -NoNewLine -ForegroundColor Green " ($branch)"}
    Write-Host -ForegroundColor White ">";
@@ -73,7 +71,7 @@ set-alias code              "$env:ProgramFiles\Microsoft VS Code\code.exe"
 set-alias sz                "$env:ProgramFiles\7-Zip\7z.exe"
 set-alias slicer            "$env:ProgramFiles\slicer\Slic3r.exe"
 set-alias repetier          "$env:ProgramFiles\Repetier-Host\RepetierHost.exe"
-set-alias kraken            "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
+set-alias kraken            "$env:userprofile\AppData\Local\gitkraken\app-6.3.1\gitkraken.exe"
 set-alias wordexe           "$env:ProgramFiles (x86)\Microsoft Office\Office16\winword.exe"
 
 ############################################################
@@ -108,7 +106,7 @@ Function isAdministrador {
 Function inicio{
   clear
 
-  #Set-PSReadLineOption -Colors @{"String" ="#5bc799"} 
+  # Set-PSReadLineOption -Colors @{"String" ="#5bc799"} 
   Set-ItemProperty -Path HKCU:\console -Name WindowAlpha -Value 210
     $user = '                         *'
   if (isAdministrador) {
