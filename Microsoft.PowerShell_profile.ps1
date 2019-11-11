@@ -93,8 +93,6 @@ set-alias wordexe           "$env:ProgramFiles (x86)\Microsoft Office\Office16\w
 # $x = $host.ui.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 # Function virtualMachineCopy {"$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" clonehd "$args[0]\Ubuntu.vdi" "$args[0]\Ubuntu_25.vdi" --existing}
 # &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args
-# get-Content .\nombreOrdnadores.txt | ipsdinamicas.ps1 | Export-Excel -Path inventario3.xlsx -AutoSize -BoldTop
-# Row -AutoFilter -ConditionalText $( New-ConditionalText FALSO New-ConditionalText VERDADERO -BackgroundColor LightGreen -ConditionalTextColor DarkGreen)
 
 ############################################################
 #################    Admin    ##############################
