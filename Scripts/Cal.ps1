@@ -36,6 +36,7 @@ Cal 5 2016 -FistDayOfWeek Sunday
 param(
 		[ValidateRange(1,12)][int]$MonthNumber = (Get-Date).Month,
 		[ValidateRange(1,9999)][int]$YearNumber = (Get-Date).Year,
+		$isVacaciones = $true,
 		[int[]]$AddWorkDays,
 		[int[]]$AddHolyDays,
 		[ValidateSet("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")][string]$FistDayOfWeek = "Monday",
@@ -43,68 +44,44 @@ param(
 	)
 
 Function fillHollidaysArray {
-    Param ($fichero)
+    Param ($fichero, [ValidateRange(1,9999)][int]$Year = (Get-Date).Year)
 
-    if (Test-Path $fichero)
+    if ($fichero -AND (Test-Path $fichero))
     {
-      $hollidays = [System.Collections.ArrayList]@()
+      $hollydays = [System.Collections.ArrayList]@()
       Get-Content $fichero | ForEach-Object { 
-	    $auxiliar = [System.Collections.ArrayList]@()
-	      foreach($word in $_.Split(" ")) {
-		    if([Microsoft.VisualBasic.Information]::IsNumeric($word))
-		    {
-			  $arrayID = $auxiliar.Add($word)
-		    }
-          }
-        $arrayID = $hollidays.Add($auxiliar)
+		$auxiliar = [System.Collections.ArrayList]@()
+		  if( [Microsoft.VisualBasic.Information]::IsNumeric($_) )
+		  {
+			$selectedYear = $_ -eq $Year
+		  }
+		  
+		  if($selectedYear -AND ($_ -ne $Year) -AND ($_ -ne ""))
+		  {
+			foreach($word in $_.Split(" ")) {
+				if([Microsoft.VisualBasic.Information]::IsNumeric($word))
+				{
+				  $arrayID = $auxiliar.Add($word)
+				}
+			}
+			$arrayID = $hollydays.Add($auxiliar)
+		  }   
       } 
 
-      return $hollidays
+      return $hollydays
     }
 }
 
 Add-Type -Assembly Microsoft.VisualBasic
 $profileDir = ([system.io.fileinfo]$profile).DirectoryName+"\Scripts"
 
-    $pendientesFichero = $profileDir+"\vacaciones\pendientes$YearNumber.txt"
-    $fiestasFichero = $profileDir+"\vacaciones\fiestas$YearNumber.txt"
-    $vacacionesFichero = $profileDir+"\vacaciones\$YearNumber.txt"
+    $pendientesFichero = $profileDir+"\vacaciones\pendientes.txt"
+    $fiestasFichero = $profileDir+"\vacaciones\fiestas.txt"
+    $vacacionesFichero = $profileDir+"\vacaciones\vacaciones.txt"
 
-    $vacaciones = fillHollidaysArray $vacacionesFichero
-    $pendientes = fillHollidaysArray $pendientesFichero
-    $fiestas  = fillHollidaysArray $fiestasFichero
-
-    <# 2018 July Holydays Pendientes #>
-    $pendientes = @(
-    	,@()
-    	,@()
-    	,@(11,12,13,14,15)
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    	,@()
-    )
-
-<# 2019 Spain Holydays#>
-$fiestas = @(
-	,@(1,7)
-	,@()
-	,@()
-	,@(18,19)
-	,@(1,2,15)
-	,@()
-	,@()
-	,@(15)
-	,@()
-	,@(12)
-	,@(1,9)
-	,@(6,9,25)
-)
+    $vacaciones = fillHollidaysArray $vacacionesFichero $YearNumber
+    $pendientes = fillHollidaysArray $pendientesFichero $YearNumber
+    $fiestas  = fillHollidaysArray $fiestasFichero $YearNumber
 
 if ($YearNumber -eq (Get-Date).Year){ $AddHolyDays = $fiestas[$MonthNumber-1] }
 
@@ -169,8 +146,9 @@ if ($YearNumber -eq (Get-Date).Year){ $AddHolyDays = $fiestas[$MonthNumber-1] }
 		if($AddWorkDays -contains $_.Day){$_.WorkDay = $true}
 		if($AddHolyDays -contains $_.Day){$_.WorkDay = $false; $_.HolyDay = $true}
 		if($_.WorkDay -eq $true){$_.DayColor = 'White'}else{$_.DayColor = 'Red'}
+		if($isVacaciones -AND $vacaciones -AND $vacaciones[$MonthNumber-1] -contains $_.Day) {$_.DayColor = 'Green'}
+		if($pendientes -AND $pendientes[$MonthNumber-1] -contains $_.Day){ $_.DayColor = 'Magenta'}
         if($_.HolyDay -eq $true){$_.DayColor = 'Blue'}
-        if(($pendientes[$MonthNumber-1] -contains $_.Day) -AND ($YearNumber -eq 2019)){ $_.DayColor = 'Magenta'}
 		if($_.Date -eq $NowDate){$_.DayBgColor = 'DarkGray'}else{$_.DayBgColor = 'Black'}
 		$_.WeekOfMonthNum = $WeekOfMonthNum
 		if($_.DayOfWeekNum -eq 6){$WeekOfMonthNum++}

@@ -31,25 +31,34 @@
 #> 
 
 param(
+    [ValidateRange(1,9999)][int]$YearNumber = (Get-Date).Year,
     $isVacaciones = $true,
-    [ValidateRange(1,9999)][int]$YearNumber = (Get-Date).Year
+    $isDiasSenalados = $false
 )
 
 Function fillHollidaysArray {
-    Param ($fichero)
+    Param ($fichero, [ValidateRange(1,9999)][int]$Year = (Get-Date).Year)
 
-    if (Test-Path $fichero)
+    if ($fichero -AND (Test-Path $fichero))
     {
       $hollydays = [System.Collections.ArrayList]@()
       Get-Content $fichero | ForEach-Object { 
-	    $auxiliar = [System.Collections.ArrayList]@()
-	      foreach($word in $_.Split(" ")) {
-		    if([Microsoft.VisualBasic.Information]::IsNumeric($word))
-		    {
-			  $arrayID = $auxiliar.Add($word)
-		    }
-          }
-        $arrayID = $hollydays.Add($auxiliar)
+		$auxiliar = [System.Collections.ArrayList]@()
+		  if( [Microsoft.VisualBasic.Information]::IsNumeric($_) )
+		  {
+			$selectedYear = $_ -eq $Year
+		  }
+		  
+		  if($selectedYear -AND ($_ -ne $Year) -AND ($_ -ne ""))
+		  {
+			foreach($word in $_.Split(" ")) {
+				if([Microsoft.VisualBasic.Information]::IsNumeric($word))
+				{
+				  $arrayID = $auxiliar.Add($word)
+				}
+			}
+			$arrayID = $hollydays.Add($auxiliar)
+		  }   
       } 
 
       return $hollydays
@@ -63,14 +72,15 @@ $profileDir = ([system.io.fileinfo]$profile).DirectoryName+"\Scripts"
 
 if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27} 
 
+	$pendientesFichero = $profileDir+"\vacaciones\pendientes.txt"
+    $fiestasFichero = $profileDir+"\vacaciones\fiestas.txt"
+	$vacacionesFichero = $profileDir+"\vacaciones\vacaciones.txt"
+	$fechasSenaladasFichero = $profileDir+"\vacaciones\fechasSenaladas.txt"
 
-	$pendientesFichero = $profileDir+"\vacaciones\pendientes$YearNumber.txt"
-    $fiestasFichero = $profileDir+"\vacaciones\fiestas$YearNumber.txt"
-    $vacacionesFichero = $profileDir+"\vacaciones\$YearNumber.txt"
-
-    $vacaciones = fillHollidaysArray $vacacionesFichero
-    $pendientes = fillHollidaysArray $pendientesFichero
-    $fiestas  = fillHollidaysArray $fiestasFichero
+    $vacaciones    = fillHollidaysArray $vacacionesFichero $YearNumber
+    $pendientes    = fillHollidaysArray $pendientesFichero $YearNumber
+    $fiestas       = fillHollidaysArray $fiestasFichero $YearNumber
+    $diasSenalados = fillHollidaysArray $fechasSenaladasFichero $YearNumber
 
     ForEach( $item in $vacaciones)
     {
@@ -114,6 +124,7 @@ if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27}
 		     if($_.WorkDay -eq $true){ $_.DayColor = 'White'}else{$_.DayColor = 'Red'}
 		     if($isVacaciones -AND $vacaciones -AND ($vacaciones[$count] -contains $_.Day )) {$_.DayColor = 'Green'}
 		     if($isVacaciones -AND $pendientes -AND ($pendientes[$count] -contains $_.Day)){ $_.DayColor = 'Magenta'}
+		     if($isDiasSenalados -AND $diasSenalados -AND ($diasSenalados[$count] -contains $_.Day)){ $_.DayColor = 'Yellow'}
              if($_.HolyDay -eq $true){ $_.DayColor = 'Blue' }
 		     if($_.Date -eq $NowDate){ $_.DayBgColor = 'DarkGray' }else{ $_.DayBgColor = 'Black' }
 		     $_.WeekOfMonthNum = $WeekOfMonthNum

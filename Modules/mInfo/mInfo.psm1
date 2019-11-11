@@ -138,12 +138,13 @@ Function funciones{
     .EXAMPLE 
       funciones $num
    #>
-    PARAM([int]$numModules = 11)
+    PARAM([int]$numModules = 12)
 
 	$funciones = Get-Module -ListAvailable | select-object Name -first $numModules
 
 	ForEach ($item in $funciones)
 	{	
+    if($item.Name -eq "ImportExcel"){ continue; }
     Write-Host ""
 		$item.Name
 		$func = Get-Command -Module $item.Name | select-object Name
@@ -160,6 +161,27 @@ Function funciones{
 		}
 	}
 
+  Write-Host ""
+  Write-Host "Profile"
+  $funciones = Get-Command | where{$_.source -eq ""} | Select-Object Name
+  $par= 0
+    ForEach ($name in $funciones)
+    {
+      if( $name -notmatch "[A-Z]:" -AND $name -notmatch "TabExpansion2|more|Pause|ImportSystemModules|cd..|Get-Verb|Clear-Host|oss|mkdir|help" )
+      {
+        if($par%4 -eq 0)
+        {
+          Write-Host ("{0,10}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+        }elseif($par%4 -eq 1){
+          Write-Host ("{0,20}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+        }elseif ($par%4 -eq 2){
+          Write-Host ("{0,25}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+        } else{
+          Write-Host ("{0,30}" -f $name.Name) -foregroundcolor "Cyan"
+        }   
+        $par++ 
+      } 
+    }
 }
 
 Function scripts{  

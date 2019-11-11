@@ -143,4 +143,34 @@ Function email{
    }
 }
 
-Export-ModuleMember -function mensaje, email
+############################################################
+#################### Pipe ##################################
+
+Function writePipe
+{
+  $name = 'foo'
+  $namedPipe = New-Object IO.Pipes.NamedPipeServerStream($name, 'Out')
+  $namedPipe.WaitForConnection()
+  
+  $script:writer = New-Object IO.StreamWriter($namedPipe)
+  $writer.AutoFlush = $true
+  $writer.WriteLine('something')
+  $writer.Dispose()
+  
+  $namedPipe.Dispose()
+}
+
+Function readPipe
+{
+  $name = 'foo'
+  $namedPipe = New-Object IO.Pipes.NamedPipeClientStream('.', $name, 'In')
+  $namedPipe.Connect()
+  
+  $script:reader = New-Object IO.StreamReader($namedPipe)
+  $reader.ReadLine()
+  $reader.Dispose()
+  
+  $namedPipe.Dispose()
+}
+
+Export-ModuleMember -function mensaje, email, writePipe, readPipe
