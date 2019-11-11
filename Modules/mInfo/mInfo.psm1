@@ -247,5 +247,24 @@ Function tcpP{
   $tcpClient.Connect($ip, $puerto)
 }
 
-Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC, funciones, scripts, puertos, pingP, tcpP
+Function inventario{
+   <#  
+    .SYNOPSIS  
+       inventario de ordenadores de red
+    .DESCRIPTION 
+       Inventario en excel, pasando el nombre de los ordenadores por fichero
+    .EXAMPLE 
+      inventario $ordenadoresFile
+   #>
+
+      PARAM( $ordenadoresFile="nombreOrdenadores.txt")
+
+  get-Content $ordenadoresFile | ipsdinamicas.ps1 | Export-Excel -Path inventario.xlsx -AutoSize -BoldTopRow -AutoFilter -ConditionalText $(
+  New-ConditionalText FALSO
+  New-ConditionalText VERDADERO -BackgroundColor LightGreen -ConditionalTextColor DarkGreen)-IncludePivotTable -PivotTableName TablaDinamica -PivotRows IsDHCPEnabled -PivotData ComputerName -PivotColumns IPAddress
+}
+
+
+
+Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC, funciones, scripts, puertos, pingP, tcpP, inventario
 
