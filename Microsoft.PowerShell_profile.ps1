@@ -51,6 +51,7 @@ Function ip2 {(Test-Connection -ComputerName $env:computername -Count 1).IPV4Add
 Function ipp {  Invoke-RestMethod http://ipinfo.io/json | Select -exp ip }
 Function ippublic { wget "http://checkip.amazonaws.com/"  | Select -exp RawContent }
 Function home { cd $home }
+Function calen { calendario 2019 $true $true }
 
 Function dumpbin{	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bin";	.\dumpbin.exe $args[0] $args[1]}
 
