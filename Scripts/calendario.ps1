@@ -102,7 +102,7 @@ if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27}
 
 	for($count=0; $count -lt 12; $count++)
 	{
-		if ($YearNumber -eq (Get-Date).Year){ $AddHolyDays = $fiestas[$count] }
+		$AddHolyDays = $fiestas[$count]
 		
 		[array]$FirstDay += (Get-Date -Year $YearNumber -Month $MonthNumber[$count] -Day 1).Date
  
