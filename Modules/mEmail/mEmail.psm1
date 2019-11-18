@@ -148,13 +148,15 @@ Function email{
 
 Function writePipe
 {
-  $name = 'foo'
+  PARAM ($message="Write something")
+
+  $name = 'july'
   $namedPipe = New-Object IO.Pipes.NamedPipeServerStream($name, 'Out')
   $namedPipe.WaitForConnection()
   
   $script:writer = New-Object IO.StreamWriter($namedPipe)
   $writer.AutoFlush = $true
-  $writer.WriteLine('something')
+  $writer.WriteLine($message)
   $writer.Dispose()
   
   $namedPipe.Dispose()
@@ -162,7 +164,7 @@ Function writePipe
 
 Function readPipe
 {
-  $name = 'foo'
+  $name = 'july'
   $namedPipe = New-Object IO.Pipes.NamedPipeClientStream('.', $name, 'In')
   $namedPipe.Connect()
   
