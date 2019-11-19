@@ -65,6 +65,7 @@ Function fillHollidaysArray {
     }
 }
 
+
 Add-Type -Assembly Microsoft.VisualBasic
 $vacacionesPorAnyo = 30
 $profileDir = ([system.io.fileinfo]$profile).DirectoryName+"\Scripts"

@@ -148,9 +148,8 @@ Function email{
 
 Function writePipe
 {
-  PARAM ($message="Write something")
+  PARAM ($message="Write something", $name = 'july')
 
-  $name = 'july'
   $namedPipe = New-Object IO.Pipes.NamedPipeServerStream($name, 'Out')
   $namedPipe.WaitForConnection()
   
@@ -164,7 +163,8 @@ Function writePipe
 
 Function readPipe
 {
-  $name = 'july'
+  PARAM ($name = 'july')
+
   $namedPipe = New-Object IO.Pipes.NamedPipeClientStream('.', $name, 'In')
   $namedPipe.Connect()
   
