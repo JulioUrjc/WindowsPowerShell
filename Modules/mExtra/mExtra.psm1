@@ -124,5 +124,23 @@ Function GetInicio{ Get-WmiObject -Class win32_startupCommand }
 
 Function shader {glslangValidator -V $args[0]}
 
-Export-ModuleMember -function  word, cuentaAtras, cuenta, GetInicio, shader
+Function trf {
+   <#
+    .SYNOPSIS
+      Funcion tr en linux para fichero
+    .DESCRIPTION 
+      Permite cambiar una palabra de un fichero por otra
+    
+    .EXAMPLE 
+      trf $file $from $to  
+   #> 
+
+  PARAM ($file, $from ="", $to="")
+  
+  ((Get-Content -path $file) -replace $from, $to) | Set-Content -Path $file
+}
+
+
+
+Export-ModuleMember -function  word, cuentaAtras, cuenta, GetInicio, shader, trf
 
