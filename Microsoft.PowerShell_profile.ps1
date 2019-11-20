@@ -37,7 +37,7 @@ Function prompt
 Function admin {Start-Process powershell -Verb runAs; exit}
 Function orden {ls | sort $args[0] | select $args[0]}
 Function buscar {ls -r -i * | select-string $args[0]}
-Function busca([string] $ext) {ls -r -i *.$ext | select-string $args[0]}
+Function grep([string] $ext) {ls -r -i *.$ext | select-string $args[0]}
 
 Function profileDir{abrir ([system.io.fileinfo]$profile).DirectoryName}
 Function profileFile{ sublime $profile }
@@ -59,7 +59,6 @@ Function dumpbin{	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bi
 #################    Alias    ##############################
 ############################################################
 
-set-alias grep              buscar
 set-alias fecha             Get-Date
 set-alias abrir             explorer.exe
 set-alias view              Out-GridView
