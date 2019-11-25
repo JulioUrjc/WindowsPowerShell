@@ -52,6 +52,7 @@ Function home { cd $home }
 Function calen { PARAM($anyo = (Get-Date).Year) calendario $anyo $true $true }
 
 Function dumpbin{	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bin";	.\dumpbin.exe $args[0] $args[1]}
+Function nano { PARAM($File) bash -c "nano $File" }
 
 ############################################################
 #################    Alias    ##############################
