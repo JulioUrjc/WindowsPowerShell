@@ -43,6 +43,27 @@ Function conanenvironment
   conda activate develop
 }
 
+Function traduccion 
+{ 
+    <#
+    .SYNOPSIS
+      Actualiza ficheros de traduccion de Xflow
+
+    .DESCRIPTION 
+      Actualiza ficheros de traduccion de Xflow
+    
+    .EXAMPLE 
+      traduccion
+    #> 
+      
+$actual = $pwd
+cd "C:\xf\gui\xflow-gui\resources\locale"
+translations_update_TS_files.bat
+translations_release_TS_files.bat
+
+cd $actual
+}
+
 Function gui { cd /xflow/gui}
 Function common { cd /xflow/common}
 Function guic { cd /xf/gui}
@@ -50,4 +71,4 @@ Function commonc { cd /xf/common}
 Function nicengine { cd /xflowOne-build/RelWithDebInfo }
 
 
-Export-ModuleMember -function xflowconan, conanenvironment, gui, common, guic, commonc, nicengine
+Export-ModuleMember -function xflowconan, conanenvironment, traduccion, gui, common, guic, commonc, nicengine
