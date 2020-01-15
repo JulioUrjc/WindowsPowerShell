@@ -88,8 +88,14 @@ if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27}
     	$cogidos += $item.Count
     }
 
-    $restantes = $vacacionesPorAnyo - $cogidos
+    $vacacionesAnteriores    = fillHollidaysArray $vacacionesFichero ($YearNumber-1)
+	ForEach( $item in $vacacionesAnteriores)
+    {
+    	$cogidosanterior += $item.Count
+    }
 
+    $restantes = $vacacionesPorAnyo - $cogidos
+    $anterior  = $vacacionesPorAnyo - $cogidosanterior
 
     $MonthNumber = 1..12
 
@@ -200,7 +206,7 @@ if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27}
 
 if ($isVacaciones)
 {
-  Write-Host "Dias cogidos: ${cogidos}         Dias restantes: ${restantes}" -ForegroundColor Yellow
+  Write-Host "Dias cogidos: ${cogidos}      Dias restantes: ${restantes}     Ano anterior: ${anterior}" -ForegroundColor Yellow
   Write-Host ''
 }
 
