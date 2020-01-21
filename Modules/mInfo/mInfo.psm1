@@ -264,7 +264,22 @@ Function inventario{
   New-ConditionalText VERDADERO -BackgroundColor LightGreen -ConditionalTextColor DarkGreen)-IncludePivotTable -PivotTableName TablaDinamica -PivotRows IsDHCPEnabled -PivotData ComputerName -PivotColumns IPAddress
 }
 
+Function espacioDiscos{
 
+  Get-WmiObject -Class Win32_logicaldisk | Format-Table -Property @{
+      Name       = 'Unidad'
+      Expression = {$_.DeviceID}
+  }, @{
+      Name       = 'Tamaño Total (GB)'
+      Expression = {[decimal]('{0:N0}' -f($_.Size/1gb))}
+  }, @{
+      Name       = 'Disponible (GB)'
+      Expression = {[decimal]('{0:N0}'-f($_.Freespace/1gb))}
+  }, @{
+      Name       = 'Disponible (%)'
+      Expression = {'{0,6:P0}' -f(($_.Freespace/1gb) / ($_.size/1gb))}
+  } -AutoSize
+}
 
-Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC, funciones, scripts, puertos, pingP, tcpP, inventario
+Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC, funciones, scripts, puertos, pingP, tcpP, inventario, espacioDiscos
 
