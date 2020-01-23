@@ -93,7 +93,11 @@ if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27}
     {
     	$cogidosanterior += $item.Count
     }
-
+    ForEach( $item in $pendientes)
+    {
+    	$cogidosanterior += $item.Count
+    }
+    
     $restantes = $vacacionesPorAnyo - $cogidos
     $anterior  = $vacacionesPorAnyo - $cogidosanterior
 
@@ -129,9 +133,9 @@ if($YearNumber -eq 2018){ $vacacionesPorAnyo = 27}
 		     if($DaysOfWeek[0..4] -contains $_.DayOfWeek){ $_.WorkDay = $true }else{ $_.WorkDay = $false }	
 		     if($AddHolyDays -contains $_.Day){ $_.WorkDay = $false; $_.HolyDay = $true} 
 		     if($_.WorkDay -eq $true){ $_.DayColor = 'White'}else{$_.DayColor = 'Red'}
-		     if($isVacaciones -AND $vacaciones -AND ($vacaciones[$count] -contains $_.Day )) {$_.DayColor = 'Green'}
-		     if($isVacaciones -AND $pendientes -AND ($pendientes[$count] -contains $_.Day)){ $_.DayColor = 'Magenta'}
 		     if($isDiasSenalados -AND $diasSenalados -AND ($diasSenalados[$count] -contains $_.Day)){ $_.DayColor = 'Yellow'}
+		     if($isVacaciones -AND $vacaciones -AND ($vacaciones[$count] -contains $_.Day )) {$_.DayColor = 'Green'}
+		     if($isVacaciones -AND $pendientes -AND ($pendientes[$count] -contains $_.Day)){ $_.DayColor = 'Magenta'}  
              if($_.HolyDay -eq $true){ $_.DayColor = 'Blue' }
 		     if($_.Date -eq $NowDate){ $_.DayBgColor = 'DarkGray' }else{ $_.DayBgColor = 'Black' }
 		     $_.WeekOfMonthNum = $WeekOfMonthNum
