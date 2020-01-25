@@ -26,4 +26,8 @@ Agosto 15
 Septiembre
 Octubre 12
 Noviembre 1 2 9
+<<<<<<< HEAD
 Diciembre 6 7 8
+=======
+Diciembre 6 7 8 24 25 31
+>>>>>>> 4ab41252b39b4bcae6073b1005796fbd6f9b3301

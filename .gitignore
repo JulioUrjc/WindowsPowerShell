@@ -1,2 +1,4 @@
 # Ignore floder named cmdScripts
 Scripts/cmdScripts/hide
+Modules/mXFlow
+Modules/mXFlow/mXFlow.psm1
