@@ -95,6 +95,7 @@ set-alias metro             "E:\JulyDocuments\Planoesquematicometro.pdf"
 # $x = $host.ui.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 # Function virtualMachineCopy {"$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" clonehd "$args[0]\Ubuntu.vdi" "$args[0]\Ubuntu_25.vdi" --existing}
 # &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args
+# robocopy dirOrigen dirDestino *.MOV *.AVI *.mpeg *.mp4 *.WAV /S  (no copia los existentes)
 
 ############################################################
 #################    Admin    ##############################
