@@ -3,12 +3,10 @@
 <#PSScriptInfo
 
 .VERSION 1.0
-
 .AUTHOR Julio Martin
 
 .TAGS
   json
-
 .DESCRIPTION 
     lee un json y crea un fichero salida en el directorio desde el que se lanza
 .EXAMPLE 
