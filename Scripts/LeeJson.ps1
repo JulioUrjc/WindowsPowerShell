@@ -4,29 +4,15 @@
 
 .VERSION 1.0
 
-.GUID 297c1d1c-dd1b-4418-a4d9-44b46028dbb9
-
 .AUTHOR Julio Martin
 
-.COMPANYNAME 
-.COPYRIGHT 
 .TAGS
   json
 
-.LICENSEURI 
-.PROJECTURI 
-.ICONURI 
-.EXTERNALMODULEDEPENDENCIES 
-.REQUIREDSCRIPTS 
-.EXTERNALSCRIPTDEPENDENCIES 
-.RELEASENOTES
-
 .DESCRIPTION 
-    lee un json
+    lee un json y crea un fichero salida en el directorio desde el que se lanza
 .EXAMPLE 
-    leejson ".\eve.json"
-
- 
+    leejson ".\eve.json" 
 #> 
 
 PARAM($nombreFichero)
