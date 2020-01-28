@@ -122,8 +122,6 @@ Function slotsram {Get-WmiObject -class "Win32_PhysicalMemoryArray"}
 Function inforam{Get-WmiObject -class "Win32_PhysicalMemory" | Measure-Object -Property Capacity -Sum;}
 Function inforam2{Get-WmiObject -class "Win32_PhysicalMemory" | FT PSComputerName,Name,DeviceLocator,Manufacturer,Capacity,SerialNumber;}
 
-Function espacioC {Gwmi -class Win32_volume | select name, capacity | where {$_.name -like "c*"}}
-
 Function seguridad{  Get-ExecutionPolicy -List}
 
 Function funciones{  
@@ -264,22 +262,31 @@ Function inventario{
   New-ConditionalText VERDADERO -BackgroundColor LightGreen -ConditionalTextColor DarkGreen)-IncludePivotTable -PivotTableName TablaDinamica -PivotRows IsDHCPEnabled -PivotData ComputerName -PivotColumns IPAddress
 }
 
-Function espacioDiscos{
+Function espacio{
+   # Function espacioC {Gwmi -class Win32_volume | select name, capacity | where {$_.name -like "c*"}}
+   <#  
+    .SYNOPSIS  
+       Espacio disponible en todos los discos
+    .DESCRIPTION 
+       Espacio disponible en todos los discos
+    .EXAMPLE 
+      espacio
+   #>
 
   Get-WmiObject -Class Win32_logicaldisk | Format-Table -Property @{
       Name       = 'Unidad'
       Expression = {$_.DeviceID}
   }, @{
-      Name       = 'Tamaño Total (GB)'
+      Name       = 'TamanoTotal(GB)'
       Expression = {[decimal]('{0:N0}' -f($_.Size/1gb))}
   }, @{
-      Name       = 'Disponible (GB)'
+      Name       = 'Disponible(GB)'
       Expression = {[decimal]('{0:N0}'-f($_.Freespace/1gb))}
   }, @{
-      Name       = 'Disponible (%)'
+      Name       = 'Disponible(%)'
       Expression = {'{0,6:P0}' -f(($_.Freespace/1gb) / ($_.size/1gb))}
   } -AutoSize
 }
 
-Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, espacioC, funciones, scripts, puertos, pingP, tcpP, inventario, espacioDiscos
+Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, funciones, scripts, puertos, pingP, tcpP, inventario, espacio
 
