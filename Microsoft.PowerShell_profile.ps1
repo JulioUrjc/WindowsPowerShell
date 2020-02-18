@@ -76,7 +76,7 @@ set-alias slicer            "$env:ProgramFiles\slicer\Slic3r.exe"
 set-alias repetier          "$env:ProgramFiles\Repetier-Host\RepetierHost.exe"
 set-alias kraken            "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
 set-alias wordexe           "$env:ProgramFiles (x86)\Microsoft Office\Office16\winword.exe"
-set-alias metro             "E:\JulyDocuments\Planoesquematicometro.pdf"    
+set-alias metro             "E:\personal\Planoesquematicometro.pdf"    
 
 ############################################################
 ####################    EJEMPLOS    ########################
