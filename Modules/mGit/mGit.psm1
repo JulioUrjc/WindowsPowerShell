@@ -38,16 +38,16 @@ Function gitFunctions
 
     Write-Host "  git branch";
     Write-Host "  git branch -d <branch-name>";
-    Write-Host "  git branch -m \"nombreNuevo\" (-m oldName newName)";
+    Write-Host "  git branch -m 'nombreNuevo' (-m oldName newName)";
     Write-Host
 
-    Write-Host "  git cat-file –p d670460b4b4aece5915caf5c68d12f560a9fe3e4";
+    Write-Host "  git cat-file -p d670460b4b4aece5915caf5c68d12f560a9fe3e4";
     Write-Host "  git checkout -b <banch-name>";
     Write-Host "  git checkout <branch-name>";
     Write-Host "  git cherry-pick <instert-commitID-here>";
     Write-Host "  git ck <branch-name>";
-    Write-Host "  git clone http://repoexample";
-    Write-Host "  git commit –m \"Message\"";
+    Write-Host "  git clone 'http://repoexample'";
+    Write-Host "  git commit -m Message";
     Write-Host "  git config --global user.email sam@google.com";
     Write-Host
 
@@ -56,7 +56,7 @@ Function gitFunctions
     Write-Host "  git diff <source-branch> <target-branch>";
     Write-Host
 
-    Write-Host "  git grep \"www.tupaginaweb.com\" ";
+    Write-Host "  git grep 'www.tupaginaweb.com' ";
     Write-Host
 
     Write-Host "  git fetch origin";
@@ -64,7 +64,7 @@ Function gitFunctions
     Write-Host
 
     Write-Host "  git init";
-    Write-Host "  git instaweb –http=webrick";
+    Write-Host "  git instaweb -http=webrick";
     Write-Host
 
     Write-Host "  gitk ";
@@ -84,7 +84,7 @@ Function gitFunctions
 
     Write-Host "  git remote add origin <93.188.160.58>";
     Write-Host "  git remote -v";
-    Write-Host "  git reset - -hard HEAD";
+    Write-Host "  git reset --hard HEAD";
     Write-Host "  git rm filename.txt";
     Write-Host
 
@@ -101,7 +101,7 @@ Function gitFunctions
 
     Write-Host "  CUIDADO" -foregroundcolor "Red";
     Write-Host "  --------" -foregroundcolor "Red";
-    Write-Host "  git archive – -format=tar master";
+    Write-Host "  git archive --format=tar master";
     Write-Host "  git gc";
     Write-Host "  git prune";
     Write-Host "  git rebase";
@@ -112,7 +112,7 @@ Function gitFunctions
 
     Write-Host "  Dejar de trackear fichero" -foregroundcolor "Red";
     Write-Host "  --------" -foregroundcolor "Red";
-    Write-Host "  git –cached rm fichero";
+    Write-Host "  git -cached rm fichero";
     Write-Host "  git add .";
     Write-Host "  git commit -m 'nuego commit'";
     Write-Host
@@ -120,7 +120,7 @@ Function gitFunctions
     Write-Host "  Dejar de trackear cambios locales" -foregroundcolor "Red";
     Write-Host "  --------" -foregroundcolor "Red";
     Write-Host "  .git/info/exclude. Tiene la misma estructura que el .gitignore";
-    Write-Host "  git update-index –assume-unchanged fichero";
+    Write-Host "  git update-index -assume-unchanged fichero";
     Write-Host
 }
 
@@ -130,7 +130,7 @@ Function gitExp
     Write-Host "  Borrar rama"-foregroundcolor "Green";
     Write-Host
 
-    Write-Host "  git branch -m \"nombreNuevo\" (-m oldName newName)";
+    Write-Host "  git branch -m nombreNuevo (-m oldName newName)";
     Write-Host "  Renombrar rama"-foregroundcolor "Green";
     Write-Host
 
@@ -138,7 +138,7 @@ Function gitExp
     Write-Host "  Chequeo de integridad del sistema de archivos"-foregroundcolor "Green";
     Write-Host
 
-    Write-Host "  git instaweb –http=webrick";
+    Write-Host "  git instaweb -http=webrick";
     Write-Host "  Servidor web puede correr interconectado con el repositorio local"-foregroundcolor "Green";
     Write-Host
 
@@ -160,15 +160,15 @@ Function gitExp
 
     Write-Host "  CUIDADO" -foregroundcolor "Red";
     Write-Host "  --------" -foregroundcolor "Red";
-    Write-Host "  git archive – -format=tar master";
+    Write-Host "  git archive --format=tar master";
     Write-Host "  Este comando le permite al usuario crear archivos"-foregroundcolor "Green";
     Write-Host "  zip o tar que contengan los constituyentes de un"-foregroundcolor "Green";
-    Write-Host "  solo árbol de repositorio:git archive – -format=tar master"-foregroundcolor "Green";
+    Write-Host "  solo árbol de repositorio:git archive --format=tar master"-foregroundcolor "Green";
     Write-Host
 
     Write-Host "  git gc";
     Write-Host "  Para optimizar el repositorio por medio de una"-foregroundcolor "Green";
-    Write-Host "  recolección de basura, que limpiara archivos"-foregroundcolor "Green";
+    Write-Host "  recoleccion de basura, que limpiara archivos"-foregroundcolor "Green";
     Write-Host "  innecesarios y los optimizara, usa:git hc"-foregroundcolor "Green";
     Write-Host
 
@@ -180,8 +180,8 @@ Function gitExp
     Write-Host "  Merge de toda la rama"-foregroundcolor "Green";
     Write-Host
 
-    Write-Host ""
     Write-Host "  https://elbauldelprogramador.com/mini-tutorial-y-chuleta-de-comandos-git/";
+    Write-Host
 }
 
 
