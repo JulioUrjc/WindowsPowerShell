@@ -34,7 +34,8 @@ Function prompt
     return "$ " 
 }
 
-Function admin {Start-Process powershell -Verb runAs; exit}
+Function admin {Start-Process powershell -Verb runAs;}
+Function admin2 {Start-Process powershell -Verb runAs; exit}
 Function orden {ls | sort $args[0] | select $args[0]}
 Function buscar {ls -r -i * | select-string $args[0]}
 Function grep([string] $ext) {ls -r -i *.$ext | select-string $args[0]}
