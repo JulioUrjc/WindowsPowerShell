@@ -122,6 +122,14 @@ Function gitFunctions
     Write-Host "  .git/info/exclude. Tiene la misma estructura que el .gitignore";
     Write-Host "  git update-index -assume-unchanged fichero";
     Write-Host
+
+    Write-Host "  Eliminar el ultimo commit subido al repo" -foregroundcolor "Red";
+    Write-Host "  --------" -foregroundcolor "Red";
+    Write-Host "  git reset HEAD^ --hard";
+    Write-Host "  git push origin -f";
+    Write-Host "  ------------------------------------------";
+    Write-Host "  git reset HEAD^ --soft    Si quieres mantener los cambios";
+    Write-Host
 }
 
 Function gitExp 

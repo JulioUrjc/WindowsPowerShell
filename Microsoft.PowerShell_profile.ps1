@@ -58,6 +58,7 @@ Function dumpbin{	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bi
 Function nano { PARAM($File) bash -c "nano $File" }
 Function hibernar { &"$env:windir\System32\rundll32.exe" powrprof.dll,SetSuspendState Hibernate }
 Function dropbox {abrir "E:\personal\Dropbox"}
+Function killer {ps msiexec | Select-Object id |  %{kill -id $_.Id}; ps winsdksetup | Select-Object id |  %{kill -id $_.Id}}
 
 ############################################################
 #################    Alias    ##############################
@@ -99,6 +100,7 @@ set-alias metro             "E:\personal\Planoesquematicometro.pdf"
 # Function virtualMachineCopy {"$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" clonehd "$args[0]\Ubuntu.vdi" "$args[0]\Ubuntu_25.vdi" --existing}
 # &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args
 # robocopy dirOrigen dirDestino *.MOV *.AVI *.mpeg *.mp4 *.WAV /S  (no copia los existentes)
+# ls *.txt* | Rename-Item -NewName {$_.Name.insert($_.Name.IndexOf(".txt"),'.ext')}
 
 ############################################################
 #################    Admin    ##############################
