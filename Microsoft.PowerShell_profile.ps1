@@ -27,7 +27,6 @@ Function prompt
  Write-Host -NoNewLine "PS ";
  Write-Host -NoNewLine "$pwd" -ForegroundColor Gray;
   $branch = git rev-parse --abbrev-ref HEAD;
-  if(!$branch){ $branch = hg branch }
 
    if($branch){Write-Host -NoNewLine -ForegroundColor Green " ($branch)"}
    Write-Host -ForegroundColor White ">";
@@ -58,7 +57,7 @@ Function dumpbin{	cd "$env:ProgramFiles (x86)\Microsoft Visual Studio 14.0\VC\bi
 Function nano { PARAM($File) bash -c "nano $File" }
 Function hibernar { &"$env:windir\System32\rundll32.exe" powrprof.dll,SetSuspendState Hibernate }
 Function dropbox {abrir "E:\personal\Dropbox"}
-Function killer {ps msiexec | Select-Object id |  %{kill -id $_.Id}; ps winsdksetup | Select-Object id |  %{kill -id $_.Id}}
+Function killer {ps msiexec| Select-Object id |  %{kill -id $_.Id}; ps winsdksetup| Select-Object id |  %{kill -id $_.Id}; ps adksetup| Select-Object id |  %{kill -id $_.Id}}
 
 ############################################################
 #################    Alias    ##############################
