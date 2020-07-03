@@ -45,21 +45,29 @@ Function GetVersion
     .SYNOPSIS
       Muestra versiones de programas
     .DESCRIPTION 
-      Muestra versiones de los programas php, python y powershell
+      Muestra versiones de los programas python, powershell, Ruby, Bundler, Jekyll
     
     .EXAMPLE 
       GetVersion  
    #> 
-
-    $phpversion =  php -v | select-string ^PHP | cut -d' ' -f2
-    "PHP version: $phpversion" 
-    echo ""
 
     $pythonversion = python --version
     "Python version: $pythonversion" 
     echo ""
 
     "PowerShell version: $($PSVersionTable.PSVersion.Major).$($PSVersionTable.PSVersion.Minor).$($PSVersionTable.PSVersion.Build).$($PSVersionTable.PSVersion.Revision)"
+    echo ""
+
+    $rubyversion = ruby -v
+    "Ruby version: $rubyversion" 
+    echo ""
+
+    $bundlerversion = bundler -v
+    "Bundler version: $bundlerversion" 
+    echo ""
+
+    $jekyllversion = bundle exec jekyll -v
+    "Jekyll version: $jekyllversion" 
     echo ""
 }
 
@@ -287,6 +295,8 @@ Function espacio{
       Expression = {'{0,6:P0}' -f(($_.Freespace/1gb) / ($_.size/1gb))}
   } -AutoSize
 }
+
+
 
 Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, funciones, scripts, puertos, pingP, tcpP, inventario, espacio
 

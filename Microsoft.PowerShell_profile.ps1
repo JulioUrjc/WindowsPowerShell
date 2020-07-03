@@ -100,6 +100,7 @@ set-alias metro             "E:\personal\Planoesquematicometro.pdf"
 # &"${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args
 # robocopy dirOrigen dirDestino *.MOV *.AVI *.mpeg *.mp4 *.WAV /S  (no copia los existentes)
 # ls *.txt* | Rename-Item -NewName {$_.Name.insert($_.Name.IndexOf(".txt"),'.ext')}
+# ls -r *.scr | %{rm ($_).FullName}
 
 ############################################################
 #################    Admin    ##############################

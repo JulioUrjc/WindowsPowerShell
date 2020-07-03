@@ -214,4 +214,3 @@ if ($isVacaciones)
   Write-Host ''
 }
 
-<# fechasCoche #> 
