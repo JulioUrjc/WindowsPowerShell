@@ -164,7 +164,8 @@ Function generatedMD5
   cd $path
 
   $files = ls $path -exclude *.md5
-  "" > miMD5.md5
+  Remove-Item miMD5.md5
+
   ForEach ($file in $files) 
   {
         $hash= (Get-FileHash $file -Algorithm MD5).hash
