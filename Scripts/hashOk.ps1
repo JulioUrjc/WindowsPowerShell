@@ -31,7 +31,12 @@ PARAM($nombreFichero="17TDT1EU-DA30_0016.kwi.md5", $path="E:\personal\hashes")
     {
         $hash= (Get-FileHash $file -Algorithm MD5).hash #| Select-Object Hash
         $pHash = $hashTable[$file.Name]
-
+        if($pHash -eq $null)
+        {
+          write-host -BackgroundColor Yellow -ForegroundColor Black ('{0} - RENOMBRADO' -f $file.Name)
+          continue
+        } 
+        
         if($hash -eq $pHash)
         {
           write-host -BackgroundColor DarkGreen -ForegroundColor Black ('{0} - CORRECTO' -f $file.Name)
