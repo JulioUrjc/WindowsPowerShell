@@ -125,7 +125,7 @@ Function descifrar
 	Get-CmsMessage -Path $nombreFichero | Unprotect-CmsMessage -To "cn=$nombre@localhost.local" > "$nombreFichero.descifrado.txt"
 }
 
-Function comprobarHash
+Function comprobarHashMultimedia
 {
     <#
     .SYNOPSIS
@@ -156,4 +156,23 @@ Function comprobarHash
   cd $rutaActual
 }
 
-Export-ModuleMember -function certificados, borrarCertificado, certificado, cifrar, descifrar, comprobarHash
+Function generatedMD5
+{
+  PARAM($path = "E:\personal\hashes")
+
+  $rutaActual = $pwd
+  cd $path
+
+  $files = ls $path -exclude *.md5
+  "" > miMD5.md5
+  ForEach ($file in $files) 
+  {
+        $hash= (Get-FileHash $file -Algorithm MD5).hash
+        $hash + " *"+$file.Name >> miMD5.md5
+  }
+  
+
+  cd $rutaActual
+}
+
+Export-ModuleMember -function certificados, borrarCertificado, certificado, cifrar, descifrar, comprobarHashMultimedia, generatedMD5
