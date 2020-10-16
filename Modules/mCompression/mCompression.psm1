@@ -114,14 +114,25 @@ Function descomprime{
 	  Descomprime los ficheros de una misma carpeta, en carpetas o sueltos y borra los
 	  comprimidos
 	.EXAMPLE 
-	  descomprimir
+	  descomprime
+	.EXAMPLE
+	  descomprime -y
 	 
 	#> 
 
+   Param( [ValidateSet("-y","-n")][string] $unattended = "-n" )
+
    ls -name *.zip
    ls -name *.7z
-   $input = Read-Host "Va a descomprimir estos ficheros, esta seguro y/n?"
-   $folders = Read-Host "Descomprimir en carpetas y/n?"
+   if($unattended -Match "-n")
+   {
+   	$input = Read-Host "Va a descomprimir estos ficheros, esta seguro y/n?"
+    $folders = Read-Host "Descomprimir en carpetas y/n?"
+   }else{
+   	$input = "y"
+    $folders = "n"
+   }
+   
    if($input -Match "y")
    {
      if($folders -Match "y"){

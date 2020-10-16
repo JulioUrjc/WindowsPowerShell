@@ -125,5 +125,35 @@ Function descifrar
 	Get-CmsMessage -Path $nombreFichero | Unprotect-CmsMessage -To "cn=$nombre@localhost.local" > "$nombreFichero.descifrado.txt"
 }
 
+Function comprobarHash
+{
+    <#
+    .SYNOPSIS
+     Comprueba cambios en una carpeta
+    .DESCRIPTION 
+      Descarga y descomprime un fichero y comprueba cambios en el hash
+    
+    .EXAMPLE 
+      comprobarHash 
+    .EXAMPLE 
+      comprobarHash .\miPath
+  #> 
 
-Export-ModuleMember -function certificados, borrarCertificado, certificado, cifrar, descifrar
+  PARAM($path = "E:\personal\hashes", $time=0)
+ 
+  $rutaActual = $pwd
+  cd $path
+
+  Remove-Item .\17TDT1EU-DA30_0016.kwi
+
+  $client = (New-Object System.Net.WebClient).DownloadFile("http://streamtechdoc.toyota-motor-europe.com/techdoc3/audio_navigation/17TDT1EU-DA30_Latest.zip","$($path)\update.zip")
+
+  descomprime "-y"
+
+  .\17TDT1EU-DA30_0016.kwi.md5
+
+  Start-Sleep -s $time
+  cd $rutaActual
+}
+
+Export-ModuleMember -function certificados, borrarCertificado, certificado, cifrar, descifrar, comprobarHash
