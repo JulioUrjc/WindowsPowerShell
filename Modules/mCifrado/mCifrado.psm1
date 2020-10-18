@@ -202,6 +202,12 @@ Function compareHash
 
   PARAM($file1, $file2)
 
+  if(($file1 -eq $null) -or  ($file2 -eq $null))
+  {
+    write-host -BackgroundColor Yellow -ForegroundColor Black ('                 NULL FILE                 ')
+    return
+  } 
+
   $hash1= (Get-FileHash $file1 -Algorithm MD5).hash
   $hash2= (Get-FileHash $file2 -Algorithm MD5).hash
 
