@@ -131,7 +131,7 @@ Function comprobarHashMultimedia
     .SYNOPSIS
      Comprueba cambios en una carpeta
     .DESCRIPTION 
-      Descarga y descomprime un fichero y comprueba cambios en el hash
+      Descarga y descomprime un fichero del multimedia del coche y comprueba cambios en el hash
     
     .EXAMPLE 
       comprobarHash 
@@ -158,6 +158,18 @@ Function comprobarHashMultimedia
 
 Function generatedMD5
 {
+    <#
+    .SYNOPSIS
+     Genera fichero hash
+    .DESCRIPTION 
+      Genera fichero hash con formato: hash ESPACIO ASTERISCOnombreFichero
+    
+    .EXAMPLE 
+      generatedMD5 
+    .EXAMPLE 
+      generatedMD5 .\miPath
+    #> 
+
   PARAM($path = "E:\personal\hashes")
 
   $rutaActual = $pwd
@@ -176,4 +188,29 @@ Function generatedMD5
   cd $rutaActual
 }
 
-Export-ModuleMember -function certificados, borrarCertificado, certificado, cifrar, descifrar, comprobarHashMultimedia, generatedMD5
+Function compareHash
+{
+    <#
+    .SYNOPSIS
+     Compara el hash de dos ficheros
+    .DESCRIPTION 
+     Compara el hash de dos ficheros para saber si son el mismo
+    
+    .EXAMPLE 
+      compareHash .\miFile1 .\miFile2
+    #> 
+
+  PARAM($file1, $file2)
+
+  $hash1= (Get-FileHash $file1 -Algorithm MD5).hash
+  $hash2= (Get-FileHash $file2 -Algorithm MD5).hash
+
+  if($hash1 -eq $hash2)
+  {
+    write-host -BackgroundColor DarkGreen -ForegroundColor Green ('                 IGUALES                 ')
+  }else{
+    Write-Host -BackgroundColor DarkRed -ForegroundColor Red ('                 DISTINTOS                 ')
+  }
+}
+
+Export-ModuleMember -function certificados, borrarCertificado, certificado, cifrar, descifrar, comprobarHashMultimedia, generatedMD5, compareHash
