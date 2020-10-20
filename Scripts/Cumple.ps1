@@ -170,7 +170,12 @@ Function nueve
 
 Function cumple 
 {
-    $cumple = ((Get-Date -Month 03 -Day 11 -Year 2020) - (Get-Date)).Days+1
+    $cumple = ((Get-Date -Month 03 -Day 11 -Year (Get-Date).Year) - (Get-Date)).Days+1
+    if($cumple -lt 0)
+    {
+      $cumple = ((Get-Date -Month 03 -Day 11 -Year ((Get-Date).AddYears(1)).Year) - (Get-Date)).Days+1
+    }
+
     $cumple2 = 0
     $obj
 
