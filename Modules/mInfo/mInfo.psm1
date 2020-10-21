@@ -159,12 +159,13 @@ Function funciones{
 		{
       if($par%2 -eq 0)
       {
-        Write-Host ("{0,20}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+        Write-Host ("{0,25}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
       }else{
         Write-Host ("{0,30}" -f $name.Name) -foregroundcolor "Cyan"
       }  
       $par++ 
 		}
+    Write-Host ""
 	}
 
   Write-Host ""
@@ -190,6 +191,61 @@ Function funciones{
     }
 }
 
+Function funcDescrip{  
+
+   <#  
+   .SYNOPSIS  
+      Muestra la descripcion de las funciones de cada modulos
+   .DESCRIPTION 
+      Muestra la descripcion de las funciones de cada modulos
+   .EXAMPLE 
+     funcDescrip 
+   .EXAMPLE 
+     funcDescrip $num
+  #>
+   PARAM([int]$numModules = (modulos | Where{$_.ModuleType -like "Script"}).Count-1)
+
+  $funciones = Get-Module -ListAvailable | select-object Name -first $numModules
+
+  ForEach ($item in $funciones)
+  {	
+   if($item.Name -eq "ImportExcel"){ continue; }
+   Write-Host ""
+   Write-Host " $($item.Name)" -foregroundcolor "Red"
+
+   $func = Get-Command -Module $item.Name | select-object Name
+
+     ForEach ($name in $func)
+     {
+       Write-Host "  $($name.Name)" -foregroundcolor "Cyan"
+       $description = (get-help $name.Name).description
+       Write-Host "   $($description.Text)" -foregroundcolor "Green"
+     }  
+   Write-Host ""
+  }
+
+ Write-Host ""
+ Write-Host "Profile"
+ $funciones = Get-Command | where{$_.source -eq ""} | Select-Object Name
+ $par= 0
+   ForEach ($name in $funciones)
+   {
+     if( $name -notmatch "[A-Z]:" -AND $name -notmatch "TabExpansion2|more|Pause|ImportSystemModules|cd..|Get-Verb|Clear-Host|oss|mkdir|help" )
+     {
+       if($par%4 -eq 0)
+       {
+         Write-Host ("{0,10}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+       }elseif($par%4 -eq 1){
+         Write-Host ("{0,20}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+       }elseif ($par%4 -eq 2){
+         Write-Host ("{0,25}" -f $name.Name) -foregroundcolor "Cyan" -noNewLine
+       } else{
+         Write-Host ("{0,30}" -f $name.Name) -foregroundcolor "Cyan"
+       }   
+       $par++ 
+     } 
+   }
+}
 Function scripts{  
 
   <#  
@@ -298,5 +354,5 @@ Function espacio{
 
 
 
-Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, funciones, scripts, puertos, pingP, tcpP, inventario, espacio
+Export-ModuleMember -function GetInfo, GetVersion, serial, seguridad, path, ram, cpu,slotsram, inforam, inforam2, funciones, scripts, puertos, pingP, tcpP, inventario, espacio, funcDescrip
 
