@@ -131,7 +131,7 @@ Function comprobarHashMultimedia
     .SYNOPSIS
      Comprueba cambios en una carpeta
     .DESCRIPTION 
-      Descarga y descomprime un fichero del multimedia del coche y comprueba cambios en el hash
+      Descarga y descomprime un fichero 17TDT1EU-DA30_0016.kwi del multimedia del coche y comprueba cambios en el fichero md5
     
     .EXAMPLE 
       comprobarHash 
@@ -225,7 +225,7 @@ Function checkDirectoryHash
     .SYNOPSIS
      Compara el hash de los ficheros de un directorio
     .DESCRIPTION 
-     Compara el hash de los ficheros de un directorio
+     Compara los hash de un fichero md5 con los ficheros del mismo directorio
     
     .EXAMPLE 
       checkDirectoryHash miDir\miFile.md5
@@ -266,6 +266,15 @@ Function checkDirectoryHash
 
 function downloadFile($url, $targetFile)
 {
+    <#
+    .SYNOPSIS
+     Descarga un ficherod e internet con barra de descarga
+    .DESCRIPTION 
+     Descarga un ficherod e internet con barra de descarga
+    
+    .EXAMPLE 
+      downloadFile $url $dir/nombreNuevo
+    #> 
 
    $uri = New-Object "System.Uri" "$url"
    $request = [System.Net.HttpWebRequest]::Create($uri)

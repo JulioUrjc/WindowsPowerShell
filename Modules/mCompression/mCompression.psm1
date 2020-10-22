@@ -6,8 +6,8 @@ Function comprimir{
 	 Comprimir ficheros de una carpeta
 	
 	.DESCRIPTION 
-	  Comprime los ficheros de una misma carpeta y a su vez comprime todos lso comprimidos,
-	  también te permite borrarlos al final
+	  Comprime los ficheros de una misma carpeta y a su vez comprime todos los comprimidos, 
+    tambien te pregunta y permite borrarlos al final
 	
 	.EXAMPLE 
 	  comprimir
@@ -47,7 +47,7 @@ Function comprime{
 	 Comprimir ficheros de una carpeta
 	
 	.DESCRIPTION 
-	  Comprime los ficheros de una misma carpeta, tambien te permite borrarlos al final
+	  Comprime los ficheros de una misma carpeta, tambien te pregunta y permite borrarlos al final
 	
 	.EXAMPLE 
 	  comprime
@@ -111,8 +111,8 @@ Function descomprime{
 	 Comprimir ficheros de una carpeta
 	
 	.DESCRIPTION 
-	  Descomprime los ficheros de una misma carpeta, en carpetas o sueltos y borra los
-	  comprimidos
+	  Descomprime los ficheros de una misma carpeta, en carpetas o sueltos y borra los comprimidos,
+    tiene formato desatendido 
 	.EXAMPLE 
 	  descomprime
 	.EXAMPLE

@@ -148,6 +148,19 @@ Function email{
 
 Function writePipe
 {
+  <#
+    .SYNOPSIS
+     Enviar mensaje por pipe
+    
+    .DESCRIPTION 
+      Enviar mensaje por pipe con id july
+    
+    .EXAMPLE 
+      writePipe
+    .EXAMPLE 
+      writePipe "mi Texto" "id"
+  #> 
+
   PARAM ($message="Write something", $name = 'july')
 
   $namedPipe = New-Object IO.Pipes.NamedPipeServerStream($name, 'Out')
@@ -163,6 +176,19 @@ Function writePipe
 
 Function readPipe
 {
+  <#
+    .SYNOPSIS
+     Recibir mensaje por pipe
+    
+    .DESCRIPTION 
+      Recibir mensaje por pipe con id july
+    
+    .EXAMPLE 
+      readPipe
+    .EXAMPLE 
+      readPipe "id"
+  #> 
+
   PARAM ($name = 'july')
 
   $namedPipe = New-Object IO.Pipes.NamedPipeClientStream('.', $name, 'In')
