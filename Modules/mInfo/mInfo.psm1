@@ -144,7 +144,7 @@ Function funciones{
     .EXAMPLE 
       funciones $num
    #>
-    PARAM([int]$numModules = 13)
+    PARAM([int]$numModules = (modulos | Where{$_.ModuleType -like "Script"}).Count-1)
 
 	$funciones = Get-Module -ListAvailable | select-object Name -first $numModules
 
