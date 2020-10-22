@@ -40,7 +40,18 @@ Function fechasCoche
 
 Function cuentaAtrasCoche
 {
-	$startDate=[datetime]"2019/03/14"
+  <#
+    .SYNOPSIS
+      Muestra cuenta atrás para llegada del coche
+    
+    .DESCRIPTION 
+      Muestra cuenta atrás para llegada del coche
+    
+    .EXAMPLE 
+      cuentaAtrasCoche
+  #> 
+
+	  $startDate=[datetime]"2019/03/14"
 
     $coche = [math]::round((NEW-TIMESPAN -Start $startDate -End (GET-DATE)).Totaldays,3)
     $faltan = [math]::round(90 - $coche,3)

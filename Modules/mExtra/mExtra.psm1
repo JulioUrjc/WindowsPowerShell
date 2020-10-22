@@ -42,11 +42,14 @@ Function cuentaAtras
       cuentaAtras $time  
    #> 
 
+    PARAM(
+        [int]$time = 200
+    )
     $Longitud1 = 0
     $Longitud2 = 0
     ""
     Write-Host "Elemento N      " -NoNewLine
-    $args[0]..0| ForEach{ `
+    $time..0| ForEach{ `
         Start-Sleep -Milliseconds 5
         $Incremento = $Longitud1 - $Longitud2
         $Longitud1 = ("{0:N0}" -f ($_ + 1)).Length
@@ -64,7 +67,7 @@ Function cuenta
     .SYNOPSIS
       Inicia una cuenta
     .DESCRIPTION 
-      Inicia una cuenta hasta un tiempo dado en milisegundos
+      Inicia una cuenta alante hasta un tiempo dado en milisegundos, interfaz colores
     
     .EXAMPLE 
       cuenta $time  
@@ -120,9 +123,35 @@ Function cuenta
     Write-Host "FIN !!!"
 }
 
-Function GetInicio{ Get-WmiObject -Class win32_startupCommand }
+Function GetInicio{ 
+   <#
+    .SYNOPSIS
+      Programas que inician con inicio de Windows
+    .DESCRIPTION 
+      Programas que inician con inicio de Windows
+    
+    .EXAMPLE 
+      GetInicio  
+   #>
 
-Function shader {glslangValidator -V $args[0]}
+   Get-WmiObject -Class win32_startupCommand 
+
+}
+
+Function shader {
+   <#
+    .SYNOPSIS
+      Validador de shaders
+    .DESCRIPTION 
+      Validador de shaders
+    
+    .EXAMPLE 
+      shader  
+   #>
+
+  glslangValidator -V $args[0]
+
+}
 
 Function trf {
    <#
