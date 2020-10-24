@@ -130,7 +130,16 @@ Function logo4
 
 
 Function logoRandom
-{ 
+{  
+  <#
+    .SYNOPSIS
+     Selecciona un logo random
+    .DESCRIPTION 
+      Selecciona un logo random de entre la lista de 5
+    .EXAMPLE 
+     logoRandom
+  #> 
+
     $option = random 5
 
     switch ( $option )

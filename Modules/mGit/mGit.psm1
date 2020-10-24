@@ -33,6 +33,18 @@ Function comitear{
 
 Function gitFunctions 
 {
+    <#
+    .SYNOPSIS
+     Listado de algunas funcioens Git
+    
+    .DESCRIPTION 
+      Listado de algunas funcioens Git sin explicar
+    
+    .EXAMPLE 
+      gitFunctions
+     
+    #> 
+
     Write-Host "  git add .";
     Write-Host
 
@@ -134,6 +146,17 @@ Function gitFunctions
 
 Function gitExp 
 {
+    <#
+    .SYNOPSIS
+     Principales funciones Git explicadas
+    
+    .DESCRIPTION 
+      Principales funciones Git explicadas
+    
+    .EXAMPLE 
+      gitExp
+    #> 
+
     Write-Host "  git branch -d <branch-name>";
     Write-Host "  Borrar rama"-foregroundcolor "Green";
     Write-Host

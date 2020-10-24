@@ -6,7 +6,7 @@ Function GetInfo
     .SYNOPSIS
       Muestra informacion del portatil
     .DESCRIPTION 
-      Muestra informacion del portatil
+      Muestra informacion del portatil, saca una pantalla con desplegables
     
     .EXAMPLE 
       GetInfo  
@@ -127,10 +127,45 @@ Function cpu {
 }
 
 Function slotsram {Get-WmiObject -class "Win32_PhysicalMemoryArray"}
-Function inforam{Get-WmiObject -class "Win32_PhysicalMemory" | Measure-Object -Property Capacity -Sum;}
-Function inforam2{Get-WmiObject -class "Win32_PhysicalMemory" | FT PSComputerName,Name,DeviceLocator,Manufacturer,Capacity,SerialNumber;}
 
-Function seguridad{  Get-ExecutionPolicy -List}
+Function inforam
+{
+    <#  
+    .SYNOPSIS  
+       Numero de slots y capacidad
+    .DESCRIPTION 
+       Numero de slots y capacidad
+    .EXAMPLE 
+      inforam 
+   #>
+  Get-WmiObject -class "Win32_PhysicalMemory" | Measure-Object -Property Capacity -Sum;
+}
+
+Function inforam2
+{
+  <#  
+    .SYNOPSIS 
+      Capacidad y serial number
+    .DESCRIPTION 
+      Capacidad y serial number
+    .EXAMPLE 
+      inforam2 
+   #>
+  Get-WmiObject -class "Win32_PhysicalMemory" | FT PSComputerName,Name,DeviceLocator,Manufacturer,Capacity,SerialNumber;
+}
+
+Function seguridad
+{
+    <#  
+    .SYNOPSIS 
+      Estado de las politicas de seguridad
+    .DESCRIPTION 
+      Estado de las politicas de seguridad en powershell
+    .EXAMPLE 
+      seguridad 
+    #>
+  Get-ExecutionPolicy -List
+}
 
 Function funciones{  
 
@@ -252,7 +287,7 @@ Function scripts{
     .SYNOPSIS  
        Muestra los scripts
     .DESCRIPTION 
-       Muestra los scripts
+       Muestra un listado de los scripts
     .EXAMPLE 
       scripts 
    #>
@@ -326,9 +361,9 @@ Function inventario{
   New-ConditionalText VERDADERO -BackgroundColor LightGreen -ConditionalTextColor DarkGreen)-IncludePivotTable -PivotTableName TablaDinamica -PivotRows IsDHCPEnabled -PivotData ComputerName -PivotColumns IPAddress
 }
 
-Function espacio{
-   # Function espacioC {Gwmi -class Win32_volume | select name, capacity | where {$_.name -like "c*"}}
-   <#  
+Function espacio
+{
+  <#  
     .SYNOPSIS  
        Espacio disponible en todos los discos
     .DESCRIPTION 
@@ -336,6 +371,8 @@ Function espacio{
     .EXAMPLE 
       espacio
    #>
+   # Function espacioC {Gwmi -class Win32_volume | select name, capacity | where {$_.name -like "c*"}}
+   
 
   Get-WmiObject -Class Win32_logicaldisk | Format-Table -Property @{
       Name       = 'Unidad'
