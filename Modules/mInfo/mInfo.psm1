@@ -126,7 +126,18 @@ Function cpu {
   get-process |sort-object cpu -desc | select-object -first $cuantos
 }
 
-Function slotsram {Get-WmiObject -class "Win32_PhysicalMemoryArray"}
+Function slotsram 
+{
+  <#  
+    .SYNOPSIS  
+       Info de RAM
+    .DESCRIPTION 
+       Info de RAM poco util
+    .EXAMPLE 
+      slotsram 
+   #>
+  Get-WmiObject -class "Win32_PhysicalMemoryArray"
+}
 
 Function inforam
 {

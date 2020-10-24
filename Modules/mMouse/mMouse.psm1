@@ -3,18 +3,19 @@
 
 Function mousePosition
 {	
-	PARAM( $path ="pos.txt")
+	
 	<#
     .SYNOPSIS
       Guarda las posiciones del raton
     
     .DESCRIPTION 
-      Guarda las posiciones del raton
+      Guarda las posiciones del raton en un fichero y las muestra
     
     .EXAMPLE 
       mousePosition
     #> 
 
+PARAM( $path ="pos.txt")
   for (1)
   {
     Start-Sleep -m 500
@@ -50,10 +51,10 @@ Function clicRaton
 {
    <#
     .SYNOPSIS
-     Mover el ratón y hacer clic en distintas posiciones
+     Mover el raton y hacer clic en distintas posiciones
     
     .DESCRIPTION 
-      Mover el ratón y hacer clic en distintas posiciones dadas por un archivo
+      Mover el raton y hacer clic en distintas posiciones dadas por un archivo
     
     .EXAMPLE 
       clicRaton july.txt  
@@ -177,6 +178,17 @@ Function clicRaton
 
 Function teclado
 {
+  <#
+    .SYNOPSIS
+     Envia pulsación del teclado
+    
+    .DESCRIPTION 
+      Envia pulsación del teclado
+    
+    .EXAMPLE 
+      teclado  
+    #>
+
   #Write some text
   Write-Host("Hi")
   #Press on Enter

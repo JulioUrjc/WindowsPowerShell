@@ -275,6 +275,19 @@ Function lsColorRecursive {
 
 Function getDirSizeRecursive
 {
+    <#
+    .SYNOPSIS
+      Devuelve el tamaño de un directorio y sus subcarpetas
+    
+    .DESCRIPTION 
+      Devuelve el tamaño de un directorio y sus subcarpetas de forma recursiva
+    
+    .EXAMPLE 
+      getDirSizeRecursive 
+    .EXAMPLE 
+      tam  
+   #> 
+
     param ($dir)
     $bytes = 0
     $color = "Yellow"
@@ -308,7 +321,8 @@ Function getDirSizeRecursive
     }
 }
 
-Function coloresPosibles{
+Function coloresPosibles
+{
   <#
     .SYNOPSIS
      Muestra colores posibles con su color
@@ -360,6 +374,17 @@ Function colores
 
 function resetShellColors
 {
+  <#
+    .SYNOPSIS
+     Setea valores de color de powershell
+    
+    .DESCRIPTION 
+      Setea valores de color de powershell
+    
+    .EXAMPLE 
+      resetShellColors  
+  #>
+
   Set-PSReadlineOption -Colors @{ "Command"            = "$([char]0x1b)[93m"}
   Set-PSReadlineOption -Colors @{ "Comment"            = "$([char]0x1b)[32m"}
   Set-PSReadlineOption -Colors @{ "ContinuationPrompt" = "$([char]0x1b)[33m"}
@@ -391,6 +416,17 @@ function resetShellColors
 
 function initShellColors
 {
+  <#
+    .SYNOPSIS
+     Setea valores de color de powershell
+    
+    .DESCRIPTION 
+      Setea valores de color de powershell
+    
+    .EXAMPLE 
+      initShellColors  
+  #>
+
   Set-PSReadlineOption -Colors @{ "Command"            = "$([char]0x1b)[93m"}
   Set-PSReadlineOption -Colors @{ "Comment"            = "$([char]0x1b)[32m"}
   Set-PSReadlineOption -Colors @{ "ContinuationPrompt" = "$([char]0x1b)[33m"}
@@ -420,8 +456,18 @@ function initShellColors
   $colors.ErrorForegroundColor   = "Red"
 }
 
-Function Test-ConsoleColor {
- 
+Function Test-ConsoleColor 
+{
+  <#
+    .SYNOPSIS
+     Muestra como se ven los colores de consola con ejemplos
+    
+    .DESCRIPTION 
+      Muestra como se ven los colores de consola con ejemplos
+    
+    .EXAMPLE 
+      Test-ConsoleColor  
+   #>
     Clear-Host
     $heading = "White"
     Write-Host "Pipeline Output" -ForegroundColor $heading
@@ -452,7 +498,18 @@ Function Test-ConsoleColor {
     }
 } #Test-ConsoleColor
 
-Function Export-ConsoleColor {
+Function Export-ConsoleColor 
+{
+  <#
+    .SYNOPSIS
+     Exporta los colores de consola
+    
+    .DESCRIPTION 
+      Exporta los colores de consola a un fichero .csv
+    
+    .EXAMPLE 
+      Export-ConsoleColor  
+  #>
     [cmdletbinding(SupportsShouldProcess)]
     Param(
     [Parameter(Position=0)]
@@ -473,7 +530,22 @@ Function Export-ConsoleColor {
     }
 } #Export-ConsoleColor
 
-Function Import-ConsoleColor {
+Function Import-ConsoleColor 
+{
+  <#
+    .SYNOPSIS
+      Importa los colores de consola desde un fichero
+    
+    .DESCRIPTION 
+      Importa los colores de consola desde un fichero PSConsoleSettings.csv
+
+    .EXAMPLE 
+      Import-ConsoleColor
+
+    .EXAMPLE 
+      Import-ConsoleColor PSConsoleSettings.csv
+   #> 
+
     [cmdletbinding(SupportsShouldProcess)]
     Param(
     [Parameter(Position=0)]
@@ -510,10 +582,13 @@ Function Import-ConsoleColor {
     }
 } #Import-ConsoleColor
 
-Function Select-ColorString {
+Function Select-ColorString 
+{
      <#
     .SYNOPSIS
       Find the matches in a given content by the pattern and write the matches in color like grep.
+    .DESCRIPTION 
+      Colorea una letra en un string, usado en grepc
     .NOTES
       inspired by: https://ridicurious.com/2018/03/14/highlight-words-in-powershell-console/
     .EXAMPLE
@@ -703,7 +778,19 @@ Function Select-ColorString {
     }
 }
 
-Function grepc { 
+Function grepc 
+{
+   <#
+    .SYNOPSIS
+      Busca una palabra y la remarca
+    
+    .DESCRIPTION 
+      Busca una palabra dentro de los ficheros de un directorio y subdirectorios y la remarca
+    
+    .EXAMPLE 
+      grepc "palabra" 
+   #> 
+
   PARAM($Pattern, [String]$ForegroundColor = 'Red', [String]$BackgroundColor = 'DarkMagenta', [Switch]$CaseSensitive, [Switch]$NotMatch)
 
  ls -r -i * | Select-String $Pattern | Select-ColorString $Pattern -ForegroundColor:$ForegroundColor -BackgroundColor:$BackgroundColor -CaseSensitive:$CaseSensitive -NotMatch:$NotMatch
