@@ -101,7 +101,7 @@ Function ram {
     .SYNOPSIS  
        Muestra el uso de ram
     .DESCRIPTION 
-       Muestra el uso de los 10 primeros programas que mas ram usen o el número que se le pase por parametro 
+       Muestra el uso de los 10 primeros programas que mas ram usen o el numero que se le pase por parametro 
     .EXAMPLE 
       ram 
     .EXAMPLE 
@@ -116,7 +116,7 @@ Function cpu {
     .SYNOPSIS  
        Muestra el uso de cpu
     .DESCRIPTION 
-       Muestra el uso de los 10 primeros programas que mas cpu usen o el número que se le pase por parametro 
+       Muestra el uso de los 10 primeros programas que mas cpu usen o el numero que se le pase por parametro 
     .EXAMPLE 
       cpu 
     .EXAMPLE 

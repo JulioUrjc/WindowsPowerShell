@@ -180,10 +180,10 @@ Function teclado
 {
   <#
     .SYNOPSIS
-     Envia pulsación del teclado
+     Envia pulsacion del teclado
     
     .DESCRIPTION 
-      Envia pulsación del teclado
+      Envia pulsacion del teclado
     
     .EXAMPLE 
       teclado  
