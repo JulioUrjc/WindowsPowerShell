@@ -42,10 +42,10 @@ Function cuentaAtrasCoche
 {
   <#
     .SYNOPSIS
-      Muestra cuenta atrás para llegada del coche
+      Muestra cuenta atras para llegada del coche
     
     .DESCRIPTION 
-      Muestra cuenta atrás para llegada del coche
+      Muestra cuenta atras para llegada del coche
     
     .EXAMPLE 
       cuentaAtrasCoche
