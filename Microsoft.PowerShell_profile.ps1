@@ -77,7 +77,6 @@ set-alias code              "$env:ProgramFiles\Microsoft VS Code\code.exe"
 set-alias sz                "$env:ProgramFiles\7-Zip\7z.exe"
 set-alias slicer            "$env:ProgramFiles\slicer\Slic3r.exe"
 set-alias repetier          "$env:ProgramFiles\Repetier-Host\RepetierHost.exe"
-set-alias kraken            "$env:userprofile\AppData\Local\gitkraken\app-4.1.1\gitkraken.exe"
 set-alias wordexe           "$env:ProgramFiles (x86)\Microsoft Office\Office16\winword.exe"
 set-alias metro             "E:\personal\Planoesquematicometro.pdf"    
 
