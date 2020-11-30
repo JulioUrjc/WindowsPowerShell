@@ -98,7 +98,7 @@ Function cifrar
       [string] $nombre,
       [string] $nombreFichero
     )
-	Protect-CmsMessage -To "cn=$nombre@localhost.local" -OutFile $nombreFichero	
+	Protect-CmsMessage -To "cn=$nombre@localhost.local" -Path $nombreFichero -OutFile "$nombreFichero.c.txt"	
 }
 
 
@@ -122,7 +122,7 @@ Function descifrar
       [string] $nombre,
       [string] $nombreFichero
     )
-	Get-CmsMessage -Path $nombreFichero | Unprotect-CmsMessage -To "cn=$nombre@localhost.local" > "$nombreFichero.descifrado.txt"
+	Get-CmsMessage -Path "$nombreFichero.c.txt" | Unprotect-CmsMessage -To "cn=$nombre@localhost.local" > "$nombreFichero.d.txt"
 }
 
 Function comprobarHashMultimedia
@@ -146,8 +146,7 @@ Function comprobarHashMultimedia
 
   Remove-Item .\17TDT1EU-DA30_0016.kwi
 
-  $client = (New-Object System.Net.WebClient).DownloadFile("http://streamtechdoc.toyota-motor-europe.com/techdoc3/audio_navigation/17TDT1EU-DA30_Latest.zip","$($path)\update.zip")
-
+  $client = (New-Object System.Net.WebClient).DownloadFile("http://streamtechdoc.toyota-motor-europe.com/techdoc3/audio_navigation/17TDT1EU-DA30_Latest.zip","$($path)\update.zip") | Out-Null
   descomprime "-y"
 
   .\17TDT1EU-DA30_0016.kwi.md5
