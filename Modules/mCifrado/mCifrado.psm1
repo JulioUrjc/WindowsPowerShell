@@ -144,12 +144,12 @@ Function comprobarHashMultimedia
   $rutaActual = $pwd
   cd $path
 
-  Remove-Item .\17TDT1EU-DA30_0016.kwi
+  Remove-Item .\17TDT1EU-DA30_0051.kwi
 
   $client = (New-Object System.Net.WebClient).DownloadFile("http://streamtechdoc.toyota-motor-europe.com/techdoc3/audio_navigation/17TDT1EU-DA30_Latest.zip","$($path)\update.zip") | Out-Null
   descomprime "-y"
 
-  .\17TDT1EU-DA30_0016.kwi.md5
+  .\17TDT1EU-DA30_0051.kwi.md5
 
   Start-Sleep -s $time
   cd $rutaActual
@@ -175,12 +175,12 @@ Function generatedMD5
   cd $path
 
   $files = ls $path -exclude *.md5
-  Remove-Item miMD5.md5
 
   ForEach ($file in $files) 
   {
-        $hash= (Get-FileHash $file -Algorithm MD5).hash
-        $hash + " *"+$file.Name >> miMD5.md5
+  	Write-Host $file.Name
+    $hash= (Get-FileHash $file -Algorithm MD5).hash
+    $hash + " *"+$file.Name >> "$($file.Name).md5"
   }
   
 
@@ -230,7 +230,7 @@ Function checkDirectoryHash
       checkDirectoryHash miDir\miFile.md5
     #> 
 
-  PARAM([System.IO.FileInfo]$pathFile="E:\personal\hashes\17TDT1EU-DA30_0016.kwi.md5")
+  PARAM([System.IO.FileInfo]$pathFile="E:\personal\hashes\17TDT1EU-DA30_0051.kwi.md5")
 
   $currentPath= $pwd
   cd $pathFile.DirectoryName
