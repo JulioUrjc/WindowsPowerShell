@@ -59,6 +59,8 @@ Function hibernar { &"$env:windir\System32\rundll32.exe" powrprof.dll,SetSuspend
 Function dropbox {abrir "E:\personal\Dropbox"}
 Function killer {ps msiexec| Select-Object id |  %{kill -id $_.Id}; ps winsdksetup| Select-Object id |  %{kill -id $_.Id}; ps adksetup| Select-Object id |  %{kill -id $_.Id}}
 
+Function historial {sublime (Get-PSReadLineOption | select -ExpandProperty HistorySavePath)}
+
 ############################################################
 #################    Alias    ##############################
 ############################################################
