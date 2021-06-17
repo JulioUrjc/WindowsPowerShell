@@ -18,7 +18,29 @@ Function conanenvironment
 }
 
 Function gui { cd E:\git\xflowlegacy}
-Function xflowCompile { cd E:\git\xflowlegacy\common\win_compilation\steps}
+
+Function xflowCompile 
+{
+  Param( [ValidateSet("cmake","compile","deploy", "full")][string] $action = "default" ) 
+
+  $current = $pwd
+  cd E:\git\xflowlegacy\common\win_compilation\steps
+
+  switch($arg)
+  {
+    "cmake"   { ./cmake_xflow.bat }
+    "compile" { ./compile_xflow.bat }
+    "deploy"  { ./deploy_xflow.bat }
+    "full"    { ./cmake_xflow.bat; ./compile_xflow.bat; ./deploy_xflow.bat}
+    default   {}
+  }
+
+  if($action -ne "default")
+  {
+    cd $current
+  }
+
+}
 
 Function fmkInit
 { 
@@ -56,7 +78,5 @@ Function fmkInit
   }
    
 }
-
-
 
 Export-ModuleMember -function conanenvironment, gui, xflowCompile, fmkInit
