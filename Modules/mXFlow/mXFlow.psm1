@@ -21,6 +21,21 @@ Function gui { cd E:\git\xflowlegacy}
 
 Function xflowCompile 
 {
+   <#
+    .SYNOPSIS
+      Funcion para compilar xflow
+    
+    .DESCRIPTION 
+      Permite hacer cmake, compilar y generar el deploy para el repositorio de xflow
+    
+    .EXAMPLE 
+      fmkInit
+    .EXAMPLE 
+      fmkInit cmake / fmkInit compile / fmkInit deploy
+    .EXAMPLE 
+      fmkInit full
+    #> 
+
   Param( [ValidateSet("cmake","compile","deploy", "full")][string] $action = "default" ) 
 
   $current = $pwd
@@ -47,31 +62,35 @@ Function fmkInit
 
     <#
     .SYNOPSIS
-      Guarda las posiciones del raton
+      Funcion para repositorio fmk
     
     .DESCRIPTION 
-      Guarda las posiciones del raton en un fichero y las muestra
+      Permite inicializar, descargar y compilar el repositorio de fmk
     
     .EXAMPLE 
-      mousePosition
+      fmkInit
+    .EXAMPLE 
+      fmkInit compile
+    .EXAMPLE 
+      fmkInit full
     #> 
 
-  Param( [ValidateSet("--init","--compile","--full")][string] $arg = "--init" )
+  Param( [ValidateSet("init","compile","full")][string] $arg = "init" )
 
   $proflDir = ([system.io.fileinfo]$profile).DirectoryName
   $batsDir = "$proflDir\Scripts\cmdScripts\hide"
 
-  if($arg -eq "--init")
+  if($arg -eq "init")
   {
     echo "FMK init"
     Start-Process cmd "/k $batsDir\fmkInit.bat"
   }
-  elseif($arg -eq "--compile")
+  elseif($arg -eq "compile")
   {
     echo "FMK compile"
     Start-Process cmd "/k $batsDir\fmkInit.bat && $batsDir\fmkCompile.bat" 
   }
-  elseif($arg -eq "--full")
+  elseif($arg -eq "full")
   {
     echo "FMK init - download and compile"
     Start-Process cmd "/k $batsDir\fmkUpdate_Test.bat"
