@@ -40,8 +40,9 @@ Function xflowCompile
 
   $current = $pwd
   cd E:\git\xflowlegacy\common\win_compilation\steps
+  conanenvironment
 
-  switch($arg)
+  switch($action)
   {
     "cmake"   { ./cmake_xflow.bat }
     "compile" { ./compile_xflow.bat }
@@ -83,19 +84,39 @@ Function fmkInit
   if($arg -eq "init")
   {
     echo "FMK init"
-    Start-Process cmd "/k $batsDir\fmkInit.bat"
+    Start-Process cmd "/k $batsDir\alias.bat && $batsDir\fmkInit.bat"
   }
   elseif($arg -eq "compile")
   {
     echo "FMK compile"
-    Start-Process cmd "/k $batsDir\fmkInit.bat && $batsDir\fmkCompile.bat" 
+    Start-Process cmd "/k $batsDir\alias.bat && $batsDir\fmkInit.bat && $batsDir\fmkCompile.bat" 
   }
   elseif($arg -eq "full")
   {
     echo "FMK init - download and compile"
-    Start-Process cmd "/k $batsDir\fmkUpdate_Test.bat"
+    Start-Process cmd "/k $batsDir\alias.bat && $batsDir\fmkUpdate_Test.bat"
   }
    
 }
 
-Export-ModuleMember -function conanenvironment, gui, xflowCompile, fmkInit
+Function traduccion 
+{ 
+    <#
+    .SYNOPSIS
+      Actualiza ficheros de traduccion de Xflow
+    .DESCRIPTION 
+      Actualiza ficheros de traduccion de Xflow
+    
+    .EXAMPLE 
+      traduccion
+    #> 
+
+  $actual = $pwd
+  cd "C:\xf\gui\xflow-gui\resources\locale"
+  translations_update_TS_files.bat
+  translations_release_TS_files.bat
+  
+  cd $actual
+}
+
+Export-ModuleMember -function conanenvironment, gui, xflowCompile, fmkInit, traduccion
