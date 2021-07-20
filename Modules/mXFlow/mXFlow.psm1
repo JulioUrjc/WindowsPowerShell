@@ -112,7 +112,7 @@ Function traduccion
     #> 
 
   $actual = $pwd
-  cd "C:\xf\gui\xflow-gui\resources\locale"
+  cd "E:\git\xflowlegacy\gui\xflow-gui\resources\locale"
   translations_update_TS_files.bat
   translations_release_TS_files.bat
   
